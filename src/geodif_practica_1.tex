@@ -13,9 +13,13 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\M}[2]{\mathsf{M}_{#1}#2}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\eps}{\varepsilon}
-
+\newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\nat}[1]{[\![#1]\!]}
+\newcommand{\natzero}[1]{\nat{#1}_0}
+\newcommand{\adj}[1]{\operatorname{adj}(#1)}
 \newcommand{\paint}[2]{\color{#1}{#2}}
 \definecolor{purple}{RGB}{129, 0, 125}
 
@@ -46,30 +50,124 @@
 \begin{exercise}{5} Muestre que los siguientes espacios son variedades diferenciales y determine sus
 dimensiones. 
 \begin{itemize}
-\item[(i)] $\mathsf{SL}(n,\C)$ el conjunto de las matrices complejas de tama\~{n}o $n \times n$ y determinante $1$.
+\item[(i)] $\mathsf{SL}(n,\C)$ el conjunto de las matrices complejas de $n \times n$ y determinante $1$.
+\item[(ii)] $\mathsf{U}(n,\R) \subset \M{n}{\C}$, el conjunto de las matrices complejas de $n \times n$ que son unitarias, esto es, las matrices $A$ tales que $AA^* = I$.
+\item[(iii)] $\mathsf{Sp}(2n,\R)$, el conjunto de las matrices $A \in \mathsf{M}_{2n}\R$ tales que $A\Omega A^t=\Omega$, con
+\begin{align*}
+  \Omega=\begin{pmatrix}0&I_n\\-I_n&0\end{pmatrix}
+\end{align*}
 \end{itemize}
 \end{exercise}
 \begin{proof} Hacemos cada caso por separado.
 \begin{itemize} 
-\item[(i)] Afirmamos primero que la funci\'on $\det : \mathsf{M}_n\C \to \C$ es diferenciable. Eso es porque dada una matriz compleja $A = (X_{ij}+iY_{ij})_{ij}$, luego $\det A$ es un polinomio con coeficientes en $\C$ en funci\'on de cada $X_{ij}, Y_{ij}$,
-\begin{align}
-\det((X_{ij}+iY_{ij})_{i,j}) = \sum_{\sigma \in \mathbb{S}_n}sgn(\sigma)(X_{1\sigma(1)}+iY_{1\sigma(1)}) \cdots (X_{n \sigma(n)}+iY_{n\sigma(n)}).
-\end{align}
-Tomando partes reales e imaginarias tenemos que $\det A = \Re(\det A) + i \Im(\det A)$ con $\Re(\det), \Im(\det)$ dos polinomios ahora de valores reales. Identificando $\mathsf{M}_n\C \equiv \R^{2n^2}$ y $C \equiv R^2$ via homeomorfismos $\Phi : (X_{ij}+iY_{ij})_{i,j} \mapsto (X_1, \dots, X_{n^2}, Y_1, \dots, Y_{n^2})$ y $\phi : z \mapsto (\Re(z), \Im(z))$ luego $\paint{purple}{(2)}$ nos dice que en el siguiente diagrama,
-\begin{center}
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
-  {
-     \mathsf{M}_n\C & \C \\
-     \R^{2n^2} & \R^2 \\};
-  \path[-stealth]
-    (m-1-1) edge node [above] {$\det$} (m-1-2)
-            edge node [left] {$\Phi$} (m-2-1)
-    (m-1-2) edge node [right] {$\phi$} (m-2-2)
-    (m-2-1) edge [dashed] node [below] {} (m-2-2);
-\end{tikzpicture}
-\end{center}
-la flecha punteada es diferenciable pues es un polinomio para cada coordenada de $\R^2$. A su vez, $\{(\mathsf{M}_n\C,\Phi)\}$ y $\{(\C,\phi)\}$ son  atlas, lo que prueba que $\det$ es diferenciable. Ahora bien, por definici\'on es $\mathsf{SL}(c,\C) = \det^{-1}(\{1\})$ y podemos apelar luego al teorema de valores regulares, viendo que el diferencial de $\det$ sea sobreyectivo en cada matriz $A \in \mathsf{SL}(n,\C)$.
+\item[(i)] Afirmamos primero que la funci\'on $\det : \M{n}{\C} \to \C$ es diferenciable. Eso es porque dada una matriz compleja $A = (X_{kl}+iY_{kl})_{kl}$, luego $\det A$ es un polinomio con coeficientes en $\C$ en funci\'on de cada $X_{kl}$ e $Y_{kl}$,
+\begin{align*}
+\det((X_{kl}+iY_{kl})_{i,j}) = \sum_{\sigma \in \mathbb{S}_n}sgn(\sigma)(X_{1\sigma(1)}+iY_{1\sigma(1)}) \cdots (X_{n \sigma(n)}+iY_{n\sigma(n)}).
+\end{align*}
+Identificando $\M{n}{\C} \equiv \R^{2n^2}$ y $\C \equiv \R^2$, el determinante en cada coordenada (es decir, tomando partes real e imaginaria) resulta un polinomio, y por lo tanto es diferenciable. As\'i, podemos utilizar el teorema de valores regulares pensando $\det$ como una funcion $\R^{2n^2} \to R^2$ y tomando la preimagen de $(1,0) = 1+0i$ pues por definici\'on es $\mathsf{SL}(n,\C) = \det^{-1}(\{1\})$. Con la intenci\'on de alivianar la notaci\'on seguimos escribiendo $X+iY = (X,Y) \in \R^2$ y de igual forma en $\R^{2n^2}$. Para conocer el diferencial $D := D(\det)$, por linealidad podemos calcularlo en cada direcci\'on can\'onica $E_{kl}$ e $iE_{kl}$, siendo \'estas las $2n^2$-uplas can\'onicas que tienen un $1$ exactamente en el lugar $X_{kl}$ e $Y_{kl}$ respectivamente. Dado $t \in \R$ y usando el desarrollo por cofactores,
+\begin{align*}
+\det(A+tE_{kl}) &= \sum_{s=1}^n(-1)^{k+s}(A+tE_{kl})_{ks}(A+tE_{kl})^{(k,s)} = \sum_{s=1}^n(-1)^{k+s}(A+tE_{kl})_{ks}A^{(k,s)} \\ 
+&= \sum_{s=1}^n(-1)^{k+s}A_{ks}A^{(k,s)} + t(-1)^{k+l}A^{(k,l)} = \det(A) + t(-1)^{k+l}A^{(k,l)} = t\adj{A}_{kl}
+\end{align*}
+y del mismo modo, $\det(A+tiE_{kl}) = \det(A) + ti\adj{A}_{kl}$. Por lo tanto,
+\begin{align*}
+D_A(E_{ij}) = \lim_{t \to 0} \frac{\det(A+tE_{ij}) - \det(A)}{t} = \lim_{t \to 0}\frac{\det(A)+t\adj{A}_{kl}-\det(A)}{t} = \adj{A}_{kl}
+\end{align*}
+y $D_A(iE_{ij}) = i\adj{A}_{kl}$. Por lo tanto, si $\adj{A}_{kl} = R_{kl} + iI_{kl}$ para cada $k,l \in \nat{n}$ entonces $i\adj{A}_{kl} = iR_{kl} - I_{kl}$ la matriz diferencial de $\det$ en $A$ como funci\'on $\R^{2n^2} \to R^2$ es
+\begin{align*}
+D_A = \begin{pmatrix}
+R_{11} & R_{12} & \dots & R_{1n} & R_{21} & \dots & R_{nn} & -I_{11} & \dots & -I_{nn} \\
+I_{11} & I_{12} & \dots & I_{1n} & I_{21} & \dots & I_{nn} & R_{11} & \dots & R_{nn}
+\end{pmatrix}.
+\end{align*}
+Si $D_A$ no fuera sobreyectivo, entonces o bien $D_A = 0$ o bien $D_A$ es de rango $1$. Veamos que esto \'ultimo (tambi\'en) implica $\adj{A} = 0$. En efecto, si $\operatorname{rg} D_A = 1$ entonces las filas del diferencial son linealmente dependientes y en consecuencia, existe $\lambda \neq 0$ tal que 
+\begin{align*}
+\begin{cases}
+\quad R_{kl} = \lambda I_{kl}\\
+- \ I_{kl} = \lambda R_{kl}
+\end{cases}
+\end{align*}
+para cada $k,l \in \nat{n}$. De aqu\'i concluimos que $R_{kl} = - \lambda^2 R_{kl}$ y por lo tanto $R_{kl}(1+\lambda^2) = 0$ as\'i que $R_{kl} = 0$ e $I_{kl} = -\lambda R_{kl} = 0$. Ahora bien, si $A \in \mathsf{SL}(n,\C)$ luego es
+\begin{align*}
+I = 1 \cdot I = \det(A) I = A \adj{A},
+\end{align*}
+y no puede ser entonces $\adj{A} = 0$. En consecuencia, $D_A$ siempre es sobreyectivo cuando $A$ es un elemento de $\mathsf{SL}(n,\C)$ y por lo tanto, el teorema de valores regulares nos asegura que esta \'ultima es variedad diferenciable de dimensi\'on $2n^2 - 2 = 2(n^2-1)$.
+\item[(ii)] Con la misma idea que antes identificamos $\M{n}{\C} \equiv \R^{2n^2}$ para usar el teorema de valores regulares. Notemos que dada cualquier matriz $A$ luego $AA^* -I$ es siempre Hermitiana y podemos considerar entonces la funci\'on
+\begin{align*}
+F : A \in \M{n}{\C} \mapsto AA^* -I \in \mathcal{H}_n
+\end{align*}
+que verifica $\mathsf{U}(n,\C) = F^{-1}(0)$ y es diferenciable pues es un polinomio en cada componente. Como queremos utilizar el teorema de valores regulares, notemos primero que $\mathcal{H}_n$ es una variedad diferenciable pues es un $\R$-espacio vectorial de dimensi\'on finita: si $C$ y $D$ son Hermitianas, $(\lambda C+D)^* = \lambda^*C^*+D^* = \lambda C+D$ pues justamente $\lambda$ es real. Adem\'as, una matriz $A+iB \in \M{n}{\C}$ con $A,B \in \M{n}{\R}$ es Hermitiana si y s\'olo si $A+iB = (A+iB)^* = A^t-iB^t$, es decir si y s\'olo si $A$ es sim\'etrica y $B$ antisim\'etrica. Por lo tanto,
+\begin{align*}
+\dim \mathcal{H}_n = \frac{n(n+1)}{2} + \frac{n(n-1)}{2} = n^2.
+\end{align*}
+Ahora, calculemos $D_AF$: como 
+\begin{align*}
+F(A+tE_{kl}) &= (A+tE_{kl})(A+tE_{kl})^* -I = (A+tE_{kl})(A^*+tE_{lk}) -I\\
+& = AA^* + tAE_{lk} + tE_{kl}A^* +t^2E_{kl}E_{lk} -I\\
+& = F(A) + tAE_{lk} + tE_{kl}A^* +t^2E_{kl}E_{lk}
+\end{align*}
+y
+\begin{align*}
+F(A+tiE_{kl}) &= (A+tiE_{kl})(A+tiE_{kl})^* -I = (A+tiE_{kl})(A^*-tiE_{lk}) -I\\
+& = AA^* - tiAE_{lk} + tiE_{kl}A^* + t^2E_{kl}E_{lk} -I\\
+& = F(A) - tiAE_{lk} + tiE_{kl}A^* + t^2E_{kl}E_{lk},
+\end{align*}
+luego es
+\begin{align*}
+D_AF(E_{kl}) = \lim_{t \to 0}\frac{F(A+tE_{kl})-F(A)}{t} = \lim_{t \to 0}\frac{tAE_{lk} + tE_{kl}A^* +t^2E_{kl}E_{lk}}{t} =  AE_{lk} + E_{kl}A^*
+\end{align*}
+y de igual forma $D_AF(iE_{kl}) = iE_{kl}A^*-iAE_{lk}$. Por lo tanto, si $z = a+ib$ y $E(z)_{kl} := zE_{kl}$,
+\begin{align*}
+DF_A(E(z)_{kl}) &= D_AF((a+ib)E_{kl}) = a(AE_{lk} + E_{kl}A^*)+b(iE_{kl}A^*-iAE_{lk})\\
+& = (a+ib)E_{kl}A^* + (a-ib)AE_{lk} = zE_{kl}A^* + \bar{z}AE_{lk}\\
+& = zE_{kl}A^* + (zE_{kl}A^*)^*.
+\end{align*} 
+Finalmente, dada $Z \in \M{n}{\C}$ es
+\begin{align*}
+D_AF(Z) & = D_AF\left(\sum_{k,l}E(Z_{kl})_{kl}\right) = \sum_{k,l} D_AF(E(Z_{kl})_{kl}) = \sum_{k,l} Z_{kl}E_{kl}A^* + (Z_{kl}E_{kl}A^*)^*\\
+& = \sum_{k,l} Z_{kl}E_{kl}A^* + \left(\sum_{k,l}Z_{kl}E_{kl}A^*\right)^*
+\end{align*}
+y como $\sum_{k,l} Z_{kl}E_{kl}A^* = \left(\sum_{k,l} Z_{kl}E_{kl}\right)A^* = ZA^*$, obtuvimos
+\begin{align*}
+D_AF(Z) = ZA^* + (ZA^*)^* = ZA^*+AZ^*.
+\end{align*}
+Para terminar, veamos que $D_AF$ es sobreyectivo si $A \in \mathsf{U}(n,\C)$. Si $H$ es Hermitiana, luego 
+\begin{align*}
+D_AF\left(\frac{1}{2}HA\right) &= \frac{1}{2}(HA)A^* + \frac{1}{2}A(HA)^* = \frac{1}{2}HAA^* + \frac{1}{2}AA^*H^* \stackrel{(A \in \mathsf{U}(n,\C))}{=}\\
+&= \frac{1}{2}H+ \frac{1}{2}H^* \stackrel{(H \in \mathcal{H}_n)}{=} \frac{1}{2}H+ \frac{1}{2}H = H.
+\end{align*}
+Concluimos entonces que $\mathsf{U}(n,\C)$ es una variedad diferenciable y su dimensi\'on es exactametnte $\dim \mathsf{U}(n,\C) = \dim \M{n}{\C} - \dim \mathcal{H}_n = 2n^2 -n^2 = n^2$.
+\item[(iii)] Una vez m\'as, buscamos utilizar el teorema de valores regulares. Como para cualquier matriz $A \in \M{2n}{\R}$ tenemos que 
+\begin{align*}
+(A\Omega A^t - \Omega)^t = A\Omega^t A^t - \Omega^t = -A\Omega A^t + \Omega = -(A\Omega A^t - \Omega)
+\end{align*}
+pues $\Omega^t = -\Omega$, podemos definir la siguiente funci\'on a las matrices antisim\'etricas $\mathfrak{A}_{2n}$ via
+\begin{align*}
+F : A \in \M{2n}{\R} \mapsto A\Omega A^t - \Omega \in \mathfrak{A}_{2n}.
+\end{align*}
+As\'i, es $\mathsf{Sp}(2n,\R) = F^{-1}(0)$ y $F$ es diferenciable, al ser un polinomio en cada coordenda, de forma que podemos hacer el mismo procedimiento de antes: dado que
+\begin{align*}
+F(A+tE_{ij}) &= (A+tE_{ij})\Omega(A+tE_{ij})^t - \Omega = (A+tE_{ij})\Omega(A^t+tE_{ji}) - \Omega \\
+& = A\Omega A^t + tA\Omega E_{ji} + tE_{ij}\Omega A^t + t^2E_{ij}\Omega E_{ji} - \Omega\\
+& = F(A) + t(A\Omega E_{ji} + E_{ij}\Omega A^t) +t^2E_{ji}\Omega E_{ji}
+\end{align*}
+luego $D_AF(E_{ij}) = \lim_{t \to 0}\frac{F(A+tE_{ij})-F(A)}{t} = A\Omega E_{ji} + E_{ij}\Omega A^t$ y
+\begin{align*}
+D_AF(B) &= D_AF\left(\sum_{i,j}B_{ij}E_{ij}\right) = \sum_{i,j}B_{ij}D_AF(E_{ij}) = \sum_{i,j}B_{ij}(A\Omega E_{ji} + E_{ij}\Omega A^t) \\
+& = \sum_{i,j}B_{ij}A\Omega E_{ji} + \sum_{i,j}B_{ij}E_{ij}\Omega A^t = A\Omega\left(\sum_{i,j}B_{ij}E_{ji}\right) + \left(\sum_{i,j}B_{ij}E_{ji}\right)\Omega A^t\\
+& = A \Omega B^t + B\Omega A^t.
+\end{align*}
+Si ahora $A \in \mathsf{Sp}(2n,\R)$ y $X \in \mathfrak{A}_{2n}$, entonces tomando $Z = \small{\frac{1}{2}}X$ tenemos que
+\begin{align*}
+D_AF(Z\Omega A) &= A \Omega (Z\Omega A)^t + (Z\Omega A)\Omega A^t = (A \Omega A^t)\Omega^t Z^t + Z\Omega(A\Omega A^t)\\
+& = \Omega\Omega^t Z^t + Z\Omega\Omega = -Z^t + Z = -\frac{1}{2}X^t + \frac{1}{2}X = \frac{1}{2}X + \frac{1}{2}X = X,
+\end{align*}
+as\'i que $D_A F$ es sobreyectivo. Esto prueba que, en efecto, $\mathsf{Sp}(2n,\R)$ es una variedad diferenciable y
+\begin{align*}
+\dim \mathsf{Sp}(2n,\R) &= \dim \M{2n}{\R}- \dim \mathfrak{A}_{2n}\\
+& = 4n^2 - \frac{(2n)(2n-1)}{2} = 4n^2-2n^2-n\\
+& = 2n^2 - n = n(2n-1).
+\end{align*}
 \end{itemize}
 \end{proof}
 \begin{exercise}{7} Sean $M$ y $N$ variedades de dimensiones $m$ y $n$, respectivamente. Probar que:
@@ -79,6 +177,7 @@ variedad diferenciable de dimensi\'on $m+n$ y con respecto a esta estructura
 las proyecciones $p_1:M\times N\to M$ y $p_2:M\times N\to N$ son funciones diferenciables.
 \item[(b)] Si $P$ es una variedad y $f:P\to M$ y $g:P\to N$ son funciones
 diferenciables, entonces existe exactamente una funci\'on diferenciable $h:P\to M\times N$ tal que $p_1\circ h=f$ y $p_2\circ h=g$.
+\item[(c)] Si $M$ es una variedad, las funciones $id : M \to M$ y $\Delta : x \in M \mapsto (x, x) \in M \times M$ son diferenciables.
 \end{itemize}
 \end{exercise}
 \begin{proof} Hacemos cada inciso por separado:
@@ -104,7 +203,7 @@ verifica
 (\varphi_i \times \psi_j)|_W \circ ((\varphi_k \times \psi_l)|_W)^{-1}(x,y) & = (\varphi_i \times \psi_j) \circ (\varphi^{-1}_k \times \psi^{-1}_l) (x,y)\\
 & =(\varphi_i\varphi^{-1}_k(x), \psi_j\psi^{-1}_l(y))
 \end{align*}
-para cada $(x,y) \in (\varphi_k \times \psi_l)(W) = \varphi_k(U_i \cap U_k) \times \psi_l(V_j \times V_l)$. Como por hip\'otesis tanto $\varphi_i\varphi^{-1}_k$ como $\psi_j\psi^{-1}_l$ son funciones diferenciables entre abiertos eucl\'ideos, es entonces $\varphi_i\varphi^{-1}_k \times \psi_j\psi^{-1}_l$ diferenciable y a la vez coincide con $\paint{purple}{(2)}$, lo que termina de probar que $\mathcal{A}$ dota a $M \times N$ de una estructura diferenciable. Los abiertos $U_i \times V_j$ son en particular abiertos de $\mathbb{R}^{n+m}$ lo que dice que $\dim M \times N = \dim M + \dim N = m+n$. Ahora veamos que las proyecciones son diferenciables. Fijamos $(x,y) \in M \times N$ y sea $(U_i \times V_j, \varphi_i  \times \psi_j)$ una carta en con $x \in U_i, y \in V_j$. Luego por construcci\'on de $\mathcal{A}$ sabemos que $\varphi_i$ es carta de $M$ con $x = p_1(x,y) \in p_1(U_i \times V_j) = U_i$ y $\psi_j$ es carta de $N$ con $y = p_2(x,y) \in p_2(U_i \times V_j) = V_j$. Basta entonces con probar que $\varphi_i p_1 (\varphi_i \times \psi_j)^{-1}$ y $\psi_j p_2 (\varphi_i \times \psi_j)^{-1}$ son diferenciables. \'Esta \'ultima es exactamente la proyecci\'on en la segunda coordenada $\tilde{p}_2 : \varphi_i(U_i) \times \psi_j(V_j) \to \psi_j(V_j)$, ya que si $(x,y) \in \varphi_i(U_i) \times \psi_j(V_j)$ entonces $\psi_j p_2 (\varphi_i \times \psi_j)^{-1}(x,y) = \varphi_i p_2 (\varphi_i^{-1}(x),\psi^{-1}_j(y)) = \psi_j(\psi^{-1}_j(y)) = y$. Similarmente $\varphi_i p_1 (\varphi_i \times \psi_j)^{-1}$ es la proyecci\'on de $\varphi_i(U_i) \times \psi_j(V_j)$ en la primera coordenada, y as\'i vemos que ambas proyecciones son diferenciables.
+para cada $(x,y) \in (\varphi_k \times \psi_l)(W) = \varphi_k(U_i \cap U_k) \times \psi_l(V_j \times V_l)$. Como por hip\'otesis tanto $\varphi_i\varphi^{-1}_k$ como $\psi_j\psi^{-1}_l$ son funciones diferenciables entre abiertos eucl\'ideos, es entonces $\varphi_i\varphi^{-1}_k \times \psi_j\psi^{-1}_l$ diferenciable y a la vez coincide con $\paint{purple}{(1)}$, lo que termina de probar que $\mathcal{A}$ dota a $M \times N$ de una estructura diferenciable. Los abiertos $U_i \times V_j$ son en particular abiertos de $\mathbb{R}^{n+m}$ lo que dice que $\dim M \times N = \dim M + \dim N = m+n$. Ahora veamos que las proyecciones son diferenciables. Fijamos $(x,y) \in M \times N$ y sea $(U_i \times V_j, \varphi_i  \times \psi_j)$ una carta en con $x \in U_i, y \in V_j$. Luego por construcci\'on de $\mathcal{A}$ sabemos que $\varphi_i$ es carta de $M$ con $x = p_1(x,y) \in p_1(U_i \times V_j) = U_i$ y $\psi_j$ es carta de $N$ con $y = p_2(x,y) \in p_2(U_i \times V_j) = V_j$. Basta entonces con probar que $\varphi_i p_1 (\varphi_i \times \psi_j)^{-1}$ y $\psi_j p_2 (\varphi_i \times \psi_j)^{-1}$ son diferenciables. \'Esta \'ultima es exactamente la proyecci\'on en la segunda coordenada $\tilde{p}_2 : \varphi_i(U_i) \times \psi_j(V_j) \to \psi_j(V_j)$, ya que si $(x,y) \in \varphi_i(U_i) \times \psi_j(V_j)$ entonces $\psi_j p_2 (\varphi_i \times \psi_j)^{-1}(x,y) = \varphi_i p_2 (\varphi_i^{-1}(x),\psi^{-1}_j(y)) = \psi_j(\psi^{-1}_j(y)) = y$. Similarmente $\varphi_i p_1 (\varphi_i \times \psi_j)^{-1}$ es la proyecci\'on de $\varphi_i(U_i) \times \psi_j(V_j)$ en la primera coordenada, y as\'i vemos que ambas proyecciones son diferenciables.
 \item[(b)] Veamos en primer lugar que existe una tal funci\'on. Consideramos 
 \begin{align*}
 h : p \in P \mapsto (f(p),g(p)) \in M \times N
@@ -136,6 +235,21 @@ as\'i que $\tilde{h}(p) = (f(p),g(p)) = h(p)$, para todo $p \in P$.
     (m-2-2) edge node [below] {$p_2$} (m-2-3);
 \end{tikzpicture}
 \end{center}
+\item[(c)] Si $p \in M$ y $(U, \varphi)$ es una carta de $M$ con $p \in U$, el siguiente diagrama
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     M & M\\
+     \varphi(U) & \varphi(U)\\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$id$} (m-1-2)
+            edge node [left] {$\varphi$}  (m-2-1)
+    (m-2-1) edge node [below] {$id_{\varphi(U)}$} (m-2-2)
+    (m-1-2) edge node [right] {$\varphi$} (m-2-2);
+\end{tikzpicture}
+\end{center}
+conmuta e $id_{\varphi(U)} = \varphi\varphi^{-1}$ es siempre diferenciable. Por lo tanto, $id$ es diferenciable y entonces por $\paint{purple}{(b)}$ existe una \'unica funci\'on $f : M \to M \times M$ tal que $p_1f = id = p_2f$, que resulta diferenciable. Como $\Delta$ cumple lo primero, debe ser $\Delta = f$ y por lo tanto, $\Delta$ es diferenciable.
 \end{itemize}
 \end{proof}
 \end{document}
