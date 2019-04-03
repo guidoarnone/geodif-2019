@@ -20,6 +20,7 @@
 \newcommand{\nat}[1]{[\![#1]\!]}
 \newcommand{\natzero}[1]{\nat{#1}_0}
 \newcommand{\adj}[1]{\operatorname{adj}(#1)}
+\newcommand{\ip}[2]{\langle #1 , #2 \rangle}
 \newcommand{\paint}[2]{\color{#1}{#2}}
 \definecolor{purple}{RGB}{129, 0, 125}
 
@@ -46,6 +47,71 @@
 \begin{document}
 
 \maketitle
+\begin{exercise}{4} Probar que:
+\begin{itemize}
+\item[(a)] El conjunto de vectores normales unitarios a una curva regular en $\R^3$ tiene una estructura natural de variedad diferenciable de dimensión $2$.
+\item[(b)] Sea $\Omega$ un abierto de $\R^n$ y sea $F : \Omega \to \R$ una función diferenciable que tiene a $0$ como valor regular, de manera que el conjunto $M = F^{-1}(0)$ es una subvariedad
+de $\R^n$. Muestre que el conjunto $SM$ de vectores unitarios tangentes a $M$ tiene una estructura natural de variedad de dimensi\'on $2n - 3$.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+\hspace{0.5pt}
+\begin{itemize}
+\item[(a)] Sea $\alpha : I \to \mathcal{C}$ una parametrizaci\'on $\mathcal{C}^2$ de una curva regular de curvatura positiva y, sin p\'erdida de generalidad, la suponemos parametrizada por longitud de arco. Ahora, dado un punto $p = \alpha(t_0)$ en la traza, la recta tangente a la curva all\'i es $L_p = \{\lambda \alpha'(t_0) + \alpha(t_0)\}$. Ahora, los vectores normales unitarios a $\mathcal{C}$ en $p$ son los vectores normales unitarios a $L_p$ en $p$, los cuales se pueden describir como
+\begin{align*}
+\mathcal{N}_p := \{v \in \R^3 : \ip{\alpha'(t_0)}{v} = 0, \ip{v}{v} = 1 \}.
+\end{align*}
+Consideramos entonces
+\begin{align*}
+\mathcal{N} = \{(t,v) : \ip{\alpha'(t)}{v} = 0, \ip{v}{v} = 1\}
+\end{align*}
+Veamos que \'esta es una variedad diferenciable de dimensi\'on $2$. Notemos que $\mathcal{C}$ es la preimagen del $(0,1)$ por la siguiente funci\'on
+\begin{align*}
+F : \R^4& = \R \times \R^3 \mapsto \R^2 \\
+& (t,v) \mapsto (\ip{\alpha'(t)}{v},\ip{v}{v})
+\end{align*}
+que es diferenciable, pues $\alpha \in \mathcal{C}^2(I)$. Por el teorema de valores regulares, bastar\'ia probar que $DF_p$ es sobreyectivo para cada $p \in F^{-1}(0,1)$. Como
+\begin{align*}
+DF_{(t,v)} = \begin{pmatrix}
+\ip{\alpha''(t)}{v} & \alpha'(t) \\
+0 & 2v
+\end{pmatrix},
+\end{align*}
+esto es equivalente a que las filas no sean m\'ultiplos una de la otra. Si fuera as\'i, en particular existir\'ia $\mu \in \R \setminus \{0\}$ tal que $v = \mu \alpha'(t)$ y entonces ser\'ia
+\begin{align*}
+1 = \ip{v}{v} = \mu \ip{\alpha'(t)}{v} = 0
+\end{align*}
+lo que es absurdo. En conclusi\'on, necesariamente las filas de $D_pF$ son linealmente independientes (i.e. el diferencial es sobreyectivo) cuando $F(p) = (0,1)$, y consecuentemente el teorema de valores regulares asegura que $\mathcal{N}$ es una variedad de dimensi\'on $\dim \mathcal{N} = \dim \R^4 - \dim \R^2 = 2$.
+\item[(b)] Buscamos en alg\'un sentido generalizar la idea de $\paint{purple}{(a)}$. Dada $M = F^{-1}(0)$ variedad con $0$ valor regular de $F$, definimos
+\begin{align*}
+SM := \{(p,v) : p \in M, \ip{\nabla_pF}{v} = 0, \ip{v}{v} = 1\} \subset \R^n \times \R^n = \R^{2n}
+\end{align*}
+de forma que $SM = \Gamma^{-1}(0,0,1)$ con
+\begin{align*}
+\Gamma : \ &\R^n \times \R^n \to \R^3 \\
+&(p,v) \longmapsto (F(p),\ip{\nabla_pF}{v},\ip{v}{v})
+\end{align*}
+que es diferenciable pues $F$ y el producto interno lo son. Ahora dado $(p,v) \in SM$, como
+\begin{align*}
+D\Gamma_{(p,v)} = \begin{pmatrix}
+\nabla_pF & 0\\
+H & \nabla_pF\\
+0 & 2v
+\end{pmatrix}
+\end{align*}
+con $\R^n \ni H = \left(\sum_i\dpart{F}{x_jx_i}(p)v_i\right)_j$ y $\nabla_pF \neq 0$ pues $F(p) = 0$, existe $i \in \nat{n}$ tal que $\dpart{F}{X_i} \neq 0$ y el menor que resulta de quitar la fila $1$ y columna $i$ es de la forma
+\begin{align*}
+DF_{(p,v)}^{(1,i)} = \begin{pmatrix}
+* & \nabla_pF \\
+0 & 2v
+\end{pmatrix}
+\end{align*}
+Por el mismo argumento que en $\paint{purple}{(a)}$ este resulta de rango $2$, pues $\nabla_pF \perp v$ y $v \neq 0$. Como $D_{(p,v)}F^{(1,i)}$ tiene rango $2$ y la primera fila es linealmente independiente de las siguientes, vemos que $D_{(p,v)}F$ tiene rango $3$ y como este es el m\'aximo, es sobreyectivo. El teorema de valores regulares nos permite entonces concluir que $SM = \Gamma^{-1}(0,0,1)$ es variedad diferenciable y
+\begin{align*}
+\dim SM = \dim R^{2n} - \dim R^3 = 2n-3.
+\end{align*}
+\end{itemize}
+\end{proof}
 
 \begin{exercise}{5} Muestre que los siguientes espacios son variedades diferenciales y determine sus
 dimensiones. 
@@ -170,6 +236,7 @@ as\'i que $D_A F$ es sobreyectivo. Esto prueba que, en efecto, $\mathsf{Sp}(2n,\
 \end{align*}
 \end{itemize}
 \end{proof}
+
 \begin{exercise}{7} Sean $M$ y $N$ variedades de dimensiones $m$ y $n$, respectivamente. Probar que:
 \begin{itemize}
 \item[(a)] El espacio producto $M \times N$ tiene una estructura natural de
