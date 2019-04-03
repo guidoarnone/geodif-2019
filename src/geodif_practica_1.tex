@@ -7,6 +7,8 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{matrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -40,16 +42,23 @@
 
 %-----------------------
 
-\title{\paint{purple}{Geometr\'ia Diferencial}}
+\title{
+\LARGE{\paint{purple}{Geometr\'ia Diferencial}}
+\\
+\vspace{0.5pt}
+\small{\paint{purple}{Ejercicios para Entregar - Pr\'actica 1}}
+}
 \author{\paint{purple}{Guido Arnone}}
 \date{}
+\lhead{Guido Arnone}
+\rhead{Pr\'actica 1}
 
 \begin{document}
 
 \maketitle
 \begin{exercise}{4} Probar que:
 \begin{itemize}
-\item[(a)] El conjunto de vectores normales unitarios a una curva regular en $\R^3$ tiene una estructura natural de variedad diferenciable de dimensión $2$.
+\item[(a)] El conjunto de vectores normales unitarios a una curva regular en $\R^3$ tiene una estructura natural de variedad diferenciable de dimensi\'on $2$.
 \item[(b)] Sea $\Omega$ un abierto de $\R^n$ y sea $F : \Omega \to \R$ una función diferenciable que tiene a $0$ como valor regular, de manera que el conjunto $M = F^{-1}(0)$ es una subvariedad
 de $\R^n$. Muestre que el conjunto $SM$ de vectores unitarios tangentes a $M$ tiene una estructura natural de variedad de dimensi\'on $2n - 3$.
 \end{itemize}
@@ -65,7 +74,7 @@ Consideramos entonces
 \begin{align*}
 \mathcal{N} = \{(t,v) : \ip{\alpha'(t)}{v} = 0, \ip{v}{v} = 1\}
 \end{align*}
-Veamos que \'esta es una variedad diferenciable de dimensi\'on $2$. Notemos que $\mathcal{C}$ es la preimagen del $(0,1)$ por la siguiente funci\'on
+Veamos que \'esta es una variedad diferenciable de dimensi\'on $2$. Notemos que $\mathcal{N}$ es la preimagen del $(0,1)$ por la siguiente funci\'on
 \begin{align*}
 F : \R^4& = \R \times \R^3 \mapsto \R^2 \\
 & (t,v) \mapsto (\ip{\alpha'(t)}{v},\ip{v}{v})
@@ -106,9 +115,9 @@ DF_{(p,v)}^{(1,i)} = \begin{pmatrix}
 0 & 2v
 \end{pmatrix}
 \end{align*}
-Por el mismo argumento que en $\paint{purple}{(a)}$ este resulta de rango $2$, pues $\nabla_pF \perp v$ y $v \neq 0$. Como $D_{(p,v)}F^{(1,i)}$ tiene rango $2$ y la primera fila es linealmente independiente de las siguientes, vemos que $D_{(p,v)}F$ tiene rango $3$ y como este es el m\'aximo, es sobreyectivo. El teorema de valores regulares nos permite entonces concluir que $SM = \Gamma^{-1}(0,0,1)$ es variedad diferenciable y
+Por el mismo argumento que en $\paint{purple}{(a)}$ este resulta de rango $2$, pues $\nabla_pF \perp v$ y $\nabla_pF,v \neq 0$. Como $D_{(p,v)}F^{(1,i)}$ tiene rango $2$ y la primera fila es linealmente independiente de las siguientes, vemos que $D_{(p,v)}F$ tiene rango $3$ y como este es el m\'aximo, es sobreyectivo. El teorema de valores regulares nos permite entonces concluir que $SM = \Gamma^{-1}(0,0,1)$ es variedad diferenciable y
 \begin{align*}
-\dim SM = \dim R^{2n} - \dim R^3 = 2n-3.
+\dim SM = \dim \R^{2n} - \dim \R^3 = 2n-3.
 \end{align*}
 \end{itemize}
 \end{proof}
@@ -130,16 +139,17 @@ dimensiones.
 \begin{align*}
 \det((X_{kl}+iY_{kl})_{i,j}) = \sum_{\sigma \in \mathbb{S}_n}sgn(\sigma)(X_{1\sigma(1)}+iY_{1\sigma(1)}) \cdots (X_{n \sigma(n)}+iY_{n\sigma(n)}).
 \end{align*}
-Identificando $\M{n}{\C} \equiv \R^{2n^2}$ y $\C \equiv \R^2$, el determinante en cada coordenada (es decir, tomando partes real e imaginaria) resulta un polinomio, y por lo tanto es diferenciable. As\'i, podemos utilizar el teorema de valores regulares pensando $\det$ como una funcion $\R^{2n^2} \to R^2$ y tomando la preimagen de $(1,0) = 1+0i$ pues por definici\'on es $\mathsf{SL}(n,\C) = \det^{-1}(\{1\})$. Con la intenci\'on de alivianar la notaci\'on seguimos escribiendo $X+iY = (X,Y) \in \R^2$ y de igual forma en $\R^{2n^2}$. Para conocer el diferencial $D := D(\det)$, por linealidad podemos calcularlo en cada direcci\'on can\'onica $E_{kl}$ e $iE_{kl}$, siendo \'estas las $2n^2$-uplas can\'onicas que tienen un $1$ exactamente en el lugar $X_{kl}$ e $Y_{kl}$ respectivamente. Dado $t \in \R$ y usando el desarrollo por cofactores,
+Identificando $\M{n}{\C} \equiv \R^{2n^2}$ y $\C \equiv \R^2$, el determinante en cada coordenada (es decir, tomando partes real e imaginaria) resulta un polinomio, y por lo tanto es diferenciable. As\'i, podemos utilizar el teorema de valores regulares pensando $\det$ como una funcion $\R^{2n^2} \to \R^2$ y tomando la preimagen de $(1,0) = 1+0i$ pues por definici\'on es $\mathsf{SL}(n,\C) = \det^{-1}(\{1\})$. Con la intenci\'on de alivianar la notaci\'on seguimos escribiendo $X+iY = (X,Y) \in \R^2$ y de igual forma en $\R^{2n^2}$. Para conocer el diferencial $D := D(\det)$, por linealidad podemos calcularlo en cada direcci\'on can\'onica $E_{kl}$ e $iE_{kl}$, siendo \'estas las $2n^2$-uplas can\'onicas que tienen un $1$ exactamente en el lugar $X_{kl}$ e $Y_{kl}$ respectivamente. Dado $t \in \R$ y usando el desarrollo por cofactores,
 \begin{align*}
 \det(A+tE_{kl}) &= \sum_{s=1}^n(-1)^{k+s}(A+tE_{kl})_{ks}(A+tE_{kl})^{(k,s)} = \sum_{s=1}^n(-1)^{k+s}(A+tE_{kl})_{ks}A^{(k,s)} \\ 
-&= \sum_{s=1}^n(-1)^{k+s}A_{ks}A^{(k,s)} + t(-1)^{k+l}A^{(k,l)} = \det(A) + t(-1)^{k+l}A^{(k,l)} = t\adj{A}_{kl}
+&= \sum_{s=1}^n(-1)^{k+s}A_{ks}A^{(k,s)} + t(-1)^{k+l}A^{(k,l)} = \det(A) + t(-1)^{k+l}A^{(k,l)}\\
+& = \det(A) + t\adj{A}_{kl}
 \end{align*}
 y del mismo modo, $\det(A+tiE_{kl}) = \det(A) + ti\adj{A}_{kl}$. Por lo tanto,
 \begin{align*}
 D_A(E_{ij}) = \lim_{t \to 0} \frac{\det(A+tE_{ij}) - \det(A)}{t} = \lim_{t \to 0}\frac{\det(A)+t\adj{A}_{kl}-\det(A)}{t} = \adj{A}_{kl}
 \end{align*}
-y $D_A(iE_{ij}) = i\adj{A}_{kl}$. Por lo tanto, si $\adj{A}_{kl} = R_{kl} + iI_{kl}$ para cada $k,l \in \nat{n}$ entonces $i\adj{A}_{kl} = iR_{kl} - I_{kl}$ la matriz diferencial de $\det$ en $A$ como funci\'on $\R^{2n^2} \to R^2$ es
+y $D_A(iE_{ij}) = i\adj{A}_{kl}$. Por lo tanto, si $\adj{A}_{kl} = R_{kl} + iI_{kl}$ para cada $k,l \in \nat{n}$ entonces $i\adj{A}_{kl} = iR_{kl} - I_{kl}$ y la matriz diferencial de $\det$ en $A$ como funci\'on $\R^{2n^2} \to \R^2$ es
 \begin{align*}
 D_A = \begin{pmatrix}
 R_{11} & R_{12} & \dots & R_{1n} & R_{21} & \dots & R_{nn} & -I_{11} & \dots & -I_{nn} \\
