@@ -15,6 +15,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Ss}{\mathbb{S}}
 \newcommand{\M}[2]{\mathsf{M}_{#1}#2}
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\eps}{\varepsilon}
@@ -64,13 +65,34 @@
 \begin{center}
 \paint{red}{\large{Sobre los Ejercicios}}
 \end{center}
-Adem\'as del ejercicio $\paint{red}{(9)}$, elej\'i resolver los ejercicios $\paint{red}{()}$ y $\paint{red}{(12)}$.
+Adem\'as del ejercicio $\paint{red}{(9)}$, elej\'i resolver los ejercicios $\paint{red}{(4)}$ y $\paint{red}{(12)}$.
 \begin{center}
 $\paint{red}{
 \rule{400pt}{0.5pt}
 }$
 \vspace{35pt}
 \end{center}
+
+\begin{exercise}{4} Sea $f:M\to N$ una funci\'on diferenciable entre variedades de la misma dimensi\'on y supongamos que su dominio es compacto.
+\begin{itemize}
+\item[(a)] Para cada $q\in N$ que es un valor regular de $f$ el conjunto $f^{-1}(q)$ es finito.
+\item[(b)] Sea $R$ el conjunto de los valores regulares de~$f$. El conjunto $R$ es un abierto de $N$ y la funci\'on 
+  \[
+  q\in R\mapsto\#f^{-1}(q)\in\N_0
+  \]
+es localmente constante. ¿Es necesariamente constante?
+\end{itemize}
+\end{exercise}
+\begin{proof} Veamos primero el inciso $\paint{red}{(a)}$. Fijemos $q \in N$ un valor regular. Como $f$ es diferenciable en particular es continua y entonces el conjunto $E_q := f^{-1}(q)$ es un cerrado de $M$, al ser la preimagen del cerrado $\{q\} \subset N$. Como $E_q$ es un cerrado y $M$ es compacta, el primero resulta compacto. Por lo tanto, para probar que $E_q$ es finito alcanza con mostrar que es discreto con la topolog\'ia subespacio de $M$. Concretamente, basta ver que si $p \in E_q$ entonces existe $U \subset M$ abierto con $U \cap E_q = \{p\}$. Si $p \in E_q$, como $q$ es un valor regular $d_pf :T_pM \to T_qN$ es sobreyectiva. Por otro lado, por hip\'otesis sabemos que $\dim T_pM = \dim M = \dim N = \dim T_qN$. Como $d_pf$ es una funci\'on lineal sobreyectiva entre espacios vectoriales de la misma dimensi\'on, es un isomorfismo. El teorema de la funci\'on inversa nos asegura entonces que existen abiertos $U \ni p$ y $V \ni q$ de $M$ y $N$ respectivamente tales que la (co) restricci\'on $f|_U^V : U \to V$ de $f$ es un difeomorfismo. En particular $f|_U^V$ es inyectiva y entonces la preimagen de un punto contiene a lo sumo un elemento. Se tiene entonces que
+\begin{align*}
+U \cap f^{-1}(q) \stackrel{(q \in V)}{=} ({f|^V_U)}^{-1}(q) \stackrel{(p \in U)}{=} \{p\},
+\end{align*}
+lo que concluye la prueba de $\paint{red}{(a)}$. 
+
+Ahora veamos $\paint{red}{(b)}$.
+
+Por \'ultimo, observemos que \textbf{no es cierto que la aplicaci\'on sea constante}. Veamos el siguiente contraejemplo: tomamos $M = N = \Ss^1 \sqcup \Ss^1$, $s : z \in \Ss^1 \subset \C \mapsto z^2 \in \Ss^1 \subset \C$ y consideramos entonces $id \sqcup s : M \to N$. 
+\end{proof}
 
 \begin{exercise}{9} Sea $M$ una variedad diferenciable de dimensi\'on $n$ y $\mathcal{A}$ su atlas maximal. Sea $TM=\bigsqcup_{p\in M}T_pM$ y sea $\pi :TM\to M$ la funci\'on tal
 que $\pi (v)=p$ si $v\in T_pM$. Para cada $(U,x)\in \mathcal{A}$, sea
