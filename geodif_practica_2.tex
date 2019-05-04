@@ -64,7 +64,7 @@
 \begin{center}
 \paint{red}{\large{Sobre los Ejercicios}}
 \end{center}
-Adem\'as del ejercicio $\paint{red}{(9)}$, elej\'i resolver los ejercicios $\paint{red}{()}$ y $\paint{red}{(12)}$. Con la intenci\'on de hacer m\'as legibles a las resoluciones, algunos argumentos est\'an escritos en forma de lemas que preceden a cada ejercicio.
+Adem\'as del ejercicio $\paint{red}{(9)}$, elej\'i resolver los ejercicios $\paint{red}{()}$ y $\paint{red}{(12)}$.
 \begin{center}
 $\paint{red}{
 \rule{400pt}{0.5pt}
@@ -72,17 +72,17 @@ $\paint{red}{
 \vspace{35pt}
 \end{center}
 
-\begin{exercise}{9} Sea $M$ una variedad diferenciable de dimensi\'on $n$ y $\mathcal{A}$ su atlas maximal. Sea $TM=\bigcup_{p\in M}M_{p}$ y sea $\pi :TM\to M$ la funci\'on tal
-que $\pi (v)=p$ si $v\in M_{p}$. Para cada $(U,x)\in \mathcal{A}$, sea
-$TU=\bigcup_{p\in U}M_{p}\subset TM$ y $\ol{x}:TU\to
+\begin{exercise}{9} Sea $M$ una variedad diferenciable de dimensi\'on $n$ y $\mathcal{A}$ su atlas maximal. Sea $TM=\bigsqcup_{p\in M}T_pM$ y sea $\pi :TM\to M$ la funci\'on tal
+que $\pi (v)=p$ si $v\in T_pM$. Para cada $(U,x)\in \mathcal{A}$, sea
+$TU=\bigsqcup_{p\in U}T_pM\subset TM$ y $\ol{x}:TU\to
 x(U)\times \R^{n}$ la funci\'on tal que
   \[
   \ol{x}(v)=(x(\pi (v)),v(x^{1}),\dots ,v(x^{n}))
   \]
-cada vez que $v\in TU$.
+cada vez que $v\in TU$. Probar que:
 \begin{itemize}
 \item[(a)] La funci\'on $\ol{x}:TU\to x(U)\times \R^{n}$ es una biyecci\'on
-con inversa tal que
+con inversa
   \[
   \ol{x}^{-1}(a,b^{1},\dots,b^{n})
         = \sum_{i=1}^{n}b^{i}\frac{\partial}{\partial x^{i}}\Big|_{x^{-1}(a)}
@@ -105,7 +105,7 @@ una variedad diferenciable de dimensi\'on $2n$, con atlas
 \end{exercise}
 \begin{proof} Hacemos cada inciso por separado,
 \begin{itemize}
-\item[(a)] Sean $(a,b) = (a, b^1, \dots, b^n) \in x(U) \times \R^n$ y $h(a,b) := \sum_{i=1}^nb^i \frac{\partial}{\partial x_i}|_{x^{-1}(a)}$. Como esta \'ultima expresi\'on es una combinaci\'on lineal de derivaciones en $x^{-1}(a)$, luego $h(a,b)$ es una derivaci\'on en $x^{-1}(a)$. Por lo tanto, $h(a,b) \in M_{x^{-1}(a)}$ y as\'i $x\pi(h(a,b)) = xx^{-1}(a) = a$. Adem\'as, si $\pi_j : \R^n \to \R$ es la proyecci\'on en la $j$-\'esima coordenada, luego para cada $j \in \nat{n}$ es $x^j = \pi_jx$ y entonces
+\item[(a)] Sean $(a,b) = (a, b^1, \dots, b^n) \in x(U) \times \R^n$ y $h(a,b) := \sum_{i=1}^nb^i \frac{\partial}{\partial x_i}|_{x^{-1}(a)}$. Como $h(a,b)$ es una combinaci\'on lineal de derivaciones en $x^{-1}(a)$, resulta una derivaci\'on en $x^{-1}(a)$. Por lo tanto, $h(a,b) \in T_{x^{-1}(a)}M$ y entonces $x\pi(h(a,b)) = xx^{-1}(a) = a$. Adem\'as, si $\pi_j : \R^n \to \R$ es la proyecci\'on en la $j$-\'esima coordenada, para cada $j \in \nat{n}$ es $x^j = \pi_jx$ y entonces
 \begin{align*}
 h(a,b)(x^j) &= \left(\sum_{i=1}^nb^i \hook{i}{x^{-1}(a)}{} \right)(x^j) = \sum_{i=1}^nb^i \hook{i}{x^{-1}(a)}{}(x^j) = \sum_{i=1}^nb^i \frac{\partial (x^jx^{-1})}{\partial x_i}\Big|_a \\
 & = \sum_{i=1}^nb^i \frac{\partial \pi_j}{\partial x_i}\Big|_a =  \sum_{i=1}^nb^i \delta_{ij} = b^j.
@@ -115,20 +115,62 @@ Concluimos as\'i que $\ol{x}(h(a,b)) = (a,b) \in x(U) \times \R^n$. Rec\'iprocam
 h(\ol{x}(v)) & = h(x\pi(v),v(x^1),\dots,v(x^n)) = \sum_{i=1}^nv(x^i)\hook{i}{x^{-1}(x\pi(v))}{} = \\
 & = \sum_{i=1}^nv(x^i)\hook{i}{p}{}.
 \end{align*}
-Esto \'ultimo coincide justamente la expresi\'on de $v$ en la base $\big\{\hook{i}{p}{}\big\}_{i=1}^n$, lo que termina de probar que en efecto $h = \ol{x}^{\ -1}$.
-\item[(b)] Notemos en primer lugar que como $U \cap V$ es abierto y $x$ homeomorfismo, luego $x(U\cap V)$ es abierto, y as\'i $x(U \cap V) \times \R^n$ es abierto en $\R^{2n}$. Por definici\'on, es $TU \cap TV = T(U \cap V)$ y $\ol{x|_{U \cap V}} = \ol{x}|_{T(U \cap V)}$ as\'i que como $\ol{x|_{U \cap V}}$ es sobreyectiva (pues $x|_{U \cap V}$ es otra carta de $M$), por $\paint{red}{(b)}$ en efecto es $\ol{x}(TU \cap TV) = x(U \cap V) \times \R^n$. Veamos ahora que $\ol{x}\ol{y}^{-1}$ es un difeomorfismo. Como $\ol{x}$ e $\ol{y}$ son biyectivas, basta ver que las composiciones $\ol{x}\ol{y}^{-1}$ y $\ol{y}\ol{x}^{-1}$ son diferenciables. Por simetr\'ia (ya que podemos intercambiar los roles de $x$ e $y$) basta probar una, lo hacemos para $\ol{x}\ol{y}^{-1}$. Por un c\'alculo directo, si $(a,b) \in y(U\cap V) \times \R^n$ y $\pi_j : \R^n \to \R$ una vez m\'as es la proyecci\'on en la $j$-\'esima coordenada, luego para cada $j \in \nat{n}$ es $x^jy^{-1} = \pi_jxy^{-1} = (xy^{-1})^j$, y entonces
+Esto \'ultimo coincide justamente la expresi\'on de $v$ en la base $\big\{\hook{i}{p}{}\big\}_{i=1}^n$, lo que termina de probar que $h = \ol{x}^{\ -1}$.
+\item[(b)] En primer lugar, notemos que como $U \cap V$ es abierto y $x$ homeomorfismo, $x(U\cap V)$ es abierto y as\'i $x(U \cap V) \times \R^n$ es abierto en $\R^{2n}$. Tenemos tambi\'en que $TU \cap TV = T(U \cap V)$ y usando $\paint{red}{(a)}$, es $\ol{x|_{U \cap V}} = \ol{x}|_{T(U \cap V)}$ por lo que $\ol{x|_{U \cap V}}$ resulta sobreyectiva (ya que $x|_{U \cap V}$ es otra carta de $M$). Luego $\paint{red}{(b)}$ nos dice que en efecto $\ol{x}(TU \cap TV) = x(U \cap V) \times \R^n$. 
+
+Veamos ahora que $\ol{x}\ol{y}^{-1}$ es un difeomorfismo. Como $\ol{x}$ e $\ol{y}$ son biyectivas, basta ver que las composiciones $\ol{x}\ol{y}^{-1}$ y $\ol{y}\ol{x}^{-1}$ son diferenciables. Por simetr\'ia (ya que podemos intercambiar los roles de $x$ e $y$) basta probar un caso: lo hacemos para $\ol{x}\ol{y}^{-1}$. Por un c\'alculo directo, si $(a,b) \in y(U\cap V) \times \R^n$ y $\pi_j : \R^n \to \R$ es la proyecci\'on en la $j$-\'esima coordenada, para cada $j \in \nat{n}$ es $x^jy^{-1} = \pi_jxy^{-1} = (xy^{-1})^j$. Por lo tanto,
 \begin{align*}
-\ol{y}^{-1}(a,b)(x^j) &= \sum_{i=1}^n b^i \frac{\partial}{\partial y_i}\Big|_{y^{-1}(a)}(x^j) = \sum_{i=1}^nb^i \frac{\partial x^jy^{-1}}{\partial x_i}\Big|_a \\ & = \sum_{i=1}^nb^i \frac{\partial (xy^{-1})^j}{\partial x_i}\Big|_a = [\mathbb{J}(xy^{-1})_a \cdot b]_j.
+\ol{y}^{-1}(a,b)(x^j) &= \sum_{i=1}^n b^i \frac{\partial}{\partial y_i}\Big|_{y^{-1}(a)}(x^j) = \sum_{i=1}^nb^i \frac{\partial x^jy^{-1}}{\partial x_i}\Big|_a \\ & = \sum_{i=1}^nb^i \frac{\partial (xy^{-1})^j}{\partial x_i}\Big|_a = [\mathbb{J}(xy^{-1})_a \cdot b]_j
 \end{align*}
-con $\mathbb{J}(xy^{-1})_a$ la matriz jacobiana de $xy^{-1}:y(U \cap V) \subset \R^n \to x(U \cap V) \subset \R^n$ en el punto $a \in y(U \cap V)$. Por lo tanto, usando que por $\paint{red}{(a)}$ es $\pi \ol{y}^{-1}(a,b) = y^{-1}(a)$, luego
+con $\mathbb{J}(xy^{-1})_a$ la matriz jacobiana de $xy^{-1}:y(U \cap V) \subset \R^n \to x(U \cap V) \subset \R^n$ en el punto $a \in y(U \cap V)$. Por $\paint{red}{(a)}$ sabemos que $\pi \ol{y}^{-1}(a,b) = y^{-1}(a)$, as\'i que
 \begin{align*}
 x\ol{y}^{-1}(a,b) & = (x\pi(\ol{y}^{-1}(a,b)),\ol{y}^{-1}(a,b)(x^1), \dots, \ol{y}^{-1}(a,b)(x^n)) \\ 
 & = (xy^{-1}(a),[\mathbb{J}(xy^{-1})_a \cdot b]_1, \dots, [\mathbb{J}(xy^{-1})_a \cdot b]_n)\\
 & = (xy^{-1}(a),\mathbb{J}(xy^{-1})_a \cdot b).
 \end{align*}
-Como $M$ es variedad diferenciable, luego $xy^{-1}$ es suave y entonces $a \mapsto \mathbb{J}(xy^{-1})_a$ es suave. De \'esto \'ultimo tenemos que $(a,b) \mapsto \mathbb{J}(xy^{-1})_a \cdot b$ es suave\footnote{Esto es porque en cada componente $(a,b) \mapsto \mathbb{J}(xy^{-1})_a \cdot b$ coincide con $(a,b) \mapsto \sum_{i=1}^nb^i \frac{\partial (xy^{-1})^j}{\partial x_i}\Big|_a$ que es una suma de productos de proyectar a $\mathbb{J}(xy^{-1})$ o $(a,b) \mapsto b$ en alguna coordenada, y todas las funciones involucradas son suaves.}, por lo que concluimos que $\ol{x}\ol{y}^{-1}$ es diferenciable.
-\item[(c)] En primer lugar, veamos que la colecci\'on $\mathcal{T} = \{TU : U \subset M \text{ abierto}\}$ es una topolog\'ia que hace de $TM$ una variedad topol\'ogica. Antes que nada, observemos que si $(U_i)_{i \in I}$ es una familia de abiertos de $M$, luego por definici\'on es $T(\bigcup_{i \in I}U_i) = \bigcup_{i \in I}TU_i$ y $T(\bigcap_{i \in I}U_i) = \bigcap_{i \in I}TU_i$. En particular, $M$ y $\emptyset$ son abiertos asi que $\emptyset = T\emptyset,TM \in \mathcal{T}$ y los conjuntos $TU$ son cerrados por interesecciones finitas y uniones arbitrarias, ya que los abiertos de $M$ lo son. As\'i, $\mathcal{T}$ es una topolog\'ia para $M$. A continuaci\'on, veamos que $TM$ resulta Hausdorff y posee una base contable. 
-\item[(d)] Sea $v \in TM$ con $p \in M$ tal que $v \in M_p$. Ahora, tomemos una carta $(U,x)$ de $M$ con $\pi(v) = p \in U$. Por $\paint{red}{(c)}$ sabemos que $(TU, \ol{x})$ es una carta de $v$, y por definici\'on de $TU$ es tambi\'en $\pi(TU) = U$. Por lo tanto, resta ver que \textit{bajando} con estas cartas la funci\'on que resulta es diferenciable entre abiertos eucl\'ideos. Es decir, basta con probar que la flecha punteada del siguiente diagrama conmutativo es diferenciable:
+Como $M$ es variedad diferenciable, $xy^{-1}$ es suave y entonces $a \mapsto \mathbb{J}(xy^{-1})_a$ es suave. \'Esto \'ultimo dice que $(a,b) \mapsto \mathbb{J}(xy^{-1})_a \cdot b$ es suave\footnote{Esto es porque en cada componente $(a,b) \mapsto \mathbb{J}(xy^{-1})_a \cdot b$ coincide con $(a,b) \mapsto \sum_{i=1}^nb^i \frac{\partial (xy^{-1})^j}{\partial x_i}\Big|_a$ que es una suma de productos de proyectar a $\mathbb{J}(xy^{-1})$ o $(a,b) \mapsto b$ en alguna coordenada, y todas las funciones involucradas son suaves.}, de lo que concluimos que $\ol{x}\ol{y}^{-1}$ es diferenciable.
+\item[(c)] Procedemos por pasos: primero dotaremos al fibrado tangente de una topolog\'ia que har\'a del mismo un espacio $T_2$ localmente eucl\'ideo con base numerable. Es decir, le daremos a $TM$ una estructura de variedad topol\'ogica, donde adem\'as cada funci\'on $\ol{x} : TU \to x(U) \times \R^n$ resultar\'a un homeomorfismo. Por \'ultimo, concluiremos que con esta estructura $\ol{\mathcal{A}}$ es un altas diferenciable.
+
+En primer lugar, afirmamos que la colecci\'on 
+\begin{align*}
+\mathcal{B} = \{\ol{x}^{\ -1}(V) : (U,x) \in \mathcal{A}, V \subset x(U) \times \R^n \text{ abierto}\}
+\end{align*}
+es una base para una topolog\'ia en $TM$. Dado $v \in T_pM \subset TM$, existe una carta $(U,x)$ con $U \ni p$ y entonces $v \in TU = \ol{x}^{\ -1}(x(U) \times \R^n) \in \mathcal{B}$. Por lo tanto es $\bigcup_{U \in\mathcal{B}}U = TM$. Ahora, sean $\ol{x_1}^{\ -1}(W_1),\ol{x_2}^{\ -1}(W_2) \in \mathcal{B}$ con $(U_1,x_1),(U_2,x_2) \in \mathcal{A}$ y $W_1,W_2 \subset \R^{2n}$ abiertos. Entonces, se tiene que
+\begin{align*}
+\ol{x_1}^{\ -1}(W_1) \cap \ol{x_2}^{\ -1}(W_2) & = (\ol{x_1}^{\ -1}(W_1) \cap TU_1) \cap (TU_2 \cap \ol{x_2}^{\ -1}(W_2))\\
+& = \ol{x_1}^{\ -1}(W_1) \cap \ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n) \cap \ol{x_2}^{\ -1}(W_2)\\
+& = \ol{x_1}^{\ -1}(W_1) \cap \ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n \cap W_2)\\
+& = \ol{x_1}^{\ -1}(W_1) \cap \ol{x_1}^{-1} \circ  \ol{x_1} \circ \ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n \cap W_2)\\
+& = \ol{x_1}^{\ -1}(W_1 \cap \ol{x_1}\circ \ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n \cap W_2)).
+\end{align*}
+Como $x_2(U_1 \cap U_2) \times \R^n \cap W_2$ es abierto y $\ol{x_1}\circ\ol{x_2}^{-1}$ es difeomorfismo, $\ol{x}_1\ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n \cap W_2)$ es abierto. Luego
+\begin{align*}
+W_1 \cap \ol{x}_1\circ \ol{x_2}^{-1}(x_2(U_1 \cap U_2) \times \R^n \cap W_2)
+\end{align*}
+resutla abierto y por lo tanto, $\ol{x_1}^{\ -1}(W_1) \cap \ol{x_2}^{\ -1}(W_2)$ se puede escribir como la preimagen por $\ol{x_1}$ de un abierto de $x_1(U_1) \times \R^n$. En particular esto termina de probar que $\mathcal{B}$ es una base. Dotamos entonces a $TM$ de la topolog\'ia generada por $\mathcal{B}$.
+
+Si $(U,x)$ es una carta de $M$, afirmamos ahora que $\ol{x} : TU \to x(U) \times \R^n$ es un homeomorfismo. Por construcci\'on de la topolog\'ia en $TM$, resulta continua. Resta ver que es abierta: si tomamos un abierto b\'asico $TU \cap \ol{y}^{-1}(W)$ con $(V,y) \in \mathcal{A}$ y $W \subset \R^{2n}$ abierto, es
+\begin{align*}
+\ol{x}(TU \cap \ol{y}^{-1}(W)) &= \ol{x}(TU \cap TV \cap \ol{y}^{-1}(W)) = \ol{x}(\ol{y}^{-1}(U \cap V \times \R^n) \cap \ol{y}^{-1}(W))\\
+& = \ol{x} \circ \ol{y}^{-1}(U\cap V \times \R^n \cap W).
+\end{align*}
+Efectivamente $\ol{x}(TU \cap \ol{y}^{-1}(W))$ es entonces abierto, ya que $U\cap V \times \R^n \cap W$ es abierto y $\ol{x} \circ \ol{y}^{-1}$ un difeomorfismo. Como $\ol{x}$ es adem\'as biyectiva, es un homeomorfismo. En particular $TM$ es \textbf{localmente eucl\'ideo}: si $v \in T_pM  \subset TM$, tomando una carta $(U,x)$ de $M$ con $p \in U$ tenemos un homeomorfismo $\ol{x} : TU \to x(U) \times \R^{n}$ con $TU \ni v$.
+
+A continuaci\'on, veamos que $TM$ resulta \textbf{Hausdorff}. Sean $v \neq w \in TM$ dos derivaciones, de forma que existen $p,q \in M$ con $v \in T_pM$ y $w \in T_qM$. Si $p = q$, tomamos una carta $(U,x)$ de $M$ con $p \in U$. Luego $v,w \in TU$ y $\ol{x}(v) \neq \ol{x}(w)$ as\'i que como $\R^{2n}$ es $T_2$, existen abiertos disjuntos $U \ni \ol{x}(v)$ y $V \ni \ol{x}(w)$. Por lo tanto $\ol{x}^{ \ -1}(U)$ y $\ol{x}^{\ -1}(V)$ son dos abiertos disjuntos que separan a $v$ de $w$. Si en cambio $p \neq q$, consideramos cartas $(U,x)$ y $(V,y)$ con $U$ y $V$ disjuntos. Tenemos entonces que $TU \cap TV = \emptyset$ y $v \in TU,w \in TV$. En cualquier caso, siempre existen abiertos disjuntos que separan a $v$ y $w$.
+
+Por \'ultimo, $TM$ tiene una \textbf{base numerable}: como $M$ es una variedad, tiene una base numerable. En particular, el cubrimiento $\{U : (U,x) \in \mathcal{A}\}$ de $M$ tiene un subcubrimiento numerable $(U_n)_{n \in \N}$ con ${(U_n,x_n)}_{n \in \N}$ cartas de $M$. Para cada $n \in N$, el abierto $x_n(U_n) \times \R^n$ tiene una base numerable $\{V^n_j\}_{j \in \N}$. Afirmamos entonces que el conjunto numerable $\mathcal{B}' = \{\ol{x_n}^{-1}(V^n_j)\}_{(n,j) \in \N^2}$ es una base de $TM$. Sea $(U,x)$ una carta de $M$, $W \subset x(U) \times \R^n$ abierto y $v \in \ol{x}^{-1}(W)$. Veamos que hay un abierto de $\mathcal{B}'$ que contiene a $v$ y est\'a contenido en $\ol{x}^{-1}(W)$. De que $v \in TU$ sabemos que existe $p \in U$ tal que $v$ es una derivaci\'on en $p$ y, como tenemos que $(U_n)_{n \in \N}$ cubre $M$, existe $k \geq 1$ con $U_k \ni p$. En consecuencia es $v \in TU_k \cap \ol{x}^{-1}(W)$. Entonces podemos escribir
+\begin{align*}
+TU_k \cap \ol{x}^{\ -1}(W) = \ol{x}^{-1}_k\ol{x}_k(TU_k \cap \ol{x}^{-1}(W))
+\end{align*}
+y como $\ol{x}_k(v) \in \ol{x}_k(TU_k \cap \ol{x}^{-1}(W)) \subset x_n(U_n) \cap \R^n$, existe $l \geq 1$ tal que $\ol{x}_k(v) \in V_l^k \subset \ol{x}_k(TU_k \cap \ol{x}^{-1}(W))$. Esto dice que
+\begin{align*}
+v \in \ol{x}_k^{\ -1}(V_l^k) \subset \ol{x}^{\ -1}_k\ol{x}_k(TU_k \cap \ol{x}^{\ -1}(W)) \subset \ol{x}^{-1}(W),
+\end{align*}
+as\'i que existe un tal entorno de $\mathcal{B}'$, como afirmamos.
+
+En conclusi\'on, $TM$ es una variedad topol\'ogica. Como $\bigcup_{(U,x) \in \mathcal{A}}TU = T (\bigcup_{(U,x) \in \mathcal{A}}U) = TM$ y las funciones $\{\ol{x} : (U,x) \in \mathcal{A}\}$ resultan homeomorfismos, para concluir que $\ol{\mathcal{A}}$ es un atlas diferenciable resta ver que los cambios de coordenadas son difeomorfismos. Esto es precisamente lo que probamos en $\paint{red}{(b)}$, as\'i esto termina de probar que $TM$ con $\ol{\mathcal{A}}$ resulta una variedad diferenciable de dimensi\'on $2n$.
+
+\item[(d)] Sea $v \in TM$. Existen entonces $p \in M$ tal que $v \in T_pM$ y una carta $(U,x)$ de $M$ con $\pi(v) = p \in U$. Por $\paint{red}{(c)}$ sabemos que $(TU, \ol{x})$ es una carta de $v$, y por definici\'on de $TU$ es tambi\'en $\pi(TU) = U$. Por lo tanto, resta ver que \textit{bajando} con estas cartas la funci\'on que resulta es diferenciable entre abiertos eucl\'ideos. Es decir, basta probar que $x\circ \pi \circ \ol{x}^{\ -1}$ es diferenciable.
 \begin{center}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
@@ -142,32 +184,29 @@ Como $M$ es variedad diferenciable, luego $xy^{-1}$ es suave y entonces $a \maps
     (m-1-2) edge node [right] {$x$} (m-2-2);
 \end{tikzpicture}
 \end{center}
-Notemos que para todo $v \in TU$, el vector $x \circ \pi(v)$ coincide exactamente con las primeras $n$ coordenadas de $\ol{x}(v)$ por definici\'on de \'esta \'ultima. Notando $\pi_1 : (p,q) \in \R^n \times \R^n \mapsto p \in \R^n$ es entonces $x\circ \pi \circ \ol{x}^{\ -1} = \pi_1|_{x(U) \times \R^n} \circ \ol{x} \circ \ol{x}^{\ -1}  = \pi_1|_{x(U) \times \R^n}$, y esta \'ultima es diferenciable ya que es la restricci\'on al abierto $x(U) \times \R^n$ de la funci\'on diferenciable $\pi_1$.
+Como para todo $v \in TU$ el vector $x \circ \pi(v)$ coincide con las primeras $n$ coordenadas de $\ol{x}(v)$, notando $\pi_1 : (p,q) \in \R^n \times \R^n \mapsto p \in \R^n$ es entonces $x\circ \pi \circ \ol{x}^{\ -1} = \pi_1|_{x(U) \times \R^n} \circ \ol{x} \circ \ol{x}^{\ -1}  = \pi_1|_{x(U) \times \R^n}$. Esta \'ultima es diferenciable ya que es la restricci\'on al abierto $x(U) \times \R^n$ de la funci\'on diferenciable $\pi_1$. Consecuentemente, $\pi : TM \to M$ resulta diferenciable.
 \end{itemize}
 \end{proof}
 
-\begin{obs}{1} Sea $M$ una variedad diferenciable, $f \in C^\infty(M)$ una funci\'on constante y $v : C^\infty(M) \to \R$ una derivaci\'on en $p \in M$. Entonces, $v(f) = 0$. En efecto, si notamos $1 : M \to \R$ a la funci\'on constantemente $1$, luego
+\begin{obs}{1} Sean $M$ una variedad diferenciable y $f \in C^\infty(M)$ una funci\'on que vale constantemente $\mu \in \R$. Si $v : C^\infty(M) \to \R$ es una derivaci\'on en $p \in M$, entonces $v(f) = 0$. En efecto, notando $1 : M \to \R$ a la funci\'on que vale constantemente $1$ es
 \begin{align*}
-v(1) = v(1 \cdot 1) \stackrel{(Leibniz)}{=} 1(p)v(1) + 1(p)v(1) = 2v(1).
+v(1) = v(1 \cdot 1) \stackrel{(Leibniz)}{=} 1(p)v(1) + 1(p)v(1) = 2v(1),
 \end{align*}
-Esto implica $v(1) = 0$. Si ahora $f$ vale constantemente $\mu \in \R$, entonces 
-\begin{align*}
-v(f) = v(\mu \cdot 1) = \mu v(1) = 0
-\end{align*}
-como afirmamos.
+lo que implica $v(1) = 0$. En consecuencia, $v(f) = v(\mu \cdot 1) = \mu v(1) = 0$.
 \end{obs}
 
-\begin{lemma}{2} Sea $f : X \to Y$ una funci\'on con $X$ un espacio topol\'ogico conexo. Si $f$ es localmente constante, entonces es constante.
+Recuerdo ahora el siguiente resultado que utilizar\'e a continuaci\'on,
+
+\begin{lemma}{2} Sea $X$ un espacio topol\'ogico conexo y  $f : X \to Y$ una funci\'on. Si $f$ es localmente constante, entonces es constante.
 \end{lemma}
-\begin{proof} Notemos que si $y \in \im f$, el conjunto $E_y := f^{-1}(y) = \{x \in X : f(x) = y\}$ es abierto: si $z \in E_y$, por hip\'otesis existe un abierto $U \ni z$ donde $f$ es constante, y como $f(z) = y$ luego $f$ es constantemente $y$ en todo $U$. Por lo tanto, es $z \in U \subset E_y$. Es claro adem\'as que estos conjuntos son disjuntos, pues si $z \in E_y \cap E_{y'}$ luego $y = f(z) = y'$. Por \'ultimo, como 
+\begin{proof} Si $y \in \im f$, el conjunto $E_y := f^{-1}(y) = \{x \in X : f(x) = y\}$ es abierto: para cada $z \in E_y$ existe por hip\'otesis un abierto $U \ni z$ donde $f$ es constante, y como $f(z) = y$ luego $f$ vale constantemente $y$ en todo $U$. Por lo tanto, $z \in U \subset E_y$. Adem\'as los conjuntos $(E_y)_{y \in \im f}$ son disjuntos, pues si $z \in E_y \cap E_{y'}$ entonces $y = f(z) = y'$. Como $X$ es conexo y
 \begin{align*}
 X = \bigsqcup_{y \in \im f}E_y
 \end{align*}
-es una escritura de $X$ como uni\'on de abiertos disjuntos no vac\'ios y $X$ es conexo, necesariamente es $\#\im f = 1$. Esto dice que $f$ es una funci\'on constante. 
+es una uni\'on de abiertos disjuntos no vac\'ios, necesariamente $\#\im f = 1$. Esto es precisamente que $f$ sea una funci\'on constante. 
 \end{proof}
 
-\begin{exercise}{12} Sean $M$ y $N$ variedades diferenciables y sea $f:M\to N$ una funci\'on
-diferenciable.
+\begin{exercise}{12} Sean $M$ y $N$ variedades diferenciables y sea $f:M\to N$ una funci\'on diferenciable. Probar que
 \begin{itemize}
 \item Si $f$ es constante, entonces $f_{\ast p}=0$ para todo $p\in M$.
 
@@ -176,23 +215,25 @@ constante.
 \end{itemize}
 \end{exercise}
 
-\begin{proof} Notaremos $c_q : M \to N$ a la funci\'on que vale constantemente $q$. Definimos tambi\'en $m := \dim M$ y $n := \dim N$. Supongamos en primer lugar que $f = c_q$. Sea $p \in M$ y veamos que $f_{\ast p}$ es nula. Dada una derivaci\'on $v : C^\infty(M) \to \R$ en $p$ y $g \in C^\infty(M)$, luego es
+\begin{proof} Notaremos $c_q : M \to N$ a la funci\'on que vale constantemente $q$ y definimos $m := \dim M, n := \dim N$. Supongamos en primer lugar que $f = c_q$ para cierto $q \in N$. Sea $p \in M$ y veamos que $f_{\ast p}$ es nula. Dada una derivaci\'on $v : C^\infty(M) \to \R$ en $p$ y $g \in C^\infty(M)$, luego es
 \begin{align*}
 f_{\ast p}(v)(g) =  v(- \circ f)(g) = v(gf) = v(gc_q) = v(c_{g(q)}) = 0,
 \end{align*}
-con esta \'ultima igualdad dada por la $\paint{red}{\text{Observaci\'on $1$}}$. Como la derivaci\'on $f_{\ast p}(v)$ se anula en toda funci\'on, tenemos que $f_{\ast p}(v) = 0$. Como $f_{\ast p}$ se anula en toda derivaci\'on, luego $f_{\ast p} = 0$ y esto vale para cualquier punto $p \in M$. Supongamos ahora que $M$ es conexa y veamos para este caso la afirmaci\'on rec\'iproca. Sea entonces $p \in M$ y veamos que existe un entorno abierto de $p$ donde $f$ es constante. Consideramos ahora una carta $(V,\psi)$ de $N$ con $f(p) \in V$ y una carta $(U,\varphi)$ de $M$ con $p \in U \subset f^{-1}(V)$ y $U$ conexo\footnote{Como $f$ es continua luego $f^{-1}(V)$ es abierto y entonces $f^{-1}(V) \cap U$ es un abierto de $M$ que contiene a $p$. Luego $f^{-1}(V) \cap U$ es un abierto en $U$, y como \'este es homeomorfo a un abierto eucl\'ideo, luego $f^{-1}(V) \cap U$ lo es tambi\'en. En particular tenemos un entorno conexo $\tilde{U}$ de $p$ contenido en $f^{-1}(V) \cap U$. Luego la restricci\'on de la carta a $\tilde{U}$ es una carta que cumple lo que pedimos. Por lo tanto, podemos sin p\'erdida de generalidad asumir directamente a $U$ conexo con $U \subset f^{-1}(V)$.}. Luego, los \textit{ganchos} $\bigg\{\hook{i}{q}{\varphi}\bigg\}_{i=1}^n$ son una base de $T_qM$ para cada $q \in U$. Por hip\'otesis, si $g \in C^\infty(N)$ y $v$ es una derivaci\'on en $q$, luego $v(gf) = f_{\ast q}(v)(g) = 0$. En particular, tenemos entonces que
+con esta \'ultima igualdad dada por la $\paint{red}{\text{Observaci\'on $1$}}$, pues $c_{g(q)} : N \to \R$ vale constantemente $g(q)$. Como la derivaci\'on $f_{\ast p}(v)$ se anula en toda funci\'on, tenemos que $f_{\ast p}(v) = 0$. Por lo tanto, $f_{\ast p}$ se anula en toda derivaci\'on: es entonces $f_{\ast p} = 0$, y esto vale para cualquier punto $p \in M$. 
+
+Supongamos ahora que $M$ es conexa y veamos para este caso la afirmaci\'on rec\'iproca. Alcanza con probar que $f$ es localmente constante: fijemos entonces $p \in M$ y veamos que existe un entorno abierto de $p$ donde $f$ es constante. Consideramos ahora una carta $(V,\psi)$ de $N$ con $f(p) \in V$ y una carta $(U,\varphi)$ de $M$ con $p \in U \subset f^{-1}(V)$ y $U$ conexo\footnote{Como $f$ es continua $f^{-1}(V)$ es abierto, y entonces $f^{-1}(V) \cap U$ es un abierto de $M$ que contiene a $p$. Por lo tanto $f^{-1}(V) \cap U$ es un abierto en $U$, y como \'este es homeomorfo a un abierto eucl\'ideo, tambi\'en lo es $f^{-1}(V) \cap U$. En particular tenemos un entorno conexo $\tilde{U}$ de $p$ contenido en $f^{-1}(V) \cap U$. La restricci\'on de la carta a $\tilde{U}$ es una carta que cumple lo que pedimos, por lo que podemos sin p\'erdida de generalidad asumir directamente a $U$ conexo con $U \subset f^{-1}(V)$.}. Luego, los \textit{ganchos} $\bigg\{\hook{i}{q}{\varphi}\bigg\}_{i=1}^n$ son una base de $T_qM$ para cada $q \in U$. Por hip\'otesis, si $g \in C^\infty(N)$ y $v$ es una derivaci\'on en $q$, es $v(gf) = f_{\ast q}(v)(g) = 0$. En particular,
 \begin{align*}
 \hook{i}{q}{\varphi}(gf) = \frac{\partial gf\varphi^{-1}}{\partial x_i}\bigg\rvert_{\varphi^{-1}(q)} = 0
 \end{align*}
-para todo $i \in \nat{m}$ y $q \in U$. Es decir, la funci\'on diferenciable $gf\varphi^{-1} : \varphi^{-1}(U) \to \R$ tiene gradiente nulo. Como $U$ es conexo y $\varphi$ es homeomorfismo, luego $\varphi^{-1}(U)$ es conexo. Como $gf\varphi^{-1}$ tiene gradiente nulo y dominio conexo luego es constante:
+para todo $i \in \nat{m}$ y $q \in U$. Es decir, la funci\'on diferenciable $gf\varphi^{-1} : \varphi^{-1}(U) \to \R$ tiene gradiente nulo. Como $U$ es conexo y $\varphi$ es homeomorfismo, luego $\varphi^{-1}(U)$ es conexo. Como $gf\varphi^{-1}$ tiene gradiente nulo y dominio conexo, es constante:
 \begin{align*}
 gf\varphi^{-1}(x) = \mu_{g} \in \R \quad (\forall x \in \varphi^{-1}(U)).
 \end{align*}
-Equivalentemente, es $gf \equiv c_{\varphi(\mu_g)}$ en $U$ para cada $g \in C^\infty(N)$. Ahora, para cada $i \in \nat{n}$ consideramos $\ol{\psi}^i \in C^\infty(N)$ tal que $\ol{\psi}^i|_V = \psi^i$. As\'i, existen constantes $c_1, \dots, c_n \in \R$ tales que $\ol{\psi}^if \equiv c_i$ en $U$ y como $f(U) \subset V$ es entonces
+Equivalentemente, se tiene que $gf \equiv c_{\varphi(\mu_g)}$ en $U$ para cada $g \in C^\infty(N)$. Ahora, dado $i \in \nat{n}$ siempre existe $\ol{\psi}^i \in C^\infty(N)$ tal que $\ol{\psi}^i|_V = \psi^i$ y existen entonces constantes $c_1, \dots, c_n \in \R$ tales que $\ol{\psi}^if \equiv c_i$ en $U$. Como $f(U) \subset V$, es
 \begin{align*}
 c_i \equiv \ol{\psi}^i|_V \circ f\Big|_U^V = \psi^i \circ f\Big|_U^V
 \end{align*}
-en $U$ para cada $i \in \nat{n}$. Por lo tanto, es $\psi f \big|_U^V \equiv c$. Como $\psi$ es homeomorfismo, luego $f \big|_U^V \equiv \psi(c)$. As\'i, vemos que $f$ es constante en el abierto $U \ni p$. Como $p$ era arbitrario, concluimos que $f$ es localmente constante y como $M$ es conexa, el $\paint{red}{\text{Lema $2$}}$ nos dice que $f$ resulta constante.
+en $U$ para cada $i \in \nat{n}$, de forma que $\psi f \big|_U^V \equiv (c_1, \dots, c_n) =: c$. Como $\psi$ es homeomorfismo, luego $f \big|_U^V \equiv \psi^{-1}(c)$. Vemos as\'i que $f$ es constante en el abierto $U \ni p$, lo que completa la demostraci\'on.
 \end{proof}
 
 \end{document}
