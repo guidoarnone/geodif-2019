@@ -6,6 +6,8 @@
 \usepackage{euler}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
 \usetikzlibrary{matrix}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -27,6 +29,9 @@
 \newcommand{\paint}[2]{\color{#1}{#2}}
 \newcommand{\ol}{\overline}
 \newcommand{\hook}[3]{\frac{\partial}{\partial x_{#1}}\Big\rvert_{#2}^{#3}}
+\usepackage{rotating}
+\newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
+]}
 \definecolor{red}{RGB}{244, 66, 66}
 
 \renewcommand*{\proofname}{\paint{red}{Demostraci\'on}}
@@ -37,11 +42,11 @@
 \newenvironment{exercise}[2][Ejercicio]{\begin{trivlist}
 \item[\hskip \labelsep \paint{red}{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{obs}[2][Observaci\'on]{\begin{trivlist}
-\item[\hskip \labelsep \paint{red}{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\item[\hskip \labelsep \paint{red}{{\bfseries #1.}}]}{\end{trivlist}}
 \newenvironment{reflection}[2][Resoluci\']{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 \newenvironment{proposition}[2][Proposici\'on]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\item[\hskip \labelsep \paint{red}{{\bfseries #1.}}]}{\end{trivlist}}
 \newenvironment{corollary}[2][Corolario]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
@@ -65,7 +70,9 @@
 \begin{center}
 \paint{red}{\large{Sobre los Ejercicios}}
 \end{center}
+\begin{center}
 Adem\'as del ejercicio $\paint{red}{(9)}$, elej\'i resolver los ejercicios $\paint{red}{(4)}$ y $\paint{red}{(12)}$.
+\end{center}
 \begin{center}
 $\paint{red}{
 \rule{400pt}{0.5pt}
@@ -89,9 +96,92 @@ U \cap f^{-1}(q) \stackrel{(q \in V)}{=} ({f|^V_U)}^{-1}(q) \stackrel{(p \in U)}
 \end{align*}
 lo que concluye la prueba de $\paint{red}{(a)}$. 
 
-Ahora veamos $\paint{red}{(b)}$.
+Ahora veamos $\paint{red}{(b)}$. Fijemos $q \in R$. Si $q \not \in f(M)$, entonces $\#f^{-1}(q) = 0$. Como $M$ es compacta y $N$ es Hausdorff pues es una variedad, $f$ es cerrada. Entonces $f(M)$ es cerrado y por lo tanto, $f(M)^c$ es un abierto que contiene a $q$. All\'i (vacuamente) todo punto es regular y tiene preimagen de tamaño cero: basta probar la afirmaci\'on para $q \in R \cap f(M)$. Sea $f^{-1}(q) = \{p_1, \dots, p_k\}$. Aplicando el argumento que usamos en $\paint{red}{(a)}$ a cada punto $p_i$, obtenemos abiertos $(A_i)_{i=1}^k$ de $M$ y $(B_i)_{i=1}^k$ de $N$ tales que las restricciones $f|_{A_i}^{B_i} : A_i \to B_i$ de $f$ son difeomorfismos con $p_i \in A_i$ y $q \in B_i$ para todo $i \in \nat{k}$. M\'as a\'un podemos garantizar\footnote{Como $M$ es Hausdorff, existen entornos abiertos $U_i \ni p_i$ para cada $i \in \nat{k}$ disjuntos dos a dos. Luego las (co) restricciones $f : A_i \cap U_i \to f(A_i \cap U_i)$ siguen siendo difeomorfismos y los abiertos $(A_i \cap U_i)_{i=1}^k$ son disjuntos dos a dos. Por lo tanto, podemos suponer directamente que los abiertos lo eran.} que $A_i \cap A_j = \emptyset$ si $i \neq j$. Definimos ahora $B = \cap_{i \in \nat{k}}B_i$ y $U_i := (f|_{A_i}^{B_i})^{-1}(B)$ para cada $i \in \nat{k}$. Las (co)restricciones
 
-Por \'ultimo, observemos que \textbf{no es cierto que la aplicaci\'on sea constante}. Veamos el siguiente contraejemplo: tomamos $M = N = \Ss^1 \sqcup \Ss^1$, $s : z \in \Ss^1 \subset \C \mapsto z^2 \in \Ss^1 \subset \C$ y consideramos entonces $id \sqcup s : M \to N$. 
+\begin{align*}
+f|_{U_i}^{B} : U_i \to B
+\end{align*}
+
+con $1 \leq i \leq k$ resultan entonces difeomorfismos.
+
+Definimos\footnote{Dado $q' \in B$, nos gustar\'ia afirmar que su preimagen cae enteramente en la uni\'on de los abiertos $U_i$ pues esto implicar\'ia que es un valor regular. Esto no es necesariamente cierto, al menos a simple vista. Intuitivamente, forzamos esta situaci\'on quitandole a $B$ los puntos de $f(C)$, y luego corestringiendo apropiadamente conseguimos nuevos abiertos en $M$ y $N$ que cumplen con lo que buscamos.} ahora $C = (\cap_{i \in \nat{k}} U_i)^c$. Como $f$ es cerrada, $f(C)$ es cerrado. Ahora, una vez m\'as: definimos los abiertos $V := B \setminus f(C)$ y $O_i := (f|_{U_i}^B)^{-1}(V) \stackrel{(V \subset B)}{=} U_i \cap f^{-1}(V)$, de forma que cada restricci\'on $f|_{O_i}^V: O_i \to V$ sigue siendo un difeomorfismo. Afirmamos ahora que $f^{-1}(V) = \bigcup_{i \in \nat{k}}O_i$. Por definici\'on ya sabemos que $f^{-1}(V) \supseteq \bigcup_{i \in \nat{k}}O_i$. Rec\'iprocamente si $x \in f^{-1}(V)$ entonces $f(x) \not \in f(C)$ y por lo tanto $x \not \in C $. Entonces $x \in C^c = \bigcup_{i \in \nat{k}}U_i$. Como partimos de que $x \in f^{-1}(V)$, efectivamente obtenemos que
+
+\begin{align*}
+x \in f^{-1}(V) \cap \bigcup_{i \in \nat{k}}U_i = \bigcup_{i \in \nat{k}}(f^{-1}(V) \cap U_i) = \bigcup_{i \in \nat{k}}O_i.
+\end{align*} 
+
+Veamos que esto implica ambas afirmaciones de $\paint{red}{(b)}$. Por un lado, si $p \in f^{-1}(V)$ entonces $p \in O_i$ para alg\'un $i \in \nat{k}$ y como $f|_{O_i}^V$ es un difeomorfismo entonces via los isomorfismos $T_pO_i \simeq T_pM$ y $T_{q'}V \simeq T_{q'}N$, tenemos que $d_pf$ es un isomorfismo:
+
+\begin{center}
+\begin{tikzcd}
+T_pM \arrow{r}{d_pf} \isoarrow{d} & T_{q'}N \isoarrow{d}\\ 
+T_pO_i \arrow{r}{d_pf|_{O_i}^V} & T_{q'}V
+\end{tikzcd}
+\end{center}
+En particular $d_pf$ resulta sobreyectivo. Como $p \in f^{-1}(q')$ era arbitario, vemos que para cada punto en la preimagen de $q'$ el diferencial all\'i es sobreyectivo: esto quiere decir que $q'$ es un punto regular, y como $q' \in V$ era arbitrario, es $V \subset R$. Esto prueba que $R$ es abierto: partimos de un punto $q \in R$ y obtuvimos un entorno abierto $V \ni q$ contenido en $R$. Adem\'as, para cada $q' \in V$ tenemos que $f^{-1}(q') \subset f^{-1}(V) \subset \bigcup_{i \in \nat{k}}O_i$ as\'i que
+
+\begin{align*}
+f^{-1}(q') = f^{-1}(q') \cap \bigcup_{i \in \nat{k}}O_i = \bigcup_{i \in \nat{k}}(O_i \cap f^{-1}(q')) = \bigcup_{i \in \nat{k}}f|_{O_i}^V(q').
+\end{align*}
+
+Como los conjuntos $(O_i)_{i \in \nat{k}}$ son disjuntos dos a dos pues $O_i \subset A_i$ para cada $i$, \'asi que de la anterior igualdad es $\#f^{-1}(q') = \sum_{i=1}^k\#({f|_{O_i}^V}^{-1}(q'))$. Cada restricci\'on $f|_{O_i}^V$ es biyectiva (pues es un difeomorfismo), de modo que la preimagen de $q'$ en cada caso tiene exactamente un punto:
+
+\begin{align*}
+f^{-1}(q') = \sum_{i=1}^k\#(f|_{O_i}^V(q')) = \sum_{i=1}^{k}1 = k = \#f^{-1}(q).
+\end{align*}
+
+Como esto es cierto para cualquier $q' \in V$, la aplicaci\'on $q \in R \mapsto \#f^{-1}(q) \in \N_0$ es localmente constante. 
+
+Por \'ultimo, observemos que en general \textbf{no es cierto que la aplicaci\'on sea constante}. Veamos el siguiente contraejemplo: tomamos $M = N = S_1 \sqcup S_2$ con $S_1 = S_2 = \Ss^1$ que es una variedad compacta, con las inclusiones $j_i : \Ss^1 = S_i \hookrightarrow S_1 \sqcup S_2$ diferenciables\footnote{Tomamos la topolog\'ia coproducto y las siguientes cartas: para cada carta $(U,\varphi)$ en el atlas maximal de $\Ss^1$ tenemos dos cartas $(U_i,\varphi_i)$ con $U_i = U$ visto en $S_i$ y $\varphi_i = \varphi$ bajo la misma identificaci\'on. Por lo tanto, si $p \in \Ss^1$, tomamos $(U,\varphi)$ una carta de $\Ss^1$ con $U \ni p$ y $(U_i,\varphi_i)$ en $S_1 \sqcup S_2$. Entonces $\varphi_ij_i\varphi^{-1} = \varphi^{-1}\varphi = id_{\varphi(U)}$. Esto dice que las inclusiones $j_1,j_2$ resultan diferenciables.}. Si $f_1,f_2 : \Ss^1 \to \Ss^1$ son diferenciables, entonces $f_1 \sqcup f_2 : S_1 \sqcup S_2 \to S_1 \sqcup S_2$ lo es: basta probar diferenciabilidad restringiendo a los abiertos $S_1$ y $S_2$. Esto es como ver que la precomposici\'on por las inclusi\'ones es diferenciable, lo que es cierto pues \'esta se factoriza por las aplicaciones $j_i$ y $f_i$, todas diferenciables:
+
+\begin{center}
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+  {
+     S_1 \sqcup S_2 & S_1 \sqcup S_2\\
+     S_i  & S_i\\};
+  \path[-stealth]
+    (m-1-1) edge node [above] {$f_1 \sqcup f_2$} (m-1-2)
+    (m-2-1) edge [right hook->] node [left] {$j_i$}(m-1-1)
+    (m-2-1) edge node [below] {$f_i$} (m-2-2)
+    (m-2-2) edge [right hook->] node [right] {$j_i$}(m-1-2);
+\end{tikzpicture}
+\end{center}
+Del diagrama anterior y usando que las inclusiones de abiertos inducen isomorfismos en los tangentes, tenemos para cada $p \in S_i$ que
+\begin{center}
+\begin{tikzcd}
+T_pS_i \arrow{r}{d_pf_i}  \isoarrow{d} & T_{f_i(p)}S_i \isoarrow{d}\\ 
+T_p(S_1 \sqcup S_2) \arrow{r}{d_pf_1 \sqcup f_2}& T_{f_i(q)}(S_1 \sqcup S_2)
+\end{tikzcd}
+\end{center}
+conmuta. Como $f_1,f_2$ y $f_1 \sqcup f_2$ son funciones entre variedades de igual dimensi\'on, sus diferenciales son sobreyectivos si y s\'olo si son isomorfismos. En particular, si $q \in S_i$ es un valor regular para $f_i$ es tambi\'en un valor regular para $f_1 \sqcup f_2$.
+
+Ahora, pasemos a una funci\'on concreta: tomamos $g : z \in \Ss^1 \mapsto z^2 \in \Ss^1$, pensando a $\Ss^1 \subset \C$, y consideramos $id \sqcup g$. Por la observaci\'on anterior, todo punto $p$ de $S_1$ es regular, y su preimagen es exactamente $\{p\} \subset S_1$. Por otro lado, si $p \in S_2$ es $\#(id \sqcup g )^{-1}(p) = \#g^{-1}(p) = 2$. Por lo tanto, resta probar que existe alg\'un valor regular $p \in \Ss^1$ de $g$ para concluir que la funci\'on $q \in R \mapsto (id \sqcup g)^{-1}(p)$ en este caso no es constante. M\'as a\'un, como los tangentes en este caso son $1$-dimensionales, basta ver que existe $p \in \Ss^1$ tal que $d_pg$ es no nulo, pues en tal caso ser\'a sobreyectivo\footnote{Como $\Ss^1$ es conexa y $g$ no es constante, el ejercicio $\paint{red}{(12)}$ que resolvemos m\'as adelante garantiza que debe existir cierto $p \in \Ss^1$ para el cual es $d_pg \neq 0$. De todas formas, optamos por una resoluci\'on elemental.}. Veamos que $d_{(1,0)}g$ es no nulo. Para esto, consideramos la carta
+
+\begin{align*}
+\varphi : (x,y) \in \{(x,y) \in \Ss^1 : x > 0\} \mapsto y \in (-1,1)
+\end{align*}
+
+alrededor de $(0,1)$. Como $g(1,0) = (1,0)$, luego $\frac{d}{dt}\Big|_{(1,0)}^\varphi$ es una derivaci\'on en $(1,0)$ y entonces basta con ver que
+
+\begin{align*}
+d_{(0,1)}g\left(\frac{d}{dt}\Big|_{(1,0)}^\varphi\right)(\varphi) = \frac{d}{dt}\Big|_{(1,0)}^\varphi(\varphi g) = \frac{d(\varphi g\varphi^{-1})}{dt}\Big|_0
+\end{align*}
+
+es distinto de cero para concluir que $d_{(1,0)}g \neq 0$. Como $g(x,y) = (x^2 -y^2,2xy)$, es
+
+\begin{align*}
+\varphi g\varphi^{-1}(y) = \varphi g(\sqrt{1-y^2},y) = \varphi(1-y^2-y^2,2\sqrt{1-y^2}y) = 2y\sqrt{1-y^2}
+\end{align*}
+
+y entonces $\frac{d(\varphi g\varphi^{-1})}{dt} = \frac{2-4y^2}{\sqrt{1-y^2}}$. Por lo tanto,
+
+\begin{align*}
+d_{(0,1)}g\left(\frac{d}{dt}\Big|_{(1,0)}^\varphi\right)(\varphi) =  \frac{2-4y^2}{\sqrt{1-y^2}}\Bigg|_0 = 2 \neq 0.
+\end{align*}
+
+Esto termina de mostrar que si bien la aplicaci\'on del ejercicio es localmente constante, no necesariamente resulta constante. 
+
 \end{proof}
 
 \begin{exercise}{9} Sea $M$ una variedad diferenciable de dimensi\'on $n$ y $\mathcal{A}$ su atlas maximal. Sea $TM=\bigsqcup_{p\in M}T_pM$ y sea $\pi :TM\to M$ la funci\'on tal
@@ -190,7 +280,7 @@ v \in \ol{x}_k^{\ -1}(V_l^k) \subset \ol{x}^{\ -1}_k\ol{x}_k(TU_k \cap \ol{x}^{\
 \end{align*}
 as\'i que existe un tal entorno de $\mathcal{B}'$, como afirmamos.
 
-En conclusi\'on, $TM$ es una variedad topol\'ogica. Como $\bigcup_{(U,x) \in \mathcal{A}}TU = T (\bigcup_{(U,x) \in \mathcal{A}}U) = TM$ y las funciones $\{\ol{x} : (U,x) \in \mathcal{A}\}$ resultan homeomorfismos, para concluir que $\ol{\mathcal{A}}$ es un atlas diferenciable resta ver que los cambios de coordenadas son difeomorfismos. Esto es precisamente lo que probamos en $\paint{red}{(b)}$, as\'i esto termina de probar que $TM$ con $\ol{\mathcal{A}}$ resulta una variedad diferenciable de dimensi\'on $2n$.
+En conclusi\'on, $TM$ es una variedad topol\'ogica. Como $\bigcup_{(U,x) \in \mathcal{A}}TU = T (\bigcup_{(U,x) \in \mathcal{A}}U) = TM$ y las funciones $\{\ol{x} : (U,x) \in \mathcal{A}\}$ resultan homeomorfismos, para concluir que $\ol{\mathcal{A}}$ es un atlas diferenciable resta ver que los cambios de coordenadas son difeomorfismos. Esto es precisamente el inciso $\paint{red}{(b)}$. Concluimos entonces que $TM$ con la estructura que le provee $\ol{\mathcal{A}}$ resulta una variedad diferenciable de dimensi\'on $2n$.
 
 \item[(d)] Sea $v \in TM$. Existen entonces $p \in M$ tal que $v \in T_pM$ y una carta $(U,x)$ de $M$ con $\pi(v) = p \in U$. Por $\paint{red}{(c)}$ sabemos que $(TU, \ol{x})$ es una carta de $v$, y por definici\'on de $TU$ es tambi\'en $\pi(TU) = U$. Por lo tanto, resta ver que \textit{bajando} con estas cartas la funci\'on que resulta es diferenciable entre abiertos eucl\'ideos. Es decir, basta probar que $x\circ \pi \circ \ol{x}^{\ -1}$ es diferenciable.
 \begin{center}
@@ -210,7 +300,7 @@ Como para todo $v \in TU$ el vector $x \circ \pi(v)$ coincide con las primeras $
 \end{itemize}
 \end{proof}
 
-\begin{obs}{1} Sean $M$ una variedad diferenciable y $f \in C^\infty(M)$ una funci\'on que vale constantemente $\mu \in \R$. Si $v : C^\infty(M) \to \R$ es una derivaci\'on en $p \in M$, entonces $v(f) = 0$. En efecto, notando $1 : M \to \R$ a la funci\'on que vale constantemente $1$ es
+\begin{obs}{} Sean $M$ una variedad diferenciable y $f \in C^\infty(M)$ una funci\'on que vale constantemente $\mu \in \R$. Si $v : C^\infty(M) \to \R$ es una derivaci\'on en $p \in M$, entonces $v(f) = 0$. En efecto, notando $1 : M \to \R$ a la funci\'on que vale constantemente $1$ es
 \begin{align*}
 v(1) = v(1 \cdot 1) \stackrel{(Leibniz)}{=} 1(p)v(1) + 1(p)v(1) = 2v(1),
 \end{align*}
@@ -219,8 +309,8 @@ lo que implica $v(1) = 0$. En consecuencia, $v(f) = v(\mu \cdot 1) = \mu v(1) = 
 
 Recuerdo ahora el siguiente resultado que utilizar\'e a continuaci\'on,
 
-\begin{lemma}{2} Sea $X$ un espacio topol\'ogico conexo y  $f : X \to Y$ una funci\'on. Si $f$ es localmente constante, entonces es constante.
-\end{lemma}
+\begin{proposition}{} Sea $X$ un espacio topol\'ogico conexo y  $f : X \to Y$ una funci\'on. Si $f$ es localmente constante, entonces es constante.
+\end{proposition}
 \begin{proof} Si $y \in \im f$, el conjunto $E_y := f^{-1}(y) = \{x \in X : f(x) = y\}$ es abierto: para cada $z \in E_y$ existe por hip\'otesis un abierto $U \ni z$ donde $f$ es constante, y como $f(z) = y$ luego $f$ vale constantemente $y$ en todo $U$. Por lo tanto, $z \in U \subset E_y$. Adem\'as los conjuntos $(E_y)_{y \in \im f}$ son disjuntos, pues si $z \in E_y \cap E_{y'}$ entonces $y = f(z) = y'$. Como $X$ es conexo y
 \begin{align*}
 X = \bigsqcup_{y \in \im f}E_y
@@ -241,7 +331,7 @@ constante.
 \begin{align*}
 f_{\ast p}(v)(g) =  v(- \circ f)(g) = v(gf) = v(gc_q) = v(c_{g(q)}) = 0,
 \end{align*}
-con esta \'ultima igualdad dada por la $\paint{red}{\text{Observaci\'on $1$}}$, pues $c_{g(q)} : N \to \R$ vale constantemente $g(q)$. Como la derivaci\'on $f_{\ast p}(v)$ se anula en toda funci\'on, tenemos que $f_{\ast p}(v) = 0$. Por lo tanto, $f_{\ast p}$ se anula en toda derivaci\'on: es entonces $f_{\ast p} = 0$, y esto vale para cualquier punto $p \in M$. 
+pues notamos anteriormente que las funciones constantes tienen imagen nula por una derivaci\'on. Como $f_{\ast p}(v)$ se anula en toda funci\'on, es $f_{\ast p}(v) = 0$. Por lo tanto, $f_{\ast p}$ se anula en toda derivaci\'on: esto dice que $f_{\ast p} = 0$. Como $p$ era arbitario, $f_{\ast p}$ resulta nula para cualquier $p \in M$.
 
 Supongamos ahora que $M$ es conexa y veamos para este caso la afirmaci\'on rec\'iproca. Alcanza con probar que $f$ es localmente constante: fijemos entonces $p \in M$ y veamos que existe un entorno abierto de $p$ donde $f$ es constante. Consideramos ahora una carta $(V,\psi)$ de $N$ con $f(p) \in V$ y una carta $(U,\varphi)$ de $M$ con $p \in U \subset f^{-1}(V)$ y $U$ conexo\footnote{Como $f$ es continua $f^{-1}(V)$ es abierto, y entonces $f^{-1}(V) \cap U$ es un abierto de $M$ que contiene a $p$. Por lo tanto $f^{-1}(V) \cap U$ es un abierto en $U$, y como \'este es homeomorfo a un abierto eucl\'ideo, tambi\'en lo es $f^{-1}(V) \cap U$. En particular tenemos un entorno conexo $\tilde{U}$ de $p$ contenido en $f^{-1}(V) \cap U$. La restricci\'on de la carta a $\tilde{U}$ es una carta que cumple lo que pedimos, por lo que podemos sin p\'erdida de generalidad asumir directamente a $U$ conexo con $U \subset f^{-1}(V)$.}. Luego, los \textit{ganchos} $\bigg\{\hook{i}{q}{\varphi}\bigg\}_{i=1}^n$ son una base de $T_qM$ para cada $q \in U$. Por hip\'otesis, si $g \in C^\infty(N)$ y $v$ es una derivaci\'on en $q$, es $v(gf) = f_{\ast q}(v)(g) = 0$. En particular,
 \begin{align*}
