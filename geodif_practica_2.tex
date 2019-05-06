@@ -151,12 +151,12 @@ Del diagrama anterior y usando que las inclusiones de abiertos inducen isomorfis
 \begin{center}
 \begin{tikzcd}
 T_pS_i \arrow{r}{d_pf_i}  \isoarrow{d} & T_{f_i(p)}S_i \isoarrow{d}\\ 
-T_p(S_1 \sqcup S_2) \arrow{r}{d_pf_1 \sqcup f_2}& T_{f_i(q)}(S_1 \sqcup S_2)
+T_p(S_1 \sqcup S_2) \arrow{r}{d_pf_1 \sqcup f_2}& T_{f_i(p)}(S_1 \sqcup S_2)
 \end{tikzcd}
 \end{center}
 conmuta. Como $f_1,f_2$ y $f_1 \sqcup f_2$ son funciones entre variedades de igual dimensi\'on, sus diferenciales son sobreyectivos si y s\'olo si son isomorfismos. En particular, si $q \in S_i$ es un valor regular para $f_i$ es tambi\'en un valor regular para $f_1 \sqcup f_2$.
 
-Ahora, pasemos a una funci\'on concreta: tomamos $g : z \in \Ss^1 \mapsto z^2 \in \Ss^1$, pensando a $\Ss^1 \subset \C$, y consideramos $id \sqcup g$. Por la observaci\'on anterior, todo punto $p$ de $S_1$ es regular, y su preimagen es exactamente $\{p\} \subset S_1$. Por otro lado, si $p \in S_2$ es $\#(id \sqcup g )^{-1}(p) = \#g^{-1}(p) = 2$. Por lo tanto, resta probar que existe alg\'un valor regular $p \in \Ss^1$ de $g$ para concluir que la funci\'on $q \in R \mapsto (id \sqcup g)^{-1}(p)$ en este caso no es constante. M\'as a\'un, como los tangentes en este caso son $1$-dimensionales, basta ver que existe $p \in \Ss^1$ tal que $d_pg$ es no nulo, pues en tal caso ser\'a sobreyectivo\footnote{Como $\Ss^1$ es conexa y $g$ no es constante, el ejercicio $\paint{red}{(12)}$ que resolvemos m\'as adelante garantiza que debe existir cierto $p \in \Ss^1$ para el cual es $d_pg \neq 0$. De todas formas, optamos por una resoluci\'on elemental.}. Veamos que $d_{(1,0)}g$ es no nulo. Para esto, consideramos la carta
+Ahora, pasemos a una funci\'on concreta: tomamos $g : z \in \Ss^1 \mapsto z^2 \in \Ss^1$, pensando a $\Ss^1 \subset \C$, y consideramos $id \sqcup g$. Por la observaci\'on anterior, todo punto $p$ de $S_1$ es regular, y su preimagen es exactamente $\{p\} \subset S_1$. Por otro lado, si $p \in S_2$ es $\#(id \sqcup g )^{-1}(p) = \#g^{-1}(p) = 2$. Por lo tanto, resta probar que existe alg\'un valor regular $p \in \Ss^1$ de $g$ para concluir que la funci\'on $q \in R \mapsto (id \sqcup g)^{-1}(p)$ en este caso no es constante. M\'as a\'un, como aqu\'i los espacios tangentes son $1$-dimensionales, basta ver que existe $p \in \Ss^1$ tal que $d_pg$ es no nulo, pues en tal caso ser\'a sobreyectivo\footnote{Como $\Ss^1$ es conexa y $g$ no es constante, el ejercicio $\paint{red}{(12)}$ que resolvemos m\'as adelante garantiza que debe existir cierto $p \in \Ss^1$ para el cual es $d_pg \neq 0$. De todas formas, optamos por una resoluci\'on elemental.}. Veamos que $d_{(1,0)}g$ es no nulo. Para esto, consideramos la carta
 
 \begin{align*}
 \varphi : (x,y) \in \{(x,y) \in \Ss^1 : x > 0\} \mapsto y \in (-1,1)
