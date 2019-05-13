@@ -1,0 +1,121 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+\usepackage{mathpazo}
+\usepackage{euler}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Ss}{\mathbb{S}}
+\newcommand{\M}[2]{\mathsf{M}_{#1}#2}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\nat}[1]{[\![#1]\!]}
+\newcommand{\natzero}[1]{\nat{#1}_0}
+\newcommand{\adj}[1]{\operatorname{adj}(#1)}
+\newcommand{\ip}[2]{\langle #1 , #2 \rangle}
+\newcommand{\paint}[2]{\color{#1}{#2}}
+\newcommand{\ol}{\overline}
+\newcommand{\hook}[3]{\frac{\partial}{\partial x_{#1}}\Big\rvert_{#2}^{#3}}
+\usepackage{rotating}
+\newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
+]}
+\definecolor{color}{RGB}{155, 132, 0}
+
+\renewcommand*{\proofname}{\paint{color}{Demostraci\'on}}
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{color}{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{color}{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep \paint{color}{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{obs}[2][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{color}{{\bfseries #1.}}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Resoluci\']{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposici\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{color}{{\bfseries #1.}}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%-----------------------
+
+\title{
+\LARGE{\paint{color}{Geometr\'ia Diferencial}}
+\\
+\vspace{0.5pt}
+\small{\paint{color}{Ejercicios para Entregar - Pr\'actica 3}}
+}
+\author{\paint{color}{Guido Arnone}}
+\date{}
+\lhead{Guido Arnone}
+\rhead{Pr\'actica 3}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\paint{color}{\large{Sobre los Ejercicios}}
+\end{center}
+\begin{center}
+Elej\'i resolver los ejercicios $\paint{color}{(2)}$, $\paint{color}{(8)}$ y $\paint{color}{(9)}$.
+\end{center}
+\begin{center}
+$\paint{color}{
+\rule{400pt}{0.5pt}
+}$
+\vspace{35pt}
+\end{center}
+
+\begin{exercise}{2} Sean $M$ una variedad y $f\in C^\infty(M)$. Si $f$ tiene un m\'aximo
+local en $p\in M$, entonces $f_{*p}=0$.
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{8} Sea $G$ un grupo de Lie, $\mathfrak{g}$ su \'algebra de Lie y $X\in\mathfrak{g}$ un campo vectorial invariante a izquierda. Pruebe que $X$ es \emph{completo} y describa el flujo asociado.
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{9} \item Sea $G$ un grupo de Lie, $e$ su elemento neutro y $\mathfrak{g}$ su \'algebra de Lie. Probar que:
+\begin{itemize}
+\item Si $v\in T_eG$ es un vector tangente a $G$ en $e$ y $X\in\mathfrak{g}$ es el \'unico campo vectorial invariante a izquierda tal que $X_e=v$, sea $\gamma_v:\R\to G$ la \'unica curva integral de $X$ tal que $\gamma_v(0)=e$. Entonces $\gamma_v$ es un homomorfismo de grupos, esto es,
+  \[
+  \gamma_v(t+t')=\gamma_v(t)\cdot\gamma_v(t'), \qquad\forall t,t'\in\R.
+  \]
+
+\item Definimos una funci\'on $\exp:T_eG\to G$ poniendo, para cada $v\in
+T_eG$, 
+  \[
+  \exp(v)=\gamma_v(1).
+  \]
+Determine la diferencial $\exp_{*0}:T_eG\to T_eG$ y muestre que $\exp$ es
+localmente un difeomorfismo alrededor de~$0$.
+
+\item Muestre que si $v$,~$w\in T_eG$ son tales que $[v,w]=0$, entonces
+  \[
+  \exp(v+w)=\exp(v)\cdot\exp(w).
+  \]
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\end{document}
