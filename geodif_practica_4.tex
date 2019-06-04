@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+\usepackage{mathpazo}
+\usepackage{euler}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Ss}{\mathbb{S}}
+\newcommand{\M}[2]{\mathsf{M}_{#1}#2}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\nat}[1]{[\![#1]\!]}
+\newcommand{\natzero}[1]{\nat{#1}_0}
+\newcommand{\adj}[1]{\operatorname{adj}(#1)}
+\newcommand{\ip}[2]{\langle #1 , #2 \rangle}
+\newcommand{\ol}{\overline}
+\newcommand{\hook}[3]{\frac{\partial}{\partial x_{#1}}\Big\rvert_{#2}^{#3}}
+\usepackage{rotating}
+\newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
+]}
+\renewcommand{\d}{\operatorname{d}}
+\definecolor{color}{RGB}{191, 0, 124}
+\newcommand{\paint}[1]{\color{color}{#1}}
+
+\renewcommand*{\proofname}{\paint{Demostraci\'on}}
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{obs}[2][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1.}}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Resoluci\']{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposici\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%-----------------------
+
+\title{
+\LARGE{\paint{Geometr\'ia Diferencial}}
+\\
+\vspace{0.5pt}
+\small{\paint{Ejercicios para Entregar - Pr\'actica 4}}
+}
+\author{\paint{Guido Arnone}}
+\date{}
+\lhead{Guido Arnone}
+\rhead{Pr\'actica 4}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+\paint{\large{Sobre los Ejercicios}}
+\end{center}
+\begin{center}
+
+\end{center}
+\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{35pt}
+\end{center}
+
+\begin{exercise}{6} Si $M$ y $N$ son variedades no vac\'i­as, entonces $M\times N$ es
+orientable si y s\'olo si $M$ y $N$ lo son.
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{8} 
+\hspace{1pt}
+\begin{itemize}
+\item[a)] Si $f:M\to N$ es una funci\'on diferenciable entre variedades, probar que los pull-backs $f^*:\Omega^k(N)\to\Omega^k(M)$ son tales que
+\begin{itemize}
+\item $f^*(\omega_1+\omega_1) = f^*(\omega_1) + f^*(\omega_2)$,
+\item $f^*(h\cdot \omega_1) = h\circ f\cdot f^*(\omega_1), \ $ y  
+\item $f^*(\omega_1\wedge\omega_2) = f^*(\omega_1)\wedge f^*(\omega_2)$
+\end{itemize}
+para cada $\omega_1$,~$\omega_2\in\Omega^\bullet(N)$ y $h\in C^\infty(N)$.
+
+\item[b)] Si $U$ y $V$ son abiertos de $\R^n$ y $f:U\to V$ es diferenciable,
+entonces
+\begin{align*}
+  f^*(\d x_i)=\sum_{k=1}^n\frac{\partial f_i}{\partial x_k}\d x_k
+\end{align*}
+y
+\begin{align*}
+  f^*(g\cdot\d x_1\wedge\cdots\wedge\d x_n)
+        = g\circ f
+                \cdot\det\Bigl(\frac{\partial f_i}{\partial x_j}\Bigr)_{i,j}
+                \cdot \d x_1\wedge 	\cdots\wedge\d x_n
+\end{align*}
+para cada $i\in\{1,\dots,n\}$ y cada $g\in C^\infty(V)$.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+
+\end{document}
