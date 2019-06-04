@@ -121,77 +121,101 @@ Esto es precisamente que $\eta$ sea integral.
 
 \begin{exercise}{8} Sea $G$ un grupo de Lie, $\mathfrak{g}$ su \'algebra de Lie y $X\in\mathfrak{g}$ un campo vectorial invariante a izquierda. Pruebe que $X$ es \emph{completo} y describa el flujo asociado.
 \end{exercise}
-\begin{proof} Notemos que por la proposici\'on anterior, alcanza probar que existe una curva integral definida en toda la recta $\gamma : \R \to G$ tal que $\gamma(0) = e$. En tal caso, para cada $h \in G$ la curva $h \gamma : \R \to G$ resultar\'a integral, definida en toda la recta, y comenzar\'a en $h\gamma(0) = he = h$, probando que $X$ es completo.  $\paint{\text{[FALTA VER QUE HAY UNA CURVA INTEGRAL POR LA IDENTIDAD]}}$
-\end{proof}
-
-A continuaci\'on, pruebo un resultado auxiliar para el ejercicio siguiente.
-
-\begin{lemma}{3} Si $v\in T_eG$ es un vector tangente a $G$ en $e$ y $X^v \in\mathfrak{g}$ es el \'unico campo vectorial invariante a izquierda tal que $X^v_e=v$, sea $\gamma_v:\R\to G$ la \'unica curva integral de $X$ tal que $\gamma_v(0)=e.$ Entonces, para cada $t,s \in R$ es $\gamma_{tv}(s) = \gamma_{v}(ts)$.
-\end{lemma}
-\begin{proof} Fijtemos $t \in \R$. Notemos que $tX$ resulta un campo invariante a izquierda pues para cada $g,h \in G$ tenemos $d_hL_g(tX_h) = td_hL_g(X_h) = tX_h$. Como adem\'as es $tX_e = tv$, concluimos as\'i que $X^{tv} = tX^v$.
-
-Ahora, por unicidad de las curvas integrales maximales, para ver que $\eta(s) := \gamma_v(t \cdot s) = \gamma_{tv}(s)$ alcanza probar que $\eta$ es una curva integral de $X^{tv}$ que comienza en $e$. Esto \'ultimo es claro pues $\gamma_v(t \cdot 0) = \gamma_v(0) = e$. Para terminar, veamos que $\eta$ es integral. Si notamos $l_t : s \in \R \mapsto ts \in \R$ entonces $\eta = \gamma_{v} \circ l_t$. Finalmente, 
+\begin{proof} Veamos primero que existe una curva integral definida en toda la recta que comienza en la identidad de $G$. Consideremos la curva integral maximal $\gamma : (a,b) \to G$ que satisface $\gamma(0) = e$. Veamos que supongamos que $b < +\infty$ y sea $\varepsilon \in (0,b)$. Ahora, definimos
 \begin{align*}
-d_s\eta\left(\frac{d}{dt}\Big|_s\right) = (d_{l_t(s)}\gamma_{v} \circ d_sl_t) \left(\frac{d}{dt}\Big|_s\right) = d_{ts}\gamma_{v} \circ l_t'(s) ARREGLAR CUENTA
+\eta  : (a-\varepsilon,b-&\varepsilon) \to G\\
+&t \longmapsto \gamma(t+\varepsilon)
 \end{align*}
+que resulta suave pues es la composici\'on de $\gamma$ con la restricci\'on de la traslaci\'on $s_\varepsilon(t) = t + \varepsilon$. Adem\'as, 
 \end{proof}
 
-\begin{exercise}{9} Sea $G$ un grupo de Lie, $e$ su elemento neutro y $\mathfrak{g}$ su \'algebra de Lie. Probar que:
+\begin{exercise}{10} Sea $G=\mathsf{GL}(n,\R)$. Recordemos que podemos identificar $T_IG$
+con $\mathsf{M}_n(\R)$. Probar que:
 \begin{itemize}
-\item[a)] Si $v\in T_eG$ es un vector tangente a $G$ en $e$ y $X\in\mathfrak{g}$ es el \'unico campo vectorial invariante a izquierda tal que $X_e=v$, sea $\gamma_v:\R\to G$ la \'unica curva integral de $X$ tal que $\gamma_v(0)=e$. Entonces $\gamma_v$ es un homomorfismo de grupos, esto es,
-  \[
-  \gamma_v(t+s)=\gamma_v(t)\cdot\gamma_v(s), \qquad\forall t,s\in\R.
-  \]
-
-\item[b)] Definimos una funci\'on $\exp:T_eG\to G$ poniendo, para cada $v\in
-T_eG$, 
-  \[
-  \exp(v)=\gamma_v(1).
-  \]
-Determine la diferencial $\exp_{*0}:T_eG\to T_eG$ y muestre que $\exp$ es
-localmente un difeomorfismo alrededor de~$0$.
-
-\item[c)] Muestre que si $v$,~$w\in T_eG$ son tales que $[v,w]=0$, entonces
-  \[
-  \exp(v+w)=\exp(v)\cdot\exp(w).
-  \]
+\item[a)] Para cada $A\in \mathsf{M}_n(\R)$, describa explicitamente el campo tangente
+$X_A$ sobre $G$ que es invariante a izquierda y tal que $(X_A)_I=A$.
+\item[b)] Determine la funci\'on $\exp:T_eG\to G$.
+\item[c)] Muestre que $\exp:T_eG\to G$ no es un homomorfismo de grupos.
 \end{itemize}
 \end{exercise}
 \begin{proof} Hacemos cada inciso por separado.
 \begin{itemize}
-\item[a)] Fijemos $t \in \R$ y sea $g = \gamma_v(t)$. Por la $\paint{\text{Proposici\'on $2$}}$, sabemos que
+\item[a)] Fijemos $A \in \mathsf{M}_n\R$. Sabemos que en general, si $G$ es un grupo de Lie, el campo tangente $X_v \in \mathfrak{X}(G)$ invariante a izquierda que vale $v \in T_eG$ en la identidad es
+\begin{align}
+(X_v)_g = (L_g)_{\ast,e}(v).
+\end{align}
+En este caso, la multiplicaci\'on est\'a dada por la multiplicaci\'on matricial, y tenemos una identifiaci\'on $T_B\mathsf{M}_n\R \equiv \mathsf{M}_n\R$ para toda matriz $B$ al ser $\mathsf{M}_n\R$ un $\R$-espacio vectorial. Adem\'as, como la multiplicaci\'on a izquierda por una matriz fija es $\R$-lineal, bajo estas identificaciones es $L_B(C) = BC$ y $(L_B)_{\ast,I}(C) = BC$ para todo par de matrices $B,C \in \mathsf{M}_n\R$. En este caso $\paint{(1)}$ nos dice entonces que
 \begin{align*}
-\eta(s) := g \gamma_v(s) = \gamma_v(t) \cdot \gamma_v(s)
+(X_A)_B = (L_B)_{\ast,I}(A) = BA
 \end{align*}
-es la curva integral maximal que comienza en $g\cdot e  = g$. Por lo tanto, para probar la igualdad del enunciado, alcanza con mostrar que la curva $\xi : s \in \R \mapsto \gamma_v(t+s) \in G$ comienza en $g$ y es integral. En tal caso, como \'esta tambi\'en es una curva definida en todo $\R$, por unicidad de las curvas integrales maximales deber\'a coincidir con $\eta$. 
-
-En primer lugar, notemos que $\xi$ comienza efectivamente en $g$ ya que
+para cada $B \in \mathsf{M}_n\R$.
+\item[b)] Determinemos ahora $\exp: T_I\mathsf{M}_n\R \to \mathsf{M}_n\R$. Dada $A \in \mathsf{M}_n\R$, bajo las identifiaciones de $\paint{(a)}$ la curva integral $\gamma$ de $X_A$ que comienza en $I$ debe satisfacer la ecuaci\'on diferencial con datos iniciales dada por
+\begin{align}
+\begin{cases}
+\gamma'(t) = (X_A)_{\gamma(t)} = A\gamma(t)\\
+\gamma(0) = I
+\end{cases}
+\end{align}
+La soluci\'on a \'esta \'ultima es conocida, y es precisamente la curva
 \begin{align*}
-\xi(0) = \gamma_v(t+0) = \gamma_v(t) = g.
+e^tA := \sum_{k \geq 0}\frac{(tA)^k}{k!}.
 \end{align*}
-Si notamos ahora $T_t : s \in \R \mapsto t+s \in \R$ y tomamos $h \in C^\infty(\R)$, para cada $s_0 \in \R$ es
+En efecto, notemos que esta serie es absolutamente covergente para todo $t \in \R$ ya que
 \begin{align*}
-d_{s_0}T_t\Big(\frac{d}{ds}\Big|_{s_0}\Big)(h) = \frac{dT_th}{ds}\Big|_{s_0} = h'(t+s_0) =  \frac{d}{ds}\Big|_{t+s_0}(h).
+\sum_{k \geq 0}\left\|\frac{(tA^k)}{k!}\right\| = \sum_{k \geq 0}\frac{t^k}{k!}\|A^k\| \leq \sum_{k \geq 0}\frac{t^k}{k!}\|A\|^k = \sum_{k \geq 0}\frac{(\|A\|t)^k}{k!} = e^{t\|A\|} < + \infty.
 \end{align*}
-Como $\xi = \gamma_v \circ T_t$, obtenemos finalmente que
+Por lo tanto, podemos derivar t\'ermino a t\'ermino,
 \begin{align*}
-d_{s_0}\xi\Big(\frac{d}{ds}\Big|_{s_0}\Big) &= (d_{s_0+t}\gamma_v  \circ d_{s_0} T_t)\Big(\frac{d}{ds}\Big|_{s_0}\Big)= d_{s_0+t}\gamma_v\Big(\frac{d}{ds}\Big|_{s_0+t}\Big)\\
-&= \gamma_v'(s_0+t) = X_{\gamma_v(s_0+t)} = X_{\xi(s_0)}.
+\frac{d}{dt}e^{tA} &= \sum_{k \geq 0}\frac{d}{dt}\frac{(tA)^k}{k!} = \sum_{k \geq 0}\frac{d}{dt}\frac{t^kA^k}{k!} = \sum_{k \geq 1}\frac{kt^{k-1}A^k}{k!}\\ 
+&= A\sum_{k \geq 1}\frac{(tA)^{k-1}}{(k-1)!} = A\sum_{k \geq 0}\frac{(tA)^{k}}{k!} = Ae^{tA},
 \end{align*}
-Esto termina de probar que $\xi$ es integral, y por tanto la igualdad.
-\item[b)] Veamos primero que $\exp$ es diferenciable. $\paint{\text{FALTA VER DIFERENCIABILIDAD, EN CERO AL MENOS}}$.
-
-Ahora, sea $v \in T_eG$ y calculemos $\exp_{\ast 0}(v)$. Consideremos la curva $c : t \in \R \mapsto tv \in T_eG$ que satisface $c(0) = 0$ y $c'(0) = v$. Por el $\paint{\text{Lema $3$}}$, es
+y es claro adem\'as que $e^{0 \cdot A} = I + \sum_{k \geq 1}\frac{0^k}{k!} = I$. En conclusi\'on, identificando $T_I\mathsf{M}_n\R$ con $\mathsf{M}_n\R$ obtenemos $\exp(A) = e^A$ para toda $A \in \mathsf{M}_n\R$.
+\item[c)] Consideremos las siguientes matrices nilpotentes de $\mathsf{M}_2\R$,
 \begin{align*}
-\exp(c(t)) = \exp(tv) = \gamma_{tv}(1) = \gamma_{v}(t \cdot 1)
+A = \begin{pmatrix}
+0 & 1\\
+0 & 0
+\end{pmatrix}, \ B = \begin{pmatrix}
+0 & 0\\
+1 & 0
+\end{pmatrix}
 \end{align*}
-para cada $t \in \R$, de forma que
+Como $A^2 = B^2 = 0$, por un c\'alculo directo, es
 \begin{align*}
-\exp_{*0}(v) = d_0\exp \circ c = d_0\gamma = v 
+\exp(A) = I + A = \begin{pmatrix}
+1 & 1\\
+0 & 1
+\end{pmatrix} \text{ y } \exp(B) = I + B = \begin{pmatrix}
+1 & 0\\
+1 & 1
+\end{pmatrix}
 \end{align*}
-y entonces $\exp_{*0} \equiv id_{T_eG}$. 
-
-Por \'ultimo, como el diferencial de la exponencial en $0$ resulta inversible, por el teorema de la funci\'on inversa $\exp$ es un difeomorfismo local alrededor de $0$.
+as\'i que 
+\begin{align*}
+\exp(A)\exp(B) = \begin{pmatrix}
+1 & 1\\
+0 & 1
+\end{pmatrix} \cdot \begin{pmatrix}
+1 & 0\\
+1 & 1
+\end{pmatrix} = \begin{pmatrix}
+2 & 1\\
+1 & 1
+\end{pmatrix}.
+\end{align*}
+Sin embargo, como $(A+B)^2 = \begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix}^2 = I$, es
+\begin{align*}
+\exp(A+B) &= \sum_{k \geq 0}\frac{(A+B)^k}{k!} = \sum_{k \geq 0}\frac{(A+B)^2k}{(2k)!} + \sum_{k \geq 0}\frac{(A+B)^{2k+1}}{(2k+1)!}\\
+&= \sum_{k \geq 0}\frac{I}{(2k)!} + \sum_{k \geq 0}\frac{A+B}{(2k+1)!}
+\end{align*}
+Usando que las proyecciones a cada coordenada son continuas, vemos que
+\begin{align*}
+\pi_{21}(\exp(A+B)) = \sum_{k \geq 0}\frac{I}{(2k)!} + \sum_{k \geq 0}\frac{1}{(2k+1)!} = e.
+\end{align*}
+Esto nos dice que $\exp(A+B)_{21} \neq (\exp(A)\exp(B))_{21}$ y por lo tanto $\exp(A+B) \neq \exp(A)\exp(B)$, lo que muestra que $\exp$ no es un morfismo de grupos.
 \end{itemize}
 \end{proof}
 
