@@ -1,7 +1,9 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts}
-
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 \usepackage{mathpazo}
 \usepackage{euler}
 \usepackage{xcolor}
@@ -11,7 +13,7 @@
 \usetikzlibrary{matrix}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-
+\usepackage{enumitem}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -82,69 +84,122 @@ $\paint{
 
 Recuerdo primero el siguiente resultado,
 
-\begin{obs}{1} Sea $M$ una variedad y $v \in T_pM$ una derivaci\'on en un punto $p \in M$. Entonces, existe una curva suave $c : (-\eps,\eps) \to M$ tal que $c(0) = p$ y $c'(0) = v$.
+\begin{obs}{1} Si $M$ es una variedad diferenciable y $v \in T_pM$ una derivaci\'on en un punto $p \in M$, entonces para cada entorno abierto $U$ de $p$ existe una curva suave $c : (-\eps,\eps) \to M$ tal que $c(0) = p$, $c'(0) = v$, e $\im c \subset U$.
 
-En efecto, consideremos primero una carta $(U,\phi)$ con $p \in U \subset \R^n$. Componiendo con una traslaci\'on (que es un difeomorfismo de $\R^n$) si es necesario, podemos suponer que $\phi(p) = 0$. Ahora, como los \emph{ganchos} de $\phi$ en $p$ son una base para $T_pM$, existen \'unicos coeficientes $a_1, \dots, a_n \in \R$ tales que $v =\sum_{i=1}^na_i \frac{\partial}{\partial\phi^i}|_p$. 
+Consideremos primero una carta $(V,\phi)$ con $p \in V \subset U$. Componiendo con una traslaci\'on (que es un difeomorfismo de $\R^n$) si es necesario, podemos suponer que $\phi(p) = 0$. Ahora, como los \emph{ganchos} de $\phi$ en $p$ son una base para $T_pM$, existen \'unicos coeficientes $a_1, \dots, a_n \in \R$ tales que $v =\sum_{i=1}^na_i \frac{\partial}{\partial\phi^i}|_p$. 
 
-Ahora, tomando $\eps > 0$ suficientemente peque\~{n}o como para que $B_\eps(0) \subset \phi(U)$, afirmo que la curva $c : t \in (-\eps,\eps) \mapsto \phi^{-1}(tv) \in M$ cumple lo pedido. En primer lugar tenemos que $c(0) = \phi^{-1}(0) = p$. Observemos tambi\'en que $c$ es suave, pues es la composici\'on de $\phi^{-1}$ que es suave (pues $\phi$ es una carta de $M$) y la curva $\gamma : t \in \R \mapsto t(a_1,\dots,a_n) \in \R^n$ que tambi\'en lo es. 
+Tomando $\eps > 0$ suficientemente peque\~{n}o como para que $B_\eps(0) \subset \phi(V)$, afirmamos que la curva
+\begin{align*}
+c : t \in (-\eps,\eps) \mapsto \phi^{-1}(t(a_1,\dots,a_n)) \in M
+\end{align*} cumple lo pedido.
+
+En primer lugar, tenemos que $c(0) = \phi^{-1}(0) = p$ e $\im c \subset V \subset U$. Observemos tambi\'en que $c$ es suave, pues es la composici\'on de la curva $\gamma : t \in \R \mapsto t(a_1,\dots,a_n) \in \R^n$ con $\phi^{-1}$ (que es suave ya que $\phi$ es una carta de $M$). 
 
 Por \'ultimo si $g \in C^\infty(M)$, entonces
 \begin{align*}
 d_0c\left(\frac{d}{dt}\Big|_0\right)(g) &= \frac{d}{dt}\Big|_0(gc) = \frac{d}{dt}\Big|_0(g\phi^{-1}\gamma) = \sum_{i=1}^n\frac{\partial g\phi^{-1}}{\partial x_i}\Big|_{c(0)} \cdot \gamma'_i(0)\\
 &= \sum_{i=1}^n\frac{\partial g\phi^{-1}}{\partial x_i}\Big|_{p} \cdot a_i = \sum_{i=1}^na_i\frac{\partial }{\partial \phi^i}\Big|_{p}(g)\\
-&= \left(\sum_{i=1}^na_i\frac{\partial }{\partial \phi^i}\Big|_{p}\right)(g) = v(g).
+&= \left(\sum_{i=1}^na_i\frac{\partial }{\partial \phi^i}\Big|_{p}\right)(g) = v(g)
 \end{align*}
 de forma que $c'(0) = v$.
 \end{obs}
+\newpage
 
 \begin{exercise}{2} Sean $M$ una variedad y $f\in C^\infty(M)$. Si $f$ tiene un m\'aximo
 local en $p\in M$, entonces $d_pf = 0$.
 \end{exercise}
-\begin{proof} Como $p$ es un m\'aximo local de $f$, existe un abierto $U \ni p$ tal que $f(q) \leq f(p)$ para cada $q \in U$. Fijemos $v \in T_pM$. Por la observaci\'on anterior, tenemos una curva $c : (-\eps,\eps) \to M$ tal que $c(0) = p$ y $c'(0) = v$. Adem\'as por como construimos la curva en la observaci\'on anterior, tomando un carta $(V,\phi)$ con $p \in V \subset U$ podemos m\'as a\'un suponer que $\im c \subset U$. En consecuencia es $fc(t) \leq f(0) = f(p)$ para cada $t \in (-\eps,\eps)$. Esto es, $0$ resulta un m\'aximo local de la curva suave $fc : (-\eps,\eps) \to \R$ y entonces $(fc)'(0) = 0$. Esto dice que
+\begin{proof} Como $p$ es un m\'aximo local de $f$, existe un abierto $U \ni p$ tal que $f(q) \leq f(p)$ para cada $q \in U$. Fijemos $v \in T_pM$. Por la observaci\'on anterior tenemos una curva $c : (-\eps,\eps) \to M$ tal que $c(0) = p$, $c'(0) = v$, e $\im c \subset U$. 
+
+En consecuencia, es $fc(t) \leq fc(0) = f(p)$ para cada $t \in (-\eps,\eps)$ y por lo tanto $0$ resulta un m\'aximo local de la curva suave $fc : (-\eps,\eps) \to \R$.
+
+Esto último dice que $(fc)'(0) = 0$ y por ende es
 \begin{align*}
 0 = d_0(f\circ c)\left(\frac{d}{dt}\Big|_0\right)  = d_pf\left(d_0c\left(\frac{d}{dt}\Big|_0\right)\right) = d_pf(c'(0)) = d_pf(v).
 \end{align*}
-Como $d_pf(v) = 0$ para cada $v \in T_pM$, en efecto $d_pf = 0$.
+Como la igualdad anterior es cierta para cualquier $p \in M$ y $v \in T_pM$, efectivamente  $d_pf = 0$.
 \end{proof}
+
+\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{10pt}
+\end{center}
 
 Probamos ahora la sugerencia del ejercicio $\paint{(8)}$.
 
 \begin{proposition}{2} Sea $G$ un grupo de Lie, $\mathfrak{g}$ su \'algebra de Lie y $X \in \mathfrak{g}$ un campo vectorial invariante a izquierda. Si $g, h \in G$ y $\gamma : (a,b) \to G$ es una curva integral de $X$ que arranca en $g = \gamma(0)$ entonces la curva $\eta : t \in (a,b) \to h\gamma(t) \in G$ es una curva integral de $X$ que arranca en $hg$. 
 \end{proposition}
-\begin{proof} Como $\eta(0) = h\gamma(0) = hg$, la curva $\eta$ comienza en $hg$. Resta ver que es una curva integral. Fijemos ahora $s \in (a,b)$. Observando que por definici\'on $\eta = L_h \circ \gamma$, es
+\begin{proof} Como $\eta(0) = h\gamma(0) = hg$, la curva $\eta$ comienza en $hg$. Resta ver que es una curva integral. Fijando $s \in (a,b)$ y notando que por definición $\eta = L_h \circ \gamma$, se tiene que
 \begin{align*}
 d_s \eta \left(\frac{d}{dt}\Bigg|_{s}\right) &= (d_{\gamma(s)}L_h \circ d_s\gamma) \left(\frac{d}{dt}\Bigg|_{s}\right) = d_{\gamma(s)}L_h \left( d_s\gamma \left(\frac{d}{dt}\Bigg|_{s}\right) \right)\\
-& = d_{\gamma(s)}L_h(X_{\gamma(s)}) \stackrel{(X \in \mathfrak{g})}{=} X_{h\gamma(s)} = X_{\eta(s)}.
+& = d_{\gamma(s)}L_h(X_{\gamma(s)}) = X_{h\gamma(s)} = X_{\eta(s)}.
 \end{align*}
 Esto es precisamente que $\eta$ sea integral.
 \end{proof}
 
-\begin{exercise}{8} Sea $G$ un grupo de Lie, $\mathfrak{g}$ su \'algebra de Lie y $X\in\mathfrak{g}$ un campo vectorial invariante a izquierda. Pruebe que $X$ es \emph{completo} y describa el flujo asociado.
+\begin{exercise}{8} Sea $G$ un grupo de Lie, $\mathfrak{g}$ su álgebra de Lie y $X\in\mathfrak{g}$ un campo vectorial invariante a izquierda. Pruebe que $X$ es \emph{completo} y describa el flujo asociado.
 \end{exercise}
-\begin{proof} Veamos primero que existe una curva integral definida en toda la recta que comienza en la identidad de $G$. Consideremos la curva integral maximal $\gamma : (a,b) \to G$ que satisface $\gamma(0) = e$. Veamos que supongamos que $b < +\infty$ y sea $\varepsilon \in (0,b)$. Ahora, definimos
+\begin{proof} Veamos primero que existe una curva integral definida en toda la recta que comienza en la identidad de $G$. Consideremos la curva integral maximal $\gamma : (a,b) \to G$ que satisface $\gamma(0) = e$. 
+
+Para concluir que $I := (a,b)$ es en realidad toda la recta, supongamos que $b < +\infty$ y veamos que esto lleva a una contradicción. Veremos así que $I$ no puede estar acotado superiormente. Un argumento similar para $a$ (que omitimos) prueba que $I$ tampoco está acotado inferiormente: en consecuencia, debe ser $I = \R$.
+
+Fijemos $t_0 \in (0,b)$. Ahora, definimos
 \begin{align*}
-\eta  : (a-\varepsilon,b-&\varepsilon) \to G\\
-&t \longmapsto \gamma(t+\varepsilon)
+\eta  : (a-t_0,&b-t_0) \to G\\
+&t \longmapsto \gamma(t+t_0)
 \end{align*}
-que resulta suave pues es la composici\'on de $\gamma$ con la restricci\'on de la traslaci\'on $s_\varepsilon(t) = t + \varepsilon$. Adem\'as, 
+que resulta suave pues es la composición de $\gamma$ con la restricción de la traslación $T_{t_0}(t) = t + t_0$. Ésta curva es integral, pues
+\begin{align*}
+\eta'(s) = d_s\eta\left(\frac{d}{dt}\Big|_{s}\right) &= d_s(\gamma \circ T_{t_0})\left(\frac{d}{dt}\Big|_{s}\right) = d_{s+t_0}\gamma \circ d_{s}T_{t_0}\left(\frac{d}{dt}\Big|_s\right)\\
+&= d_{s+t_0}\gamma\left(\frac{d}{dt}\Big|_{s+t_0}\right) = \gamma'(s+t_0) = X_{\gamma(s+t_0)} = X_{\eta(s)}.
+\end{align*}
+
+
+Ahora, tanto $\eta$ como $t \in (a,b) \mapsto \gamma(t_0)\gamma(t) \in G$ son curvas integrales que comienzan en $\gamma(t_0)$, así que deben coincidir donde ambas están definidas:
+\begin{align*}
+\gamma(s+t_0) = \eta(s) = \gamma(t_0)\gamma(s) \quad \forall s \in (a,b-t_0).
+\end{align*}
+En particular, si $x \in (t_0,b)$ es $\gamma(x) = \gamma(t_0)\gamma(x-t_0)$. Esto implica que la curva
+\begin{align*}
+\tilde{\gamma} : (a,b+&t_0) \to G\\
+&s \longmapsto \begin{cases}
+\gamma(s) \quad \text{ si $a < s < b$}\\
+\gamma(t_0)\gamma(s-t_0) \quad \text{ si $t_0 < s < b + t_0$}
+\end{cases}
+\end{align*}
+que comienza en $e \in G$ est\'a bien definida. M\'as a\'un, ésta resulta suave e integral pues lo es al restringirla a los abiertos $(a,b)$ y $(t_0,b+t_0)$. Sin embargo $\gamma$ era maximal, así que esto supone una contradicción. Por lo observado anteriormente, la curva $\gamma$ está definida en toda la recta.
+
+Consecuentemente $X$ es completo: para cada $g \in G$, la $\paint{\text{Proposición $2$}}$ nos dice que la curva $g\cdot\gamma$ comienza en $g$, es integral, y está definida en toda la recta.
 \end{proof}
 
+\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{10pt}
+\end{center}
+
 \begin{exercise}{10} Sea $G=\mathsf{GL}(n,\R)$. Recordemos que podemos identificar $T_IG$
-con $\mathsf{M}_n(\R)$. Probar que:
-\begin{itemize}
-\item[a)] Para cada $A\in \mathsf{M}_n(\R)$, describa explicitamente el campo tangente
+con $\mathsf{M}_n(\R)$. 
+\begin{itemize}[listparindent = \parindent]
+\item[a)] Para cada $A\in \mathsf{M}_n(\R)$, describa explícitamente el campo tangente
 $X_A$ sobre $G$ que es invariante a izquierda y tal que $(X_A)_I=A$.
 \item[b)] Determine la funci\'on $\exp:T_eG\to G$.
 \item[c)] Muestre que $\exp:T_eG\to G$ no es un homomorfismo de grupos.
 \end{itemize}
 \end{exercise}
 \begin{proof} Hacemos cada inciso por separado.
-\begin{itemize}
-\item[a)] Fijemos $A \in \mathsf{M}_n\R$. Sabemos que en general, si $G$ es un grupo de Lie, el campo tangente $X_v \in \mathfrak{X}(G)$ invariante a izquierda que vale $v \in T_eG$ en la identidad es
+\begin{itemize}[listparindent = \parindent]
+\item[a)] Fijemos $A \in \mathsf{M}_n\R$. Sabemos en general que si $G$ es un grupo de Lie, el campo tangente $X_v \in \mathfrak{X}(G)$ invariante a izquierda que vale $v \in T_eG$ en la identidad es
 \begin{align}
 (X_v)_g = (L_g)_{\ast,e}(v).
 \end{align}
-En este caso, la multiplicaci\'on est\'a dada por la multiplicaci\'on matricial, y tenemos una identifiaci\'on $T_B\mathsf{M}_n\R \equiv \mathsf{M}_n\R$ para toda matriz $B$ al ser $\mathsf{M}_n\R$ un $\R$-espacio vectorial. Adem\'as, como la multiplicaci\'on a izquierda por una matriz fija es $\R$-lineal, bajo estas identificaciones es $L_B(C) = BC$ y $(L_B)_{\ast,I}(C) = BC$ para todo par de matrices $B,C \in \mathsf{M}_n\R$. En este caso $\paint{(1)}$ nos dice entonces que
+En este caso la multiplicaci\'on est\'a dada por la multiplicaci\'on matricial, y tenemos una identifiaci\'on $T_B\mathsf{M}_n\R \equiv \mathsf{M}_n\R$ para toda matriz $B$ al ser $\mathsf{M}_n\R$ un $\R$-espacio vectorial. 
+
+Como la multiplicaci\'on a izquierda por una matriz fija es $\R$-lineal, bajo estas identificaciones es $(L_B)_{\ast,I}(C) = L_B(C) = BC$ para todo par de matrices $B,C \in \mathsf{M}_n\R$. 
+
+Consecuentemente $\paint{(1)}$ nos dice que
 \begin{align*}
 (X_A)_B = (L_B)_{\ast,I}(A) = BA
 \end{align*}
@@ -152,24 +207,24 @@ para cada $B \in \mathsf{M}_n\R$.
 \item[b)] Determinemos ahora $\exp: T_I\mathsf{M}_n\R \to \mathsf{M}_n\R$. Dada $A \in \mathsf{M}_n\R$, bajo las identifiaciones de $\paint{(a)}$ la curva integral $\gamma$ de $X_A$ que comienza en $I$ debe satisfacer la ecuaci\'on diferencial con datos iniciales dada por
 \begin{align}
 \begin{cases}
-\gamma'(t) = (X_A)_{\gamma(t)} = A\gamma(t)\\
+\gamma'(t) = (X_A)_{\gamma(t)} = \gamma(t)A\\
 \gamma(0) = I
 \end{cases}
 \end{align}
 La soluci\'on a \'esta \'ultima es conocida, y es precisamente la curva
 \begin{align*}
-e^tA := \sum_{k \geq 0}\frac{(tA)^k}{k!}.
+e^{tA} := \sum_{k \geq 0}\frac{(tA)^k}{k!}.
 \end{align*}
 En efecto, notemos que esta serie es absolutamente covergente para todo $t \in \R$ ya que
 \begin{align*}
 \sum_{k \geq 0}\left\|\frac{(tA^k)}{k!}\right\| = \sum_{k \geq 0}\frac{t^k}{k!}\|A^k\| \leq \sum_{k \geq 0}\frac{t^k}{k!}\|A\|^k = \sum_{k \geq 0}\frac{(\|A\|t)^k}{k!} = e^{t\|A\|} < + \infty.
 \end{align*}
-Por lo tanto, podemos derivar t\'ermino a t\'ermino,
+Por lo tanto podemos derivar t\'ermino a t\'ermino,
 \begin{align*}
 \frac{d}{dt}e^{tA} &= \sum_{k \geq 0}\frac{d}{dt}\frac{(tA)^k}{k!} = \sum_{k \geq 0}\frac{d}{dt}\frac{t^kA^k}{k!} = \sum_{k \geq 1}\frac{kt^{k-1}A^k}{k!}\\ 
-&= A\sum_{k \geq 1}\frac{(tA)^{k-1}}{(k-1)!} = A\sum_{k \geq 0}\frac{(tA)^{k}}{k!} = Ae^{tA},
+&= \sum_{k \geq 1}\frac{(tA)^{k-1}}{(k-1)!} \cdot A = \sum_{k \geq 0}\frac{(tA)^{k}}{k!} \cdot A = e^{tA} \cdot A.
 \end{align*}
-y es claro adem\'as que $e^{0 \cdot A} = I + \sum_{k \geq 1}\frac{0^k}{k!} = I$. En conclusi\'on, identificando $T_I\mathsf{M}_n\R$ con $\mathsf{M}_n\R$ obtenemos $\exp(A) = e^A$ para toda $A \in \mathsf{M}_n\R$.
+Es claro adem\'as que $e^{0 \cdot A} = I + \sum_{k \geq 1}\frac{0^k}{k!} = I$. En conclusi\'on, identificando $T_I\mathsf{M}_n\R$ con $\mathsf{M}_n\R$ obtenemos $\exp(A) = e^A$ para toda $A \in \mathsf{M}_n\R$.
 \item[c)] Consideremos las siguientes matrices nilpotentes de $\mathsf{M}_2\R$,
 \begin{align*}
 A = \begin{pmatrix}
@@ -178,8 +233,9 @@ A = \begin{pmatrix}
 \end{pmatrix}, \ B = \begin{pmatrix}
 0 & 0\\
 1 & 0
-\end{pmatrix}
+\end{pmatrix}.
 \end{align*}
+
 Como $A^2 = B^2 = 0$, por un c\'alculo directo, es
 \begin{align*}
 \exp(A) = I + A = \begin{pmatrix}
@@ -203,6 +259,7 @@ as\'i que
 1 & 1
 \end{pmatrix}.
 \end{align*}
+
 Sin embargo, como $(A+B)^2 = \begin{pmatrix}
 0 & 1\\
 1 & 0
@@ -211,7 +268,7 @@ Sin embargo, como $(A+B)^2 = \begin{pmatrix}
 \exp(A+B) &= \sum_{k \geq 0}\frac{(A+B)^k}{k!} = \sum_{k \geq 0}\frac{(A+B)^2k}{(2k)!} + \sum_{k \geq 0}\frac{(A+B)^{2k+1}}{(2k+1)!}\\
 &= \sum_{k \geq 0}\frac{I}{(2k)!} + \sum_{k \geq 0}\frac{A+B}{(2k+1)!}
 \end{align*}
-Usando que las proyecciones a cada coordenada son continuas, vemos que
+y usando que las proyecciones a cada coordenada son continuas, vemos que
 \begin{align*}
 \pi_{21}(\exp(A+B)) = \sum_{k \geq 0}\frac{I}{(2k)!} + \sum_{k \geq 0}\frac{1}{(2k+1)!} = e.
 \end{align*}

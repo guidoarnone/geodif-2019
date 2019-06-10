@@ -1,7 +1,9 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts}
-
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 \usepackage{mathpazo}
 \usepackage{euler}
 \usepackage{xcolor}
@@ -11,6 +13,7 @@
 \usetikzlibrary{matrix}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\usepackage{enumitem}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -72,7 +75,7 @@
 \paint{\large{Sobre los Ejercicios}}
 \end{center}
 \begin{center}
-
+Elegí los ejercicios $\paint{(6)}$, $\paint{(8)}$ y el inciso $\paint{(d)}$ del ejercicio $\paint{(11)}$.
 \end{center}
 \begin{center}
 $\paint{
@@ -84,18 +87,21 @@ $\paint{
 \begin{exercise}{6} Si $M$ y $N$ son variedades no vac\'i­as, entonces $M\times N$ es
 orientable si y s\'olo si $M$ y $N$ lo son.
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Veamos ambas implicaciones
+\begin{itemize}[listparindent = \parindent]
+\item[($\Rightarrow$)] Supongamos que $M \times N$ es orientable.
+\item[($\Leftarrow$)] Ahora supongamos que tanto $M$ como $N$ son orientables.
+\end{itemize}
 \end{proof}
 
 \begin{exercise}{8} 
 \hspace{1pt}
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[a)] Si $f:M\to N$ es una funci\'on diferenciable entre variedades, probar que los pull-backs $f^*:\Omega^k(N)\to\Omega^k(M)$ son tales que
-\begin{itemize}
-\item $f^*(\omega_1+\omega_1) = f^*(\omega_1) + f^*(\omega_2)$,
-\item $f^*(h\cdot \omega_1) = h\circ f\cdot f^*(\omega_1), \ $ y  
-\item $f^*(\omega_1\wedge\omega_2) = f^*(\omega_1)\wedge f^*(\omega_2)$
+\begin{itemize}[listparindent = \parindent]
+\item[(i)] $f^*(\omega_1+\omega_1) = f^*(\omega_1) + f^*(\omega_2)$
+\item[(ii)] $f^*(h\cdot \omega_1) = h\circ f\cdot f^*(\omega_1)$ 
+\item[(iii)] $f^*(\omega_1\wedge\omega_2) = f^*(\omega_1)\wedge f^*(\omega_2)$
 \end{itemize}
 para cada $\omega_1$,~$\omega_2\in\Omega^\bullet(N)$ y $h\in C^\infty(N)$.
 
@@ -114,9 +120,104 @@ y
 para cada $i\in\{1,\dots,n\}$ y cada $g\in C^\infty(V)$.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Hacemos cada inciso por separado.
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Si $\omega_1,\omega_2 \in \Omega^k(N)$ y $v_1, \dots, v_n \in T_pN \subset TN$, entonces
+\begin{align*}
+f^*(\omega_1+\omega_2)_p(v_1, \dots, v_k) &= (\omega_1+\omega_2)_{f(p)}(f_{\ast,p}(v_1), \dots, f_{\ast,p}(v_k))\\
+&= {\omega_1}_{f(p)}(f_{\ast,p}(v_1), \dots, f_{\ast,p}(v_k)) + {\omega_2}_{f(p)}(f_{\ast,p}(v_1), \dots, f_{\ast,p}(v_k))\\
+& = f^*(\omega_1)_p(v_1, \dots, v_k) + f^*(\omega_2)_p(v_1,\dots,v_k)
+\end{align*}
+y
+\begin{align*}
+f^*(h \cdot \omega_1)_p(v_1, \dots, v_k) &= (h \cdot \omega_1)_{f(p)}(f_{\ast,p}(v_1),\dots,f_{\ast,p}(v_k))\\
+& = h(f(p)) \cdot {\omega_1}_{f(p)}(f_{\ast,p}(v_1),\dots,f_{\ast,p}(v_k))\\
+&= h(f(p)) \cdot f^*(\omega_1)_p(v_1,\dots,v_k),
+\end{align*}
+así que $f^*(\omega_1+\omega_2) = f^*(\omega_1) + f^*(\omega_2)$ y $f^*(h\cdot \omega_1) = h\circ f\cdot f^*(\omega_1)$.
+
+Por último, sean $\omega \in \Omega^k(N)$ y $\eta \in \Omega^l(N)$ dos formas. Ahora dado un punto $p \in N$ y derivaciones $v_1, \dots, v_k,v_{k+1},\dots,v_{k+l} \in T_pN \subset TN$, al tensorizar obtenemos
+\begin{align*}
+(\omega \otimes \eta)_{f(p)} (d_pf(v_1), \dots d_pf(v_{k+l})) &= \omega_{f(p)} (d_pf(v_{\sigma(1)}), \dots d_pf(v_{\sigma(k)})) \cdot \eta_{f(p)}(d_pf(v_{\sigma(k+1)}), \dots, d_pf(v_{\sigma(k+l)}))\\
+& = f^*(\omega_p) (v_{\sigma(1)}, \dots v_{\sigma(k)}) \cdot f^*(\eta)_p(v_{\sigma(k+1)}, \dots, v_{\sigma(k+l)})\\
+& = (f^*(\omega) \otimes f^*(\eta))_p(v_{1},\dots, v_{k+l})\\
+\end{align*}
+así que 
+\begin{align*}
+f^*(\omega \wedge \eta)_p(v_1, \dots, v_{k+l}) &= (\omega \wedge \eta)_{f(p)}(d_pf(v_1), \dots, d_pf(v_{k+l}))\\
+&= \frac{1}{k!l!}\sum_{\sigma \in \Ss_{k+l}}(-1)^\sigma \sigma \cdot (\omega \otimes \eta)_{f(p)} (d_pf(v_1), \dots d_pf(v_{k+l}))\\
+&= \frac{1}{k!l!}\sum_{\sigma \in \Ss_{k+l}}(-1)^\sigma (\omega \otimes \eta)_{f(p)} (d_pf(v_{\sigma(1)}), \dots d_pf(v_{\sigma(k+l)}))\\
+&= \frac{1}{k!l!}\sum_{\sigma \in \Ss_{k+l}}(-1)^\sigma (f^*(\omega) \otimes f^*(\eta))_p(v_{\sigma(1)},\dots, v_{\sigma(k+l)})\\
+& = \frac{1}{k!l!}\sum_{\sigma \in \Ss_{k+l}}(-1)^\sigma \sigma \cdot (f^*(\omega) \otimes f^*(\eta))_p(v_{1},\dots, v_{k+l})\\
+&= (f^*(\omega) \wedge f^*(\eta))_p (v_{1},\dots, v_{k+l}).
+\end{align*}
+\item[b)] Fijemos $i \in \nat{n}$. Si $s \in \nat{n}$, entonces para cada $p \in U$ y $g \in C^\infty(V)$ es
+\begin{align*}
+d_pf\left(\frac{\partial}{\partial x_s}\Big|_p\right)(g) = \frac{\partial gf}{\partial x_s}\Big|_p = (D_p(gf))_s = (D_{f(p)}gD_pf)_s = \sum_{j = 1}^n\frac{\partial g}{\partial x_j}\Big|_{f(p)} \cdot \frac{\partial f_j}{\partial x_s}\Big|_p = \sum_{j = 1}^n\frac{\partial f_j}{\partial x_s}\Big|_p\cdot \frac{\partial}{\partial x_j}\Big|_{f(p)}(g)
+\end{align*}
+de forma que $d_pf(\frac{\partial}{\partial x_s}|_p) = \sum_{j = 1}^n\frac{\partial f_j}{\partial x_s}|_p\cdot \frac{\partial}{\partial x_j}|_{f(p)}$. Por lo tanto,
+\begin{align*}
+f^*(\d x_i)_p\left(\frac{\partial}{\partial x_s}\Big|_p\right) &= d{x_i}_{f(p)}\left(d_pf\left(\frac{\partial}{\partial x_s}\Big|_p\right)\right) = d{x_i}_{f(p)}\left(\sum_{j = 1}^n\frac{\partial f_j}{\partial x_s}\Big|_p\cdot \frac{\partial}{\partial x_j}\Big|_{f(p)}\right)\\
+& = \sum_{j = 1}^n\frac{\partial f_j}{\partial x_s}\Big|_p\cdot d{x_i}_{f(p)}\left(\frac{\partial}{\partial x_j}\Big|_{f(p)}\right) = \frac{\partial f_i}{\partial x_s}.
+\end{align*}
+
+Como a su vez 
+\begin{align*}
+\sum_{k=1}^n\frac{\partial f_i}{\partial x_k}(\d {x_k})_p\left(\frac{\partial}{\partial x_s}\Big|_{p}\right) = \sum_{k=1}^n\frac{\partial f_i}{\partial x_k}\delta_{ks} = \frac{\partial f_i}{\partial x_s}
+\end{align*}
+obtenemos que 
+\begin{align*}
+f^*(\d x_i)_p \sum_{k=1}^n\frac{\partial f_i}{\partial x_k}(\d {x_k})_{p}
+\end{align*}
+pues ambos lados de la igualdad coinciden en la base de los \textit{ganchos} $\{\frac{\partial}{\partial x_s}|_p\}_{1 \leq s \leq n}$. Como esto es cierto para todo punto $p$, se tiene que $f^*(\d x_i) = \sum_{k=1}^n\frac{\partial f_i}{\partial x_k}\d {x_k}$.
+
+Finalmente, usando $\paint{(a)}$ vemos que
+\begin{align*}
+f^*(g\cdot\d x_1\wedge\cdots\wedge\d x_n) &= g \circ f \cdot f^*(\d x_1)\wedge\dots\wedge f^*(\d x_n)
+\end{align*}
+así que para terminar el inciso basta ver que
+\begin{align*}
+f^*(\d x_1)\wedge\dots\wedge f^*(\d x_n) = \det(\frac{\partial f_i}{\partial x_j})_{ij} \cdot  \d x_1 \wedge\dots\wedge\d x_n.
+\end{align*}
+
+En efecto,
+\begin{align*}
+f^*(\d x_1)\wedge\dots\wedge f^*(\d x_n) &= \sum_{i_1=1}^n\frac{\partial f_1}{\partial x_{i_1}}\d {x_{i_1}} \wedge \dots \wedge \sum_{i_n=1}^n\frac{\partial f_n}{\partial x_{i_n}}\d {x_{i_n}}\\
+&= \sum_{i_1, \dots, i_n}\prod_{j=1}^n\frac{\partial f_j}{\partial x_{i_j}} \d x_{i_1} \wedge\dots\wedge \d x_{i_n}\\
+&= \sum_{i_1 < \dots < i_n} \prod_{j=1}^n\frac{\partial f_j}{\partial x_{i_j}} \d x_{i_1} \wedge\dots\wedge \d x_{i_n}\\
+&= \sum_{\sigma \in \Ss_n} \prod_{j=1}^n\frac{\partial f_j}{\partial x_{\sigma(j)}} \d x_{\sigma(1)} \wedge\dots\wedge \d x_{\sigma(n)}\\
+&= \sum_{\sigma \in \Ss_n} (-1)^\sigma \prod_{j=1}^n\frac{\partial f_j}{\partial x_{\sigma(j)}} \d x_1 \wedge\dots\wedge \d x_n\\
+&= \left(\sum_{\sigma \in \Ss_n} (-1)^\sigma \prod_{j=1}^n\frac{\partial f_j}{\partial x_{\sigma(j)}}\right) \d x_1 \wedge\dots\wedge \d x_n\\
+&= \det\left(\frac{\partial f_i}{\partial x_j}\right)_{ij} \cdot  \d x_1 \wedge\dots\wedge\d x_n.
+\end{align*}
+\end{itemize}
 \end{proof}
+
+\begin{exercise}{11 (d)} Calcule la cohomología de un producto cartesiano de dos esferas.
+\begin{proof} Sea $n \in \N$. Por la fórmula de Künneth, sabemos que
+\begin{align}
+H^q(\Ss^n \times \Ss^n) = \bigoplus_{r+s = q} H^r(\Ss^n) \otimes H^s(\Ss^n)
+\end{align}
+para todo $q \geq 0$. Sabemos además que la cohomología de la $n$-esfera es $\R$ en grados $0$ y $n$, y nula en los demás. Por lo tanto, para que $H^r(\Ss^n) \otimes H^s(\Ss^n)$ sea no nulo es condición necesaria que $r$ y $s$ pertenezcan a $\{0,n\}$. En particular debe ser $r+s \in \{0,n,2n\}$. 
+
+Como $\Ss^n \times  \Ss^n$ es arcoconexo, ya sabemos que $H^0(\Ss^n \times \Ss^n) \simeq \R$. En los otros casos, de $\paint{(1)}$ tenemos que
+\begin{align*}
+H^n(\Ss^n \times \Ss^n) &= H^n(\Ss^n) \otimes H^0(\Ss^n) \oplus H^0(\Ss^n) \otimes H^n(\Ss^n) = \R \otimes \R \oplus \R \otimes \R = \R \oplus \R
+\end{align*}
+y
+\begin{align*}
+H^{2n}(\Ss^n \times \Ss^n) = H^n(\Ss^n) \otimes H^n(\Ss^n) = \R \otimes \R = \R.
+\end{align*}
+Por lo tanto, es
+\begin{align*}
+H^q(\Ss^n \times \Ss^n) = \begin{cases}
+\R \quad &\text{si $q = 0$ o $q = 2n$}\\
+\R^2 \quad &\text{si $q = n$}\\
+0 \quad &\text{en caso contrario}
+\end{cases}
+\end{align*}
+\end{proof}
+\end{exercise}
 
 
 \end{document}
