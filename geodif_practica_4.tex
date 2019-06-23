@@ -89,15 +89,50 @@ orientable si y s\'olo si $M$ y $N$ lo son.
 \end{exercise}
 \begin{proof} Veamos ambas implicaciones
 \begin{itemize}[listparindent = \parindent]
-\item[($\Rightarrow$)] Supongamos que $M \times N$ es orientable, y veamos que $M$ lo es. Un argumento similar prueba lo mismo para $N$. 
+\item[($\Rightarrow$)] Supongamos que $M \times N$ es orientable, y veamos que $M$ lo es. Un argumento similar prueba lo mismo para $N$.
 
-\item[($\Leftarrow$)] Ahora supongamos que tanto $M$ como $N$ son variedades orientables de dimensión $m$ y $n$ respectivamente, de forma que existen atlas orientables $A$ y $A'$ de $M$ y $N$ respectivamente. Veamos ahora que el atlas
+Sea $(\psi, V)$ una carta de $N$. Como $M \times N$ es orientable, así lo es $M \times V$ pues tomando una forma de volumen en $M \times N$ y restringiéndola a $M \times V$ obtenemos nuevamente una forma de volumen. Dado que $\psi$ es una carta de $N$, ésta es un difeomorfismo de $V$ a $\R^n$ y por lo tanto $id_M \times \psi : M \times V \to M \times \R^n$ es un difeomorfismo de $M \times V$ a $M \times \R^n$, con inversa $id_M \times \psi^{-1}$. En particular de aquí vemos que $M \times \R^n$ es orientable.
+
+En vista de esto, basta probar que si $M$ es una variedad y $M \times \R^n$ es orientable entonces $M$ es orientable. De hecho alcanza probar lo anterior para $n = 1$, pues en tal caso esto nos permitirá probar que de ser $M \times \R^n \simeq (M \times \R^{n-1}) \times \R$ orientable así lo será $M \times \R^{n-1}$. Inductivamente, obtendremos que $M \times \R$ es orientable, y finalmente por el mismo argumento esto dirá que $M$ lo es.
+
+Veamos para terminar que si $M \times \R$ es orientable, entonces $M$ es orientable. En vista de que $T(M \times \R) \simeq TM \times T\R$, para cada carta $(U \times \R, \varphi \times id)$, notaremos a los \textit{ganchos} como
+
+\begin{align*}
+\frac{\partial}{\partial (\varphi \times id)^i}\Bigg|_{(p,q)} = \begin{cases}
+\frac{\partial}{\partial \varphi^i}|_{(p,q)} &\text{ si $i \leq n$}\\
+\frac{d}{dt}|_{(p,q)} &\text{ si $i = n+1$}
+\end{cases}
+\end{align*}
+
+Sabemos que existe una forma de volumen $\omega  \in \Omega^{m+1}(M \times \R)$, con cierta expresión local
+
+\begin{align*}
+\omega|_U = f_U \cdot \d\varphi^1 \wedge \dots \d\varphi^m \wedge \d t
+\end{align*}
+
+para cada carta $\varphi \times id : U \times \R \to \R^{m+1}$ de $M \times \R$. Ahora, definimos $i : p \in M \mapsto (p,0) \in M \times \R$ y consideramos $\eta : M \to Alt^m(M)$ definida en cada carta $(U, \varphi)$ como
+
+\begin{align*}
+\eta_p(v_1, \dots, v_m) := \omega_{(p,0)}\left(d_pi(v_1), \dots, d_pi(v_m), \frac{d}{dt}\Big|_{(p,0)}\right).
+\end{align*}
+
+Como $\eta$ se define a partir de la expresión local de $\omega$, sabemos que está bien definida y es suave. Más aún como $\omega_{(p,0)}$ es $(m+1)$-multilineal alternada y $d_pi$ es lineal, tenemos que $\eta_p$ es $m$-lineal alternada: esto dice que $\eta$ es una $m$-forma de $M$.
+
+Para concluir que $M$ es orientable resta notar que $\eta$ es de volumen: dado $p \in M$ y una carta $(U,\varphi)$ de $M$ con $U \ni p$, como para cada $i \in \nat{n}$ es $d_pi(\frac{\partial}{\partial \varphi^i}|_p)  = \frac{\partial}{\partial \varphi^i}|_{(p,0)}$ se tiene que
+
+\begin{align*}
+\eta_p\left(\frac{\partial}{\partial \varphi^1}\Big|_p, \dots, \frac{\partial}{\partial \varphi^n}\Big|_p\right) &= \omega_{(p,0)}\left(\frac{\partial}{\partial \varphi^1}\Big|_{(p,0)}, \dots, \frac{\partial}{\partial \varphi^n}\Big|_{(p,0)}, \frac{\partial}{\partial t}\Big|_{(p,0)}\right) \neq 0
+\end{align*}
+
+pues como $\omega_{(p,0)} \not \equiv 0$, evaluando una base de $T_{(p,0)}M \times \R$ debe dar un valor no nulo.
+
+\item[($\Leftarrow$)] Ahora supongamos que tanto $M$ como $N$ son variedades orientables de dimensión $m$ y $n$ respectivamente, de forma que existen atlas orientables $A$ y $A'$ de $M$ y $N$ respectivamente. Veamos que el atlas
 \begin{align*}
 \mathcal{A} = \{(\phi \times \psi, U \times V) : (\phi,U) \in A, (\psi,V)\in A'\}
 \end{align*}
 de $M \times N$ resulta orientable.
 
-Sean $\phi \times \psi : U \times V \to \R^{m+n}$ y $\phi' \times \psi': U' \times V' \to \R^{m+n}$ dos cartas de $\mathcal{A}$ y $(p,q)$ un punto de  $U \times V \cap U' \times V'$. Ahora, notando $\pi_i : \R^{m+n} \to \R$ a la proyección a la $i$-ésima coordenada, para cada $i,j \in \nat{n+m}$ es
+Sean $\phi \times \psi : U \times V \to \R^{m+n}$ y $\phi' \times \psi': U' \times V' \to \R^{m+n}$ dos cartas de $\mathcal{A}$ y $(p,q)$ un punto de  $U \times V \cap U' \times V'$. Notando $\pi_i : \R^{m+n} \to \R$ a la proyección a la $i$-ésima coordenada, para cada $i,j \in \nat{n+m}$ es
 \begin{align*}
 \frac{\partial (\phi' \times \psi')^i}{\partial (\phi \times \psi)^j}\Big|_{(p,q)} &= \frac{\partial }{\partial x_j}\Big|_{(\phi(p),\psi(q))}[(\phi' \times \psi')^i \circ (\phi \times \psi)^{-1}]\\
 &= \frac{\partial }{\partial x_j}\Big|_{(\phi(p),\psi(q))}[\pi_i \circ (\phi' \times \psi') \circ \phi^{-1} \times \psi^{-1}]\\
@@ -231,7 +266,7 @@ Finalmente, usando $\paint{(a)}$ vemos que
 \begin{align*}
 f^*(g\cdot\d x_1\wedge\cdots\wedge\d x_n) &= g \circ f \cdot f^*(\d x_1)\wedge\dots\wedge f^*(\d x_n)
 \end{align*}
-así que para terminar probar que
+así que para terminar debemos probar que
 \begin{align*}
 f^*(\d x_1)\wedge\dots\wedge f^*(\d x_n) = \det\left(\frac{\partial f_i}{\partial x_j}\right)_{ij} \cdot  \d x_1 \wedge\dots\wedge\d x_n.
 \end{align*}
@@ -257,27 +292,36 @@ $\paint{
 \end{center}
 
 \begin{exercise}{11 (d)} Calcule la cohomología de un producto cartesiano de dos esferas.
-\begin{proof} Sea $n \in \N$. Como $\Ss^n$ es una variedad compacta, podemos usar la fórmula de Künneth: para todo $q \geq 0$ es 
+\begin{proof} Sean $n,m \in \N$. Como $\Ss^n$ es una variedad compacta, podemos usar la fórmula de Künneth: para todo $q \geq 0$ es 
 \begin{align}
-H^q(\Ss^n \times \Ss^n) = \bigoplus_{r+s = q} H^r(\Ss^n) \otimes H^s(\Ss^n).
+H^q(\Ss^n \times \Ss^m) = \bigoplus_{r+s = q} H^r(\Ss^n) \otimes H^s(\Ss^m).
 \end{align}
-Sabemos además que la cohomología de la $n$-esfera es $\R$ en los grados $0$ y $n$, y nula en los demás.
+Sabemos además que la cohomología de la $k$-esfera es $\R$ en los grados $0$ y $k$, y nula en los demás.
 
-Por lo tanto, para que $H^r(\Ss^n \times \Ss^n)$ sea no nulo es condición necesaria que $r,s \in \{0,n\}$. En particular debe ser $r+s \in \{0,n,2n\}$. 
+Por lo tanto, para que $H^r(\Ss^n \times \Ss^n)$ sea no nulo es condición necesaria que $r\in \{0,n\}$ y $s \in \{0,m\}$. En particular debe ser $r+s \in \{0,n,m,n+m\}$. Al $\Ss^n \times  \Ss^m$ ser arcoconexo, ya sabemos que $H^0(\Ss^n \times \Ss^m) \simeq \R$. 
 
-Como $\Ss^n \times  \Ss^n$ es arcoconexo, ya sabemos que $H^0(\Ss^n \times \Ss^n) \simeq \R$. En los otros casos, de $\paint{(2)}$ tenemos que
+En los otros casos, usando $\paint{(2)}$ tenemos que
 \begin{align*}
-H^n(\Ss^n \times \Ss^n) &= H^n(\Ss^n) \otimes H^0(\Ss^n) \oplus H^0(\Ss^n) \otimes H^n(\Ss^n) = \R \otimes \R \oplus \R \otimes \R = \R \oplus \R
+H^n(\Ss^n \times \Ss^m) &= H^n(\Ss^n) \otimes H^0(\Ss^m) \oplus H^0(\Ss^n) \otimes H^n(\Ss^m) = \R \otimes \R \oplus \R \otimes \R^{\delta_{nm}} = \R \oplus \R^{\delta_{nm}}
 \end{align*}
-y
+y similarmente $H^m(\Ss^n \times \Ss^m) = \R^{\delta_{nm}} \oplus \R$. 
+
+Por último, del mismo modo es 
 \begin{align*}
-H^{2n}(\Ss^n \times \Ss^n) = H^n(\Ss^n) \otimes H^n(\Ss^n) = \R \otimes \R = \R.
+H^{n+m}(\Ss^n \times \Ss^m) = H^n(\Ss^n) \otimes H^m(\Ss^m) = \R \otimes \R = \R.
 \end{align*}
-Por lo tanto,
+Por lo tanto, si $n = m$ entonces
 \begin{align*}
 H^q(\Ss^n \times \Ss^n) = \begin{cases}
 \R \quad &\text{si $q = 0$ o $q = 2n$}\\
 \R^2 \quad &\text{si $q = n$}\\
+0 \quad &\text{en caso contrario}
+\end{cases}
+\end{align*}
+y en los demás casos, es
+\begin{align*}
+H^q(\Ss^n \times \Ss^m) = \begin{cases}
+\R \quad &\text{si $q \in \{0,n,m,n+m\}$}\\
 0 \quad &\text{en caso contrario}
 \end{cases}
 \end{align*}
