@@ -172,8 +172,8 @@ $\paint{
 
 Dado que $M$ posee una métrica riemanniana y trabajaremos con el elemento de volumen riemanniano, vamos a suponer sin pérdida de generalidad que los vectores $v_1, \dots, v_{n}$ forman una base ortonormal de $T_pM$ orientada positivamente. De esta forma, resulta $dV_p(v_1, \dots, v_n) = 1$. Ahora sí, evaluando es
 \begin{align*}
-(du \wedge \iota_X(dV))_p(v_1,\dots,v_n) &= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma \sigma \cdot (du \otimes \iota_X(dV))_p(v_1, \dots, v_n)\\
-&= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes dV_p(X_p,v_{\sigma(2)}, \dots, v_{\sigma(n)}).
+(du \wedge \iota_X(dV))_p(v_1,\dots,v_n) &= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma \sigma \cdot (du \otimes \iota_X(dV))_p(v_1, \dots, v_n)\\
+&= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes dV_p(X_p,v_{\sigma(2)}, \dots, v_{\sigma(n)}).
 \end{align*}
 
 Como los vectores $v_1, \dots, v_n$ son una base ortonormal de $T_pM$, el vector tangente $X_p$ se escribe como
@@ -188,11 +188,11 @@ dV_p(X_p,v_{\sigma(2)}, \dots, v_{\sigma(n)}) &= \sum_{j=1}^n \ip{X_p,v_j}dV_p(v
 
 Volviendo a la igualdad anterior, obtenemos
 \begin{align*}
-(du \wedge \iota_X(dV))_p(v_1,\dots,v_n) &= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma \sigma \cdot (du \otimes \iota_X(dV))_p(v_1, \dots, v_n)\\
-&= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes \ip{X_p,v_{\sigma(1)}}dV_p(v_{\sigma(1)},v_{\sigma(2)}, \dots, v_{\sigma(n)})\\
-&= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes \ip{X_p,v_{\sigma(1)}}(-1)^\sigma dV_p(v_1,v_2, \dots, v_n)\\
-&= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}\ip{X_p,v_{\sigma(1)}}d_pu(v_{\sigma(1)}) \otimes dV_p(v_1,v_2, \dots, v_n)\\
-&= \frac{1}{n-1!}\sum_{\sigma \in \Ss_{n}}\ip{X_p,v_{\sigma(1)}}d_pu(v_{\sigma(1)}) = \sum_{j=1}^n\ip{X_p,v_j}d_pu(v_j)\\
+(du \wedge \iota_X(dV))_p(v_1,\dots,v_n) &= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma \sigma \cdot (du \otimes \iota_X(dV))_p(v_1, \dots, v_n)\\
+&= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes \ip{X_p,v_{\sigma(1)}}dV_p(v_{\sigma(1)},v_{\sigma(2)}, \dots, v_{\sigma(n)})\\
+&= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}(-1)^\sigma d_pu(v_{\sigma(1)}) \otimes \ip{X_p,v_{\sigma(1)}}(-1)^\sigma dV_p(v_1,v_2, \dots, v_n)\\
+&= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}\ip{X_p,v_{\sigma(1)}}d_pu(v_{\sigma(1)}) \otimes dV_p(v_1,v_2, \dots, v_n)\\
+&= \frac{1}{(n-1)!}\sum_{\sigma \in \Ss_{n}}\ip{X_p,v_{\sigma(1)}}d_pu(v_{\sigma(1)}) = \sum_{j=1}^n\ip{X_p,v_j}d_pu(v_j)\\
 &= d_pu\left(\sum_{j=1}^n\ip{X_p,v_j}v_j\right) = d_pu(X_p) = \ip{\grad_p(u),X_p}.
 \end{align*}
  
