@@ -40,6 +40,13 @@
 \renewcommand{\d}{\operatorname{d}}
 \definecolor{color}{RGB}{0, 17, 102}
 \newcommand{\paint}[1]{\color{color}{#1}}
+\newcommand{\tpaing}[1]{\paint{\text{#1}}}
+\newcommand{\paintline}{\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{10pt}
+\end{center}}
 
 \renewcommand*{\proofname}{\paint{Demostraci\'on}}
 \newenvironment{theorem}[2][Teorema]{\begin{trivlist}
@@ -106,6 +113,8 @@ es autoadjunta: cada vez que $X$ e $Y$ son elementos de $\X(M)$ se tiene que
 content...
 \end{proof}
 
+\paintline
+
 \begin{exercise}{2} Sean $M$ y $N$ dos variedades compactas, conexas, orientadas y de la misma dimensión $n$ y sea $f : M \to N$ una función diferenciable.
 \begin{itemize}
 \item[(a)] Muestre que hay un número real $\lambda \in \R$ tal que para toda forma $\omega \in \Omega^n(N)$ se tiene 
@@ -132,11 +141,18 @@ Muestre que
 content...
 \end{proof}
 
+\paintline
+
 \begin{exercise}{3} Muestre que cuando $n \geq 2$ el grado de toda función diferenciable $f : \Ss^n \to T^n$ de la $n$-esfera al $n$-toro es nulo.
 \end{exercise}
 \begin{proof}
 content...
 \end{proof}
+
+\paintline
+
+\begin{theorem}{1 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H^k(M) \simeq H^{n-k}_c(M)^*$.
+\end{theorem}
 
 \begin{exercise}{4} Sea $M$ una variedad compacta, orientable, conexa de dimensión $n$. Sabemos que la cohomología de De Rham de $M$ tiene entonces dimensión total finita, y podemos en consecuencia considerar el entero
 \begin{align*}
@@ -148,14 +164,41 @@ al que llamamos la \textit{característica de Euler} de $M$.
 \item[(b)] Si la dimensión $n$ de $M$ es par y la de $H^{n/2}(M)$ es par, entonces $\chi(M)$ es un entero par.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Notemos que como la variedad $M$ es compacta, su cohomología a soporte compacto coincide con la cohomología de de Rham «a secas». Además, dado que la cohomología de una variedad compacta es finitamente generada, se tiene que
+\begin{align*}
+H^{n-i}_c(M)^* \simeq H^{n-i}_c(M) = H^{n-i}(M)
+\end{align*}
+para cada $i \in \nat{n}$.
+
+Por el $\tpaing{Teorema $1$}$, tenemos entonces que $H^i(M) \simeq H^{n-i}(M)$ para todo $i \in \nat{n}$. En particular, si notamos $\beta_i := \dim H^i(M)$ a la dimensión del $i$-ésimo grupo de cohomología, debe ser $\beta_i = \beta_{n-i}$.
+Ahora,
+\begin{itemize}
+\item[(a)] Si $n$ es impar, entonces
+\begin{align*}
+2\chi(M) &= \sum_{i=0}^{n}(-1)^i\beta_i + \sum_{i=0}^{n}(-1)^i\beta_i =
+\sum_{i=0}^{n}(-1)^i\beta_i + \sum_{i=0}^{n}(-1)^{n-i}\beta_{n-i}\\
+&= \sum_{i=0}^{n}(-1)^i\beta_i + (-1)^n\sum_{i=0}^{n}(-1)^{-i}\beta_{n-i}\\
+&= \sum_{i=0}^{n}(-1)^i\beta_i + (-1)^n\sum_{i=0}^{n}(-1)^{i}\beta_{i}\\
+&= \chi(M)(1 + (-1)^n) = \chi(M) \cdot  0 = 0.
+\end{align*}
+Por lo tanto, es $\chi(M) = 0$.
+\item[(b)] De una forma similar, si $n$ y es par y $\beta_{n/2}$ también, entonces
+\begin{align*}
+\chi(M) &= \sum_{i=0}^{n}(-1)^i\beta_i = \sum_{i=0}^{n/2-1}(-1)^i\beta_i + \beta_{n/2} + \sum_{i=n/2+1}^{n}(-1)^i\beta_i\\
+&= \sum_{i=0}^{n/2-1}(-1)^i\beta_i + \beta_{n/2} + \sum_{i=0}^{n/2-1}(-1)^{n-i}\beta_{n-i}\\
+&= 2\sum_{i=0}^{n/2-1}(-1)^i\beta_i + \beta_{n/2} \equiv \beta_{n/2} \equiv 0 \pmod{2}.
+\end{align*}
+En consecuencia, la característica de Euler de $M$ es par.
+\end{itemize}
 \end{proof}
+
+
+\paintline
 
 \begin{exercise}{5} Sea $G$ un grupo de Lie de dimensión $n$, sea $\mathfrak{g} = T_eG$ su álgebra de Lie y fijemos un producto interno $g_e : \mathfrak{g} \times \mathfrak{g} \to \R$ sobre $\mathfrak{g}$.
 \begin{itemize}
 \item[(a)] Hay una única métrica riemanniana $g$ sobre $G$ que es invariante a izquierda y cuyo valor en $e \in G$ es $g_e$.
-\item[(b)] Sea $\mathscr{B} = \{v_1, \dots, v_n\}$ una base de $\mathfrak{g}$ y sean $X_1, \dots, X_n$ los campos tangentes a $G$ invariantes a izquierda qe extienden a los elementos de $\mathscr{B}$. Muestre que para cada $i,j$, es \textit{constante} la función $g_{i,j} = g(X_i,X_j)$.
+\item[(b)] Sea $\mathscr{B} = \{v_1, \dots, v_n\}$ una base de $\mathfrak{g}$ y sean $X_1, \dots, X_n$ los campos tangentes a $G$ invariantes a izquierda que extienden a los elementos de $\mathscr{B}$. Muestre que para cada $i,j$, es \textit{constante} la función $g_{i,j} = g(X_i,X_j)$.
 
 Sabemos (porque el corchete de Lie de campos invariantes a izquierda es él mismo invariante a izquierda) que existen constantes $c_{i,j}^k$ tales que
 \begin{align*}
@@ -189,6 +232,8 @@ para cada $p \in G$, con $\{z_1, \dots, z_n\}$ una base ortonormal de $T_pG$.
 content...
 \end{proof}
 
+\paintline
+
 \begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
 \begin{itemize}
 \item[(a)] Muestre que hay una función bilineal no degenerada y simétrica
@@ -206,6 +251,8 @@ Llamamos la signatura de la forma bilineal $\sigma$ la signatura de $M$.
 \begin{proof}
 content...
 \end{proof}
+
+\paintline
 
 \begin{exercise}{7} Sea $M \subseteq \R^3$ una superficie orientada y sin borde dotada de su métrica riemanniana inducida por la de $\R^3$ y supongamos que hay un campo vectorial $Z \in \X(M)$ sobre $M$ que no se anula en ningún punto.
 \begin{itemize}
