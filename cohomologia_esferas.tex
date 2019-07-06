@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{mathpazo}
+\usepackage{euler}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Ss}{\mathbb{S}}
+\newcommand{\M}[2]{\mathsf{M}_{#1}#2}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\nat}[1]{[\![#1]\!]}
+\newcommand{\natzero}[1]{\nat{#1}_0}
+\newcommand{\adj}[1]{\operatorname{adj}(#1)}
+\newcommand{\ip}[2]{\langle #1 , #2 \rangle}
+\newcommand{\ol}{\overline}
+\newcommand{\hook}[3]{\frac{\partial}{\partial x_{#1}}\Big\rvert_{#2}^{#3}}
+\usepackage{rotating}
+\newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
+]}
+\renewcommand{\d}{\operatorname{d}}
+\definecolor{color}{RGB}{64, 77, 163}
+\newcommand{\paint}[1]{\color{color}{#1}}
+
+\renewcommand*{\proofname}{\paint{Demostraci\'on}}
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{obs}[2][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1.}}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Resoluci\']{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposici\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%-----------------------
+
+\title{
+\LARGE{\paint{Geometr\'ia Diferencial}}
+\\
+\vspace{0.5pt}
+\small{\paint{}}
+}
+\author{\paint{Guido Arnone}}
+\date{}
+\lhead{Guido Arnone}
+\rhead{}
+
+\begin{document}
+
+\maketitle
+
+Incluyo la reentrega del ejercicio $\paint{(11)(d)}$ de la práctica cuatro, sobre la cohomología del producto de esferas, esta vez sin usar la fórmula de Künneth.
+
+\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{25pt}
+\end{center}
+
+
+Voy a notar $S_{n,m} := \Ss^n \times \Ss^m$ y $h^q_{n,m} := \dim H^q(S_{n,m})$. Para describir la cohomología de $\Ss^n \times \Ss^m$ como espacio vectorial graduado, basta calcular $h^q_{n,m}$ para cada $q \geq 1$.
+
+\begin{exercise}{11 (d)} Calcule la cohomología de un producto cartesiano de dos esferas.
+\end{exercise}
+\begin{proof} Para calcular $H^q(S_{n,m})$ para cada $n,m \in \N$ y $q \in \N_0$ procederemos por inducción en $n+m \in \N$. Consideramos la sucesión exacta larga de Mayer-Vietoris para los abiertos $U = \Ss^n \times \Ss^m \setminus \{e_{m+1}\}$ y $V = \Ss^n \times \Ss^m \setminus \{-e_{m+1}\}$, 
+\begin{align*}
+\cdots \to H^q(S_{n,m}) \to H^q(U) \oplus H^q(V) \to H^q(U \cap V) \to H^{q+1}(S_{n,m}) \to \cdots
+\end{align*}
+
+Como $\Ss^m \setminus \{e_{m+1}\}$ y $\Ss^m \setminus \{-e_{m+1}\}$ son difeomorfos a $\R^m$ a través de las proyecciones estereográficas (pues estas son cartas de la $m$-esfera), se tiene que $U \equiv V \equiv \Ss^n \times \R^m$. Además, al $\R^m$ ser contráctil es $\Ss^n \times \R^m \simeq \Ss^n \times \ast$ y este último es difeomorfo a $\Ss^n$. 
+
+En conclusión tanto $U$ como $V$ tienen el tipo homotópico de la $n$-esfera, y dado que la cohomología es invariante homotópico, obtenemos
+\begin{align*}
+H^q(U) = H^q(V) = \R^{\delta_{qn} + \delta_{q0}}
+\end{align*}
+para cada $q \in \N_0$.
+
+Además, dado que la proyección estereográfica es un difeomorfismo entre $\Ss^m \setminus \{e_{m+1}\}$ y $\R^m$, debe enviar al abierto  $\Ss^m \setminus \{e_{m+1},-e_{m+1}\}$ a $\R^m \setminus \{p\}$ para cierto punto $p$ en que se corresponde con la imagen de $-e_{m+1}$. Como $\R^m \setminus \{p\}$ es homotópico a $\Ss^{m-1}$, vemos que
+
+\begin{align*}
+U \cap V = \Ss^n \times \Ss^m \setminus \{e_{m+1},-e_{m+1}\} \equiv \Ss^n \times \R^m \setminus \{p\} \simeq \Ss^n \times \Ss^{m-1}
+\end{align*}
+y por tanto $H^q(U \cap V) \simeq H^q(S_{n,m-1})$ para todo $q \in \N_0$.
+
+Si ahora $q \not \in \{0,n,n-1\}$, entonces $H^q(\Ss^n) = H^{q+1}(\Ss^n) = 0$ y de $\paint{(1)}$ tenemos una sucesión exacta de la forma
+\begin{align*}
+0 \to H^q(U \cap V) \to H^{q+1}(S_{n,m}) \to  0
+\end{align*}
+lo cual nos dice que $H^{q+1}(S_{n,m}) \simeq H^q(U \cap V) \simeq H^{q}(S_{n,m-1})$.
+
+Como $S_{n,m} \equiv S_{m,n} \times \Ss^n$ via $(x,y) \in S_{n,m} \mapsto (y,x) \in S_{m,n}$, con el mismo procedimiento obtenemos que para todo $q \not \in \{0,m,m-1\}$ es
+\begin{align*}
+H^{q+1}(S_{n,m}) \simeq H^{q+1}(S_{m,n}) \simeq H^{q}(S_{m,n-1}) \simeq H^{q}(S_{n-1,m}).
+\end{align*}
+Además, ya sabemos que $H^0(S_{n,m}) = \R$ pues $S_{n,m}$ es una variedad arcoconexa. 
+
+Conocemos  entonces $H^q(S_{n,m})$ a partir de la hipótesis inductiva para todo $q \not \in \{1,n,n+1\} \cap \{1,m,m+1\}$. Una vez más por $\paint{(1)}$ tenemos una sucesión exacta
+\begin{align*}
+ 0 \to H^{n-1}(U \cap V) \to H^{n}(S_{n,m}) \to H^{n}(U) \oplus H^{n}(V) \to H^{n}(U \cap V) \to H^{n+1}(S_{n,m}) \to 0
+\end{align*}
+que vía los isomorfismos anteriores dá la sucesión exacta
+\begin{align*}
+ 0 \to H^{n-1}(S_{n,m-1}) \to H^{n}(S_{n,m}) \to H^{n}(\Ss^n)^2 \to H^{n}(S_{n,m-1}) \to H^{n+1}(S_{n,m}) \to 0.
+\end{align*}
+Ahora, dejando de lado el caso $q=1$, la intersección $\{n,n+1\} \cap \{m,m+1\}$ es no vacía si y sólo si $n \in \{m+1, m,m+1\}$ y en tal caso dá $\{\}$ ó $\{\}$.
+\end{proof}
+
+
+
+\end{document}

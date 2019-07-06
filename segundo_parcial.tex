@@ -1,0 +1,231 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{mathpazo}
+\usepackage{euler}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{enumitem}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Ss}{\mathbb{S}}
+\newcommand{\M}[2]{\mathsf{M}_{#1}#2}
+\newcommand{\X}{\mathfrak{X}}
+\renewcommand{\div}{\operatorname{div}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\nat}[1]{[\![#1]\!]}
+\newcommand{\natzero}[1]{\nat{#1}_0}
+\newcommand{\adj}[1]{\operatorname{adj}(#1)}
+\newcommand{\ip}[1]{\langle #1 \rangle}
+\newcommand{\ol}{\overline}
+\newcommand{\hook}[3]{\frac{\partial}{\partial x_{#1}}\Big\rvert_{#2}^{#3}}
+\usepackage{rotating}
+\newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
+]}
+\renewcommand{\d}{\operatorname{d}}
+\definecolor{color}{RGB}{80, 117, 73}
+\newcommand{\paint}[1]{\color{color}{#1}}
+
+\renewcommand*{\proofname}{\paint{Demostraci\'on}}
+\newenvironment{theorem}[2][Teorema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lema]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{obs}[2][Observaci\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1.}}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Resoluci\']{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposici\'on]{\begin{trivlist}
+\item[\hskip \labelsep \paint{{\bfseries #1}}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corolario]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+%-----------------------
+
+\title{
+\LARGE{\paint{Geometr\'ia Diferencial}}
+\\
+\vspace{1pt}
+\small\paint{Primer Cuatrimestre -- 2019}
+\\
+\vspace{0.5pt}
+\large{\paint{Segundo Parcial}}
+}
+\author{\paint{Guido Arnone}}
+\date{}
+\lhead{Guido Arnone}
+\rhead{Segundo Parcial}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+$\paint{
+\rule{400pt}{0.5pt}
+}$
+\vspace{35pt}
+\end{center}
+
+\begin{exercise}{1} Sea $M$ una variedad riemanniana, sea $\nabla$ la conexión de Levi-Civita de $M$ y sea $f : M \to \R$ una función diferenciable.
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Muestre que existe un campo vectorial diferenciable $\grad(f) \in \X(M)$ y uno solo con la propiedad de que para cada campo $Y \in \X(M)$ se tiene que
+\begin{align*}
+\ip{\grad(f), Y} = df(Y).
+\end{align*}
+Encuentre una expresión en coordenadas para el campo $\grad(f)$.
+\item[(b)] La función 
+\begin{align*}
+X \in \X(M) \mapsto \nabla_X\grad(f) \in \X(M)
+\end{align*}
+es autoadjunta: cada vez que $X$ e $Y$ son elementos de $\X(M)$ se tiene que
+\begin{align*}
+\ip{\nabla_X\grad(f),Y} = \ip{X,\nabla_Y\grad(f)}.
+\end{align*}
+\item[(c)] Muestre que si el campo $\grad(f)$ tiene norma constante, entonces para todo $X \in \X(M)$ se tiene que $\ip{\nabla_{\grad(f)}\grad(f),X} = 0$. Deduzca de esto que bajo esa condición las curvas integrales de $\grad(f)$ son geodésicas.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{2} Sean $M$ y $N$ dos variedades compactas, conexas, orientadas y de la misma dimensión $n$ y sea $f : M \to N$ una función diferenciable.
+\begin{itemize}
+\item[(a)] Muestre que hay un número real $\lambda \in \R$ tal que para toda forma $\omega \in \Omega^n(N)$ se tiene 
+\begin{align*}
+\int_Mf^*(\omega) = \lambda\int_N \omega.
+\end{align*}
+Lo llamamos \textit{grado} de $f$ y lo escribimos $\deg(f)$.
+\item[(b)] Supongamos que $q \in N$ es valor regular de $f$, de manera que, en particular, el conjunto $f^{-1}(q)$ es finito. Si $p \in f^{-1}(q)$ la diferencial es entonces un isomorfismo de espacios vectoriales y podemos considerar el número
+\begin{align*}
+sgn_f(p) = \begin{cases}
++1&\text{ si $d_pf$ preserva la orientación}\\
+-1&\text{si la invierte}
+\end{cases}
+\end{align*}
+ya que esas son las dos únicas posibilidades.
+
+Muestre que
+\begin{align*}
+\deg(f) = \sum_{p \in f^{-1}(q)}sgn_f(p).
+\end{align*}
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{3} Muestre que cuando $n \geq 1$ el grado de toda función diferenciable $f : \Ss^n \to T^n$ de la $n$-esfera al $n$-toro es nulo.
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{4} Sea $M$ una variedad compacta, orientable, conexa de dimensión $n$. Sabemos que la cohomología de De Rham de $M$ tiene entonces dimensión total finita, y podemos en consecuencia considerar el entero
+\begin{align*}
+\chi(M) = \sum_{i=0}^{n}(-1)^i \dim H^i(M)
+\end{align*}
+al que llamamos la \textit{característica de Euler} de $M$.
+\begin{itemize}
+\item[(a)] Si la dimensión $n$ de $M$ es impar, entonces $\chi(M) = 0$.
+\item[(b)] Si la dimensión $n$ de $M$ es par y la de $H^{n/2}(M)$ es par, entonces $\chi(M)$ es un entero par.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{5} Sea $G$ un grupo de Lie de dimensión $n$, sea $\mathfrak{g} = T_eG$ su álgebra de Lie y fijemos un producto interno $g_e : \mathfrak{g} \times \mathfrak{g} \to \R$ sobre $\mathfrak{g}$.
+\begin{itemize}
+\item[(a)] Hay una única métrica riemanniana $g$ sobre $G$ que es invariante a izquierda y cuyo valor en $e \in G$ es $g_e$.
+\item[(b)] Sea $\mathscr{B} = \{v_1, \dots, v_n\}$ una base de $\mathfrak{g}$ y sean $X_1, \dots, X_n$ los campos tangentes a $G$ invariantes a izquierda qe extienden a los elementos de $\mathscr{B}$. Muestre que para cada $i,j$, es \textit{constante} la función $g_{i,j} = g(X_i,X_j)$.
+
+Sabemos (porque el corchete de Lie de campos invariantes a izquierda es él mismo invariante a izquierda) que existen constantes $c_{i,j}^k$ tales que
+\begin{align*}
+[X_i,X_j] = \sum_{k}c_{i,j}^kX_k.
+\end{align*}
+Calcule en términos de los escalares $c_{i,j}^k$ y $g_{i,j}$ los símbolos de Christoffel $\Gamma_{ij}^k$ de la conexión de Levi-Civita de G con respecto a los campos $X_1, \dots, X_n$, de manera que se tenga
+\begin{align*}
+\nabla_{X_i}X_j = \sum_k\Gamma_{ij}^kX_k.
+\end{align*}
+\item[(c)] Sea $G = \R_{>0 } \times \R$ el grupo de Lie con producto dado por
+\begin{align*}
+(a,b) \cdot (c,d) = (ac,ad+b)
+\end{align*}
+para cada $(a,b),(c,d) \in G$, de manera que $G$ es isomorfo de la forma evidente al grupo de matrices 
+\begin{align*}
+\left\{\begin{pmatrix}
+a & b \\
+0 & 1
+\end{pmatrix} : a >0, b \in \R\right\}.
+\end{align*}
+El elemento neutro $G$ es $e = (1,0)$ y su álgebra de Lie $\mathfrak{g} = T_eG$ se identifica de manera natural (porque $G$ es un abierto de $\R^2$) con $\R^2$. Dotemos a $G$ de su única métrica invariante a izquierda que en $T_eG$ restringe al producto interno usual de $\R^2$. Encuentre todas las geodésicas que pasan por $e$ que pueda.
+
+Calcule (las componentes en una carta del) tensor de curvatura $R(X,Y)Z$ sobre $G$ y la \textit{curvatura escalar}
+\begin{align*}
+K(p) = \frac{1}{n(n-1)} \sum_{1 \leq i,j \leq n}g(R(z_i,z_j)z_i,z_j)
+\end{align*}
+para cada $p \in G$, con $\{z_1, \dots, z_n\}$ una base ortonormal de $T_pG$.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
+\begin{itemize}
+\item[(a)] Muestre que hay una función bilineal no degenerada y simétrica
+\begin{align*}
+\sigma : H^{2k}(M) \times H^{2k}(M) \to \R
+\end{align*}
+tal que si $\omega$ y $\eta$ son elementos cerrados de $\Omega^{2k}(M)$ entonces 
+\begin{align*}
+\beta([\omega],[\eta]) = \int_M \omega \wedge \eta.
+\end{align*}
+Llamamos la signatura de la forma bilineal $\sigma$ la signatura de $M$.
+\item[(b)] Determine la signatura de $\Ss^4$, de $\Ss^2 \times \Ss^2$, del toro $T^4$, del espacio proyectivo $P_{\C}^2$ y el producto $P_{\C}^2 \times P_{\C}^2$.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\begin{exercise}{7} Sea $M \subseteq \R^3$ una superficie orientada y sin borde dotada de su métrica riemanniana inducida por la de $\R^3$ y supongamos que hay un campo vectorial $Z \in \X(M)$ sobre $M$ que no se anula en ningún punto.
+\begin{itemize}
+\item[(a)] Muestre que existe una única forma de elegir campos $X,Y \in \X(M)$ tales que para cada $p \in M$ se tiene que $(X_p,Y_p)$ es una base ortonormal positiva de $T_pM$ y $Z_p = \|Z_p\|X_p$. 
+\item[(b)] Hay $1$-formas $\alpha,\beta\in \Omega^1(M)$ tales que $\alpha(X) = \beta(Y) = 1$ y $\alpha(Y) = \beta(X) = 0$. Más aún, existe una forma $\eta \in \Omega^1(M)$ tal que
+\begin{align*}
+d\alpha = \eta \wedge \beta, \quad d\beta = -\eta \wedge \alpha.
+\end{align*}
+La forma $\sigma  = \alpha \wedge \beta$ no depende de la elección de $Z$, es una forma de volumen sobre $M$ que determina su orientación y es, de hecho, la forma de volumen riemanniano sobre $M$.
+\item[(c)] Existe una función diferenciable $K : M \to \R$ tal que
+\begin{align*}
+d\eta = -K \cdot \sigma
+\end{align*}
+y esta función no depende de la elección del campo $Z$.
+\item[(d)] Si $M$ es compacta, entonces $\int_M K \cdot \sigma = 0$.
+\item[(e)] Usando los resultados anteriores, muestre que no hay sobre $\Ss^2$ un campo vectorial tangente que no se anula en ningún punto.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+content...
+\end{proof}
+
+\end{document}
