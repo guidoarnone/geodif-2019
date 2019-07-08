@@ -21,6 +21,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\Ss}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
 \newcommand{\M}[2]{\mathsf{M}_{#1}#2}
 \newcommand{\X}{\mathfrak{X}}
 \renewcommand{\div}{\operatorname{div}}
@@ -37,6 +38,7 @@
 \usepackage{rotating}
 \newcommand*{\isoarrow}[1]{\arrow[#1,"\rotatebox{90}{\LARGE{\(\sim\)}}"
 ]}
+\newcommand{\gancho}[1]{\frac{\partial}{\partial \varphi^{#1}}}
 \renewcommand{\d}{\operatorname{d}}
 \definecolor{color}{RGB}{0, 17, 102}
 \newcommand{\paint}[1]{\color{color}{#1}}
@@ -88,7 +90,7 @@ $\paint{
 $\paint{
 \rule{400pt}{0.5pt}
 }$
-\vspace{35pt}
+\vspace{15pt}
 \end{center}
 
 \begin{exercise}{1} Sea $M$ una variedad riemanniana, sea $\nabla$ la conexión de Levi-Civita de $M$ y sea $f : M \to \R$ una función diferenciable.
@@ -109,14 +111,124 @@ es autoadjunta: cada vez que $X$ e $Y$ son elementos de $\X(M)$ se tiene que
 \item[(c)] Muestre que si el campo $\grad(f)$ tiene norma constante, entonces para todo $X \in \X(M)$ se tiene que $\ip{\nabla_{\grad(f)}\grad(f),X} = 0$. Deduzca de esto que bajo esa condición las curvas integrales de $\grad(f)$ son geodésicas.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Hago cada inciso por separado.
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Notemos en primer lugar que la función $f$ induce una $1$-forma $df$ que en cada punto $p \in M$ vale $d_pf : v \in T_pM \mapsto v(f) \in \R$, el diferencial de $f$ bajo la identificación $T_p\R \simeq \R$. 
+
+Fijemos ahora $p \in M$. Como $d_pf \in (T_pM)^*$ es un elemento del espacio dual de $T_pM$, y este último es un $\R$-espacio vectorial de dimensión finita equipado con un producto interno (inducido por la métrica de $M$), el teorema de representación de Riesz nos asegura que existe un único vector tangente $v_p \in T_pM$ tal que 
+\begin{align}
+\ip{v_p,w} = d_pf(w) = w(f) \quad (\forall w \in T_pM).
+\end{align}
+Si definimos $\grad_p(f) := v_p$ para cada $p \in M$, reescribiendo la anterior igualdad es
+\begin{align*}
+\ip{\grad(f)_p,w} = d_pf(w) \quad (\forall w \in T_pM).
+\end{align*}
+y éste es el único campo con tal propiedad. En particular, si $Y \in \X(M)$ entonces para cada $p \in M$ es
+\begin{align*}
+(\ip{\grad(f),Y})_p = \ip{\grad(f)_p,Y_p} = d_pf(Y_p) = (df(Y))_p
+\end{align*}
+y por lo tanto $\ip{\grad(f),Y} \equiv df(Y)$. 
+
+Para ver la unicidad, recordemos que para cada $p \in M$ y $v \in  T_pM$ existe $Y^v \in \X(M)$ con $Y^v_p = v$. Efectivamente, podemos tomar una carta $(U, \varphi)$ con $U \ni p$ de forma que existan coeficientes $a_1, \dots, a_n$ tales que $v = \sum_{1 \leq i \leq n}a_i \gancho{i}|_p$ y luego tomar el campo
+\begin{align*}
+Y^v = h \cdot \sum_{i = 1}^na_i \gancho{i}
+\end{align*}
+con $h \in C^\infty(M)$ una función \textit{bump} (tal que valga $1$ en un entorno abierto $V \subset U$  de $p$ y $0$ en un abierto $W \supset U^c$). 
+
+A partir de esto, podemos concluir que cualquier otro campo $Z \in \X(M)$ que cumpla $\ip{Z,Y} \equiv df(Y)$ para todo $Y \in \X(M)$ deberá satisfacer
+\begin{align*}
+\ip{Z_p,v} = \ip{Z_p,Y^v_p} = d_pf(Y_p^v) = v(f)
+\end{align*}
+para todo $p \in M$ y $v \in T_pM$. La unicidad de $\paint{(1)}$ nos dice entonces que $Z_p = v_p = \grad_p(f)$ en todo punto $p \in M$.
+
+Para terminar, veamos una expresión de $\grad_p(f)$ en coordenadas. De aquí se tendrá que el gradiente depende localmente de funciones suaves, y es por lo tanto diferenciable.
+
+Una vez más, fijamos $p \in M$ y consideramos $(\varphi,U)$ una carta de $M$ tal que $U \ni p$. Como los \textit{ganchos} $\{\gancho{1}|_p,\dots,\gancho{n}|_p\}$ son una base de $T_pM$, sabemos que existen únicos coeficientes $c_1, \dots, c_n \in \R$ tales que
+\begin{align*}
+v_p = \sum_{j = 1}^n c_j \cdot  \gancho{j}\Big|_p.
+\end{align*} 
+Si ahora tomamos el producto interno de $v_p$ con $\gancho{i}|_p$, es
+\begin{align*}
+\frac{\partial f}{\partial \varphi^i}\Big|_p = \gancho{i}\Big|_p(f) = \left\ip{v_p,\gancho{i}\Big|_p\right} = \sum_{j = 1}^n c_j \cdot \left\ip{\gancho{j}\Big|_p,\gancho{i}\Big|_p\right} = \sum_{j = 1}^n c_j \cdot (g_p)_{ji}
+\end{align*}
+para cada $j \in \nat{n}$, y notando $c = (c_1, \dots, c_n)$ esto es equivalente a 
+\begin{align*}
+c \cdot g_p = \left(\frac{\partial f}{\partial \varphi^1}\Big|_p, \dots, \frac{\partial f}{\partial \varphi^n}\Big|_p\right).
+\end{align*}
+Por lo tanto debe ser $c = (\frac{\partial f}{\partial \varphi^1}\big|_p, \dots, \frac{\partial f}{\partial \varphi^n}\big|_p)(g_p)^{-1}$ y
+\begin{align*}
+c_j = \sum_{i=1}^n \frac{\partial f}{\partial \varphi^i}\Big|_p (g_p)^{ij}.
+\end{align*}
+Volviendo a la expresión original, obtenemos finalmente
+\begin{align*}
+\grad_p(f) = v_p = \sum_{j = 1}^n \left(\sum_{i=1}^n \frac{\partial f}{\partial \varphi^i}\Big|_p (g_p)^{ij}\right) \cdot \gancho{j}\Big|_p = \sum_{i,j}(g_p)^{ij} \frac{\partial f}{\partial \varphi^i}\Big|_p \cdot \gancho{j}\Big|_p.
+\end{align*}
+
+Esto prueba que para todo $p \in U$ se tiene (contrayendo indices) que
+\begin{align*}
+\grad(f) = g^{ij}\frac{\partial f}{\partial \varphi^i}\gancho{j}.
+\end{align*}
+Como afirmamos, esto prueba además que $\grad(f)$ es diferenciable, ya que para cada punto tenemos un abierto donde este es un campo suave.
+\item[(b)] Como $\nabla$ es la conexión de Levi-Civita, sabemos (por construcción) que esta es compactible con la métrica y libre de torsion. Concretamente, si $X,Y,Z \in \X(M)$ entonces
+\begin{align}
+X\ip{Y,Z} &= \ip{\nabla_XY,Z} + \ip{Y,\nabla_XZ}
+\end{align}
+y
+\begin{align}
+\nabla_XY - \nabla_YX &= [X,Y].
+\end{align}
+Sean ahora $X,Y \in \X(M)$ dos campos en $M$. Por $\paint{(2)}$ y $\paint{(3)}$ sabemos que
+\begin{align*}
+\ip{\nabla_X\grad(f),Y} &= X\ip{\grad(f),Y}-\ip{\grad(f),\nabla_XY}\\
+&= X\ip{\grad(f),Y} - \ip{\grad(f),[X,Y]+\nabla_YX}\\
+&= X\ip{\grad(f),Y} - \ip{\grad(f),\nabla_YX} - \ip{\grad(f),[X,Y]}\\
+&= X\ip{\grad(f),Y} - (Y\ip{\grad(f),X}-\ip{\nabla_Y\grad(f),X}) - \ip{\grad(f),[X,Y]}\\
+&= \ip{\nabla_Y\grad(f),X} + X\ip{\grad(f),Y} - Y\ip{\grad(f),X} - \ip{\grad(f),[X,Y]}.
+\end{align*} 
+
+En consecuencia, se tiene que $\ip{\nabla_X\grad(f),Y} = \ip{X,\nabla_Y\grad(f)}$ si y solo si
+\begin{align*}
+X\ip{\grad(f),Y} - Y\ip{\grad(f),X} = \ip{\grad(f),[X,Y]}.
+\end{align*}
+o lo que es lo mismo,
+\begin{align*}
+Xdf(Y) - Ydf(X) = df([X,Y]).
+\end{align*}
+
+Para terminar, observemos que esto ocurre siempre, pues
+\begin{align*}
+Xdf(Y) - Ydf(X) = XY(f) - YX(f) = (XY-YX)(f) = [X,Y](f) = df([X,Y]).
+\end{align*}
+\item[(c)] Supogamos que $\grad(f)$ tiene norma constante. Entonces $\|\grad(f)\|^2 = \ip{\grad(f),\grad(f)}$ debe valer constantemente $c$ para cierto $c \in \R$. Si ahora tomamos un campo $X \in \X(M)$, para todo $p \in M$ debe ser
+\begin{align*}
+(X\|\grad(f)\|)_p = X_p(c) = 0,
+\end{align*}
+y por lo tanto $X \ip{\grad(f),\grad(f)} \equiv 0$. 
+
+Usando la compatibilidad con la métrica de la conexión de Levi-Civita, de la anterior igualdad se desprende que 
+\begin{align*}
+0 &= X \ip{\grad(f),\grad(f)} = \ip{\nabla_X\grad(f),\grad(f)} + \ip{\grad(f),\nabla_X\grad(f)}\\
+&= 2\ip{\nabla_X\grad(f),\grad(f)}
+\end{align*}
+y por $\paint{(b)}$ es
+\begin{align*}
+\ip{\nabla_{\grad(f)}\grad(f),X} = \ip{\nabla_X\grad(f),\grad(f)} = 0.
+\end{align*}
+
+Por último, si $\gamma : I \to M$ es una curva integral de $\grad(f)$, entonces es $\nabla_{\dot{\gamma}}\dot{\gamma} \equiv 0$  pues
+\begin{align*}
+\|\nabla_{\dot{\gamma}(t)}\dot{\gamma}(t)\|^2 &= \ip{\nabla_{\dot{\gamma}(t)}\dot{\gamma}(t),\nabla_{\dot{\gamma}(t)}\dot{\gamma}(t)}\\
+& = \ip{\nabla_{\grad(f)_{\gamma(t)}}\grad(f)_{\gamma(t)},\nabla_{\grad(f)_{\gamma(t)}}\grad(f)_{\gamma(t)}}\\
+& = (\ip{\nabla_{\grad(f)}\grad(f),\nabla_{\grad(f)}\grad(f)})_{\gamma(t)} = 0
+\end{align*}
+para todo $t \in I$. Vemos así que las curvas integral de $\grad(f)$ resultan geodésicas.
+\end{itemize}
 \end{proof}
 
 \paintline
 
 \begin{exercise}{2} Sean $M$ y $N$ dos variedades compactas, conexas, orientadas y de la misma dimensión $n$ y sea $f : M \to N$ una función diferenciable.
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Muestre que hay un número real $\lambda \in \R$ tal que para toda forma $\omega \in \Omega^n(N)$ se tiene 
 \begin{align*}
 \int_Mf^*(\omega) = \lambda\int_N \omega.
@@ -143,15 +255,77 @@ content...
 
 \paintline
 
-\begin{exercise}{3} Muestre que cuando $n \geq 2$ el grado de toda función diferenciable $f : \Ss^n \to T^n$ de la $n$-esfera al $n$-toro es nulo.
+\begin{lemma}{1} Sea $\eta \in \Ss^1$ una $1$-forma y $n \in \N$. Si definimos $\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_n(\eta) \in \Omega^n(\T^n)$ con $\pi_i : \T^n \to \Ss^1$ la proyección a la $i$-ésima coordenada, entonces
+\begin{align}
+\int_{\T^n}\omega = \int_{\Ss^1 \times \cdots \times \Ss^1} \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_1(\eta) = \left(\int_{\Ss^1} \eta\right)^n.
+\end{align}
+\end{lemma}
+\begin{proof} Dadas proyecciones estereográficas $\{\varphi_i : U_i \to \R \}_{i=1}^n$ de $\Ss^1$, tenemos una carta
+\begin{align*}
+\Psi := \varphi_1 \times \cdots \times \varphi_n : U_1 \times \dots \times U_n \to \R^n
+\end{align*}
+de $\T^n$ que satisface $\pi_i(\Psi) = \varphi_i$ para cada $i \in \nat{n}$. Más aún\footnote{Esta es una cuenta muy similar al ejercicio $(1)$ de la práctica $1$, que corresponde a la primera entrega.}, para cada $i \in \nat{n}$ es
+\begin{align*}
+d_p\pi_i\left(\frac{\partial}{\partial \Psi^j}\Big|_p\right) = \delta_{ij} \cdot \frac{\partial}{\partial \varphi_i}\Big|_{p_i}.
+\end{align*}
+
+A partir de esto último, afirmamos que $\pi_i^*(d\varphi_i) = d\Psi^i$. Basta probar que en cada punto $p \in U_1 \times \cdots \times U_n$ ambas $1$-formas coinciden en una base de $T_p\T^n$. Tomando los \textit{ganchos} $\{\frac{\partial}{\partial \Psi^i}\big|_p\}$, efectivamente es
+\begin{align*}
+(\pi_i)_p^*(d\varphi_i)\left(\frac{\partial}{\partial \Psi^j}\Big|_p\right) &= d_{p_i}\varphi_i\left(d_p\pi_i\left(\frac{\partial}{\partial \Psi^j}\Big|_p\right) \right) = d_{p_i}\varphi_i\left(\delta_{ij} \cdot \frac{\partial}{\partial \varphi_i}\Big|_{p_i}\right)
+\\&= \delta_{ij}d_{p_i}\varphi_i\left(\frac{\partial}{\partial \varphi_i}\Big|_{p_i}\right) = \delta_{ij} \cdot \delta_{ij}\\
+&= \delta_{ij} = d_p\Psi^i\left(\frac{\partial}{\partial \Psi^j}\Big|_p\right).
+\end{align*}
+
+Como $\eta$ es una $1$-forma, para cada $i \in \nat{n}$ existe una función suave $g_i \in C^\infty(\Ss^1)$ tal que $\eta = g_i \cdot d\varphi_i$, y se tiene\footnote{Estas propiedades son parte del ejercicio $(8)$ de la práctica $4$, que elegí resolver para la cuarta entrega.} entonces que $\pi_i^\ast(\eta) = g_i \circ \pi_i \cdot \pi_i^*(d\varphi_i) = g_i \circ \pi_i \cdot d\Psi^i$. Reescribiendo, tenemos una expresión para $\omega$ en terminos de $d\Psi^1, \dots, d\Psi^n$,
+\begin{align*}
+\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_1(\eta) = g_1 \circ \pi_1 \cdot d\Psi^1 \wedge \cdots \wedge g_n \circ \pi_n \cdot d\Psi^n = \prod_{i = 1}^{n}g_i \circ \pi_i \cdot d\Psi^1 \wedge \cdots \wedge d\Psi^n.
+\end{align*}
+
+Tanto $\Psi$ como cada carta $\psi_i$ tienen dominio denso cuyo complemento es de medida cero, así que en vista de las anteriores caracterizaciones de $\omega$ y $\eta$ podemos calcular sus integrales como
+\begin{align*}
+\int_{\T^n}\omega = \int_{\R^n}\prod_{i = 1}^{n}g_i \circ \pi_i \cdot dx_1 \cdots dx_n \quad  \text{ y } \quad \int_{\Ss^1} \eta = \int_{\R}g_i(x)dx.
+\end{align*}
+para cada $i \in \nat{n}$.
+
+Finalmente usando el teorema de Fubini, es
+\begin{align*}
+\int_{\T^n}\omega &= \int_{\R^n}\prod_{i = 1}^{n}g_i \circ \pi_i(x_1, \dots, x_n) \cdot dx_1 \cdots dx_n = \int_{\R^n}\prod_{i = 1}^{n}g_i(x_i) \cdot dx_1 \cdots dx_n\\
+&= \left(\int_{\R}g_1(x_1)dx_1\right) \cdots \left(\int_{\R}g_n(x_n)dx_n\right)\\
+&= \left(\int_{\Ss^1} \eta\right)^n.
+\end{align*}
+\end{proof}
+
+\begin{exercise}{3} Muestre que cuando $n \geq 2$ el grado de toda función diferenciable $f : \Ss^n \to \T^n$ de la $n$-esfera al $n$-toro es nulo.
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Consideremos $\eta \in \Omega^1(\Ss^1)$ una forma de volumen. Definimos entonces
+\begin{align*}
+\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_n(\eta) \in \Omega^n(\T^n)
+\end{align*}
+con $\pi_i : \T^n \to \Ss^1$ la proyección a la $i$-ésima coordenada. 
+
+Al ser $n \geq 2$ sabemos que $H^1(\Ss^n) = 0$, y por lo tanto para todo $i \in \nat{n}$ resulta $[f^*\pi_i^*(\eta)] = 0 \in H^1(\Ss^n)$. Como $f^* : H^\bullet(\T^n) \to H^\bullet(\Ss^n)$ es un morfismo de álgebras, esto dice que
+\begin{align*}
+[f^*(\omega)] &= f^*([\omega]) = f^*([\pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_1(\eta)])\\
+&= f^*([\pi^\ast_1(\eta)]) \wedge \cdots \wedge f^*([\pi^\ast_1(\eta)])\\
+&= [0] \wedge \cdots \wedge [0] = [0].
+\end{align*}
+
+Vemos así que $f^*(\omega)$ es exacta y por lo tanto, existe $\zeta \in \Omega^{n-1}(\T^n)$ tal que $f^*(\omega) = d\zeta$. Por el teorema de Stokes, esto implica que
+\begin{align*}
+\int_{\Ss^n}f^*(\omega) = \int_{\Ss^n}d\zeta = \int_{\partial \Ss^n}i^*(\zeta) = 0
+\end{align*}
+ya que $\Ss^n$ no tiene borde.
+
+Del $\tpaing{Lema $1$}$ y la definición de grado, obtenemos
+\begin{align*}
+0 = \int_{\Ss^n}f^*(\omega) = \deg(f) \cdot \int_{\T^n}\omega = \deg(f) \cdot \left(\int_{\Ss^1} \eta\right)^n.
+\end{align*}
+Al ser $\eta$ una forma de volumen de $\Ss^1$, su integral es no nula, y consecuentemente es $\deg(f) = 0$. 
 \end{proof}
 
 \paintline
 
-\begin{theorem}{1 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H^k(M) \simeq H^{n-k}_c(M)^*$.
+\begin{theorem}{2 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H^k(M) \simeq H^{n-k}_c(M)^*$.
 \end{theorem}
 
 \begin{exercise}{4} Sea $M$ una variedad compacta, orientable, conexa de dimensión $n$. Sabemos que la cohomología de De Rham de $M$ tiene entonces dimensión total finita, y podemos en consecuencia considerar el entero
@@ -159,20 +333,20 @@ content...
 \chi(M) = \sum_{i=0}^{n}(-1)^i \dim H^i(M)
 \end{align*}
 al que llamamos la \textit{característica de Euler} de $M$.
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Si la dimensión $n$ de $M$ es impar, entonces $\chi(M) = 0$.
 \item[(b)] Si la dimensión $n$ de $M$ es par y la de $H^{n/2}(M)$ es par, entonces $\chi(M)$ es un entero par.
 \end{itemize}
 \end{exercise}
 \begin{proof} Notemos que como la variedad $M$ es compacta, su cohomología a soporte compacto coincide con la cohomología de de Rham «a secas». Además, dado que la cohomología de una variedad compacta es finitamente generada, se tiene que
 \begin{align*}
-H^{n-i}_c(M)^* \simeq H^{n-i}_c(M) = H^{n-i}(M)
+H^{n-i}(M) \simeq H^{n-i}(M)^* = H^{n-i}_c(M)^* 
 \end{align*}
-para cada $i \in \nat{n}$.
+para cada $i \in \natzero{n}$.
 
-Por el $\tpaing{Teorema $1$}$, tenemos entonces que $H^i(M) \simeq H^{n-i}(M)$ para todo $i \in \nat{n}$. En particular, si notamos $\beta_i := \dim H^i(M)$ a la dimensión del $i$-ésimo grupo de cohomología, debe ser $\beta_i = \beta_{n-i}$.
+Por el $\tpaing{Teorema $2$}$, tenemos entonces que $H^i(M) \simeq H^{n-i}(M)$ para todo $i \in \natzero{n}$. En particular, si notamos $\beta_i := \dim H^i(M)$ a la dimensión del $i$-ésimo grupo de cohomología, debe ser $\beta_i = \beta_{n-i}$.
 Ahora,
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Si $n$ es impar, entonces
 \begin{align*}
 2\chi(M) &= \sum_{i=0}^{n}(-1)^i\beta_i + \sum_{i=0}^{n}(-1)^i\beta_i =
@@ -196,7 +370,7 @@ En consecuencia, la característica de Euler de $M$ es par.
 \paintline
 
 \begin{exercise}{5} Sea $G$ un grupo de Lie de dimensión $n$, sea $\mathfrak{g} = T_eG$ su álgebra de Lie y fijemos un producto interno $g_e : \mathfrak{g} \times \mathfrak{g} \to \R$ sobre $\mathfrak{g}$.
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Hay una única métrica riemanniana $g$ sobre $G$ que es invariante a izquierda y cuyo valor en $e \in G$ es $g_e$.
 \item[(b)] Sea $\mathscr{B} = \{v_1, \dots, v_n\}$ una base de $\mathfrak{g}$ y sean $X_1, \dots, X_n$ los campos tangentes a $G$ invariantes a izquierda que extienden a los elementos de $\mathscr{B}$. Muestre que para cada $i,j$, es \textit{constante} la función $g_{i,j} = g(X_i,X_j)$.
 
@@ -235,10 +409,10 @@ content...
 \paintline
 
 \begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Muestre que hay una función bilineal no degenerada y simétrica
 \begin{align*}
-\sigma : H^{2k}(M) \times H^{2k}(M) \to \R
+\beta : H^{2k}(M) \times H^{2k}(M) \to \R
 \end{align*}
 tal que si $\omega$ y $\eta$ son elementos cerrados de $\Omega^{2k}(M)$ entonces 
 \begin{align*}
@@ -255,7 +429,7 @@ content...
 \paintline
 
 \begin{exercise}{7} Sea $M \subseteq \R^3$ una superficie orientada y sin borde dotada de su métrica riemanniana inducida por la de $\R^3$ y supongamos que hay un campo vectorial $Z \in \X(M)$ sobre $M$ que no se anula en ningún punto.
-\begin{itemize}
+\begin{itemize}[listparindent = \parindent]
 \item[(a)] Muestre que existe una única forma de elegir campos $X,Y \in \X(M)$ tales que para cada $p \in M$ se tiene que $(X_p,Y_p)$ es una base ortonormal positiva de $T_pM$ y $Z_p = \|Z_p\|X_p$. 
 \item[(b)] Hay $1$-formas $\alpha,\beta\in \Omega^1(M)$ tales que $\alpha(X) = \beta(Y) = 1$ y $\alpha(Y) = \beta(X) = 0$. Más aún, existe una forma $\eta \in \Omega^1(M)$ tal que
 \begin{align*}
