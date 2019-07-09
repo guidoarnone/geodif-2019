@@ -14,6 +14,8 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{enumitem}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -27,6 +29,7 @@
 \renewcommand{\div}{\operatorname{div}}
 \newcommand{\grad}{\operatorname{grad}}
 \newcommand{\im}{\operatorname{im}}
+\newcommand{\sop}{\operatorname{sop}}
 \newcommand{\eps}{\varepsilon}
 \newcommand{\dpart}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\nat}[1]{[\![#1]\!]}
@@ -85,7 +88,11 @@ $\paint{
 \begin{document}
 
 \maketitle
+\begin{center}
+\paint{\large{Sobre la Resolución}}
+\end{center}
 
+Con la intención de hacer más legibles a las resoluciones, algunos argumentos están escritos en forma de lemas que preceden a cada ejercicio. También incluyo (sin demostración) los resultados vistos en clase que utilicé.
 \begin{center}
 $\paint{
 \rule{400pt}{0.5pt}
@@ -188,7 +195,7 @@ Sean ahora $X,Y \in \X(M)$ dos campos en $M$. Por $\paint{(2)}$ y $\paint{(3)}$ 
 
 En consecuencia, se tiene que $\ip{\nabla_X\grad(f),Y} = \ip{X,\nabla_Y\grad(f)}$ si y solo si
 \begin{align*}
-X\ip{\grad(f),Y} - Y\ip{\grad(f),X} = \ip{\grad(f),[X,Y]}.
+X\ip{\grad(f),Y} - Y\ip{\grad(f),X} = \ip{\grad(f),[X,Y]}
 \end{align*}
 o lo que es lo mismo,
 \begin{align*}
@@ -221,11 +228,52 @@ Por último, si $\gamma : I \to M$ es una curva integral de $\grad(f)$, entonces
 & = \ip{\nabla_{\grad(f)_{\gamma(t)}}\grad(f)_{\gamma(t)},\nabla_{\grad(f)_{\gamma(t)}}\grad(f)_{\gamma(t)}}\\
 & = (\ip{\nabla_{\grad(f)}\grad(f),\nabla_{\grad(f)}\grad(f)})_{\gamma(t)} = 0
 \end{align*}
-para todo $t \in I$. Vemos así que las curvas integral de $\grad(f)$ resultan geodésicas.
+para todo $t \in I$. Vemos así que las curvas integrales de $\grad(f)$ resultan geodésicas.
 \end{itemize}
 \end{proof}
 
 \paintline
+
+\begin{theorem}{1} Sea $M$ una variedad orientada, conexa y compacta de dimensión $n$. Entonces es $H^n(M) \simeq \R$ via el isomorfismo
+\begin{align*}
+[\omega] \in H^n&(M) \longmapsto \int_M \omega \in \R.
+\end{align*}
+\end{theorem}
+
+\begin{theorem}{2} Sean $M$ y $N$ variedades orientadas compactas y conexas de dimensión $n$. Si $f : M \to N$ es un difeomorfismo que preserva (resp. invierte) la orientación y $\omega \in \Omega^n(N)$ es una $n$-forma, entonces $\int_M f^*(\omega) = \int_N \omega$ (resp. $-\int_N \omega$). 
+\end{theorem}
+
+\begin{lemma}{3} Sean $M$ y $N$ dos variedades y $f : M \to N$ una función suave. Si $q \in N$ es un valor regular y $f^{-1}(q) = \{p_1, \dots, p_k\}$, existe un entorno abierto $W \subset N$ de $q$ y abiertos conexos disjuntos $U_1, \dots, U_k$ tales que:
+\begin{itemize}
+\item[(i)] para cada $i \in \nat{k}$ es $U_i \ni p_i$,
+\item[(ii)] la preimagen de $W$ por $f$ es $f^{-1}(W) = \bigsqcup_{i=1}^k U_i$, y
+\item[(iii)] para cada $i \in \nat{k}$ la (co)restricción $f|_{U_i} : U_i \to W$ es un difeomorfismo.
+\end{itemize}
+\end{lemma}
+\begin{proof} En primer lugar, como es $\dim  M = \dim N$ sabemos que en cada punto $p_i$ el diferencial de $f$ es un isomorfimo. Por el teorema de la función inversa, existen entonces abiertos $\widetilde{V}_i \ni p_i$ para cada $i$ tales que $f(\widetilde{V}_i)$ es abierto y $f|_{\widetilde{V}_i} : \widetilde{V}_i \to f(\widetilde{V}_i)$ un difeomorfismo. Achicando los abiertos si es necesario (usando que $M$ es Hausdorff y localmente conexa) podemos suponer que son conexos y disjuntos dos a dos.
+
+Notando $\widetilde{W} = \bigcap_{i=1}^nf(\widetilde{V}_i)$, definimos $\widetilde{U}_i := \widetilde{V}_i \cap f^{-1}(\widetilde{W})$. Ahora, como $M$ es compacta y $N$ es Hausdorff (pues es una variedad) sabemos que $f$ es cerrada. Por lo tanto $f\left((\bigsqcup_{i=1}^n\widetilde{U}_i)^c\right)$ es cerrado y podemos definir $W := \widetilde{W} \setminus f\left((\bigsqcup_{i=1}^n\widetilde{U}_i)^c\right)$ y $U_i := \widetilde{U}_i \cap f^{-1}(W)$.
+
+De aquí se ve que $f^{-1}(W) = U_1 \sqcup \cdots \sqcup U_k$ ya que es
+\begin{align*}
+f^{-1}(W) &= f^{-1}\left(\widetilde{W} \setminus f\left(\left(\bigsqcup_{i=1}^n\widetilde{U}_i\right)^c\right)\right) = \big(f|^{\widetilde{W}}\big)^{-1}\left(f\left(\left(\bigsqcup_{i=1}^n\widetilde{U}_i\right)^c\right)^c\right)\\
+&= \big(f|^{\widetilde{W}}\big)^{-1}\left(f|_{\widetilde{W}}\left(\left(\bigsqcup_{i=1}^n\widetilde{U}_i\right)^c\right)\right)^c \subset \left(\bigsqcup_{i=1}^n\widetilde{U}_i\right)^{cc} = \bigsqcup_{i=1}^n\widetilde{U}_i 
+\end{align*}
+de forma que
+\begin{align*}
+f^{-1}(W) \subset f^{-1}(W) \cap \bigsqcup_{i=1}^n\widetilde{U}_i  = \bigsqcup_{i=1}^n\widetilde{U}_i \cap f^{-1}(W) = \bigsqcup_{i=1}^nU_i,  
+\end{align*}
+y la otra contención está dada por la definición de los abiertos $(U_i)_{i \in \nat{n}}$. 
+
+Por último, para ver que que cada (co)restricción $f|_{U_i}^W$ es un difeomorfismo basta ver que $f(U_i) = W$ pues ya sabemos que la (co)restricción es suave e inyectiva al serlo $f|_{\widetilde{V_i}}$. Por como definimos $U_i$, basta ver que $W \subset f(U_i)$. 
+
+En efecto, puesto que es $W \subset \widetilde{W} \subset f(\widetilde{V}_i)$, si $x \in W$ entonces existe $v_i \in \widetilde{V}_i$ con $f(v_i) = x$, y dado que además es $v_i \in f^{-1}(W) \subset f^{-1}(\widetilde{W})$, se obtiene que 
+\begin{align*}
+v_i \in \widetilde{V}_i \cap f^{-1}(\widetilde{W}) = \widetilde{U}_i.
+\end{align*}
+En consecuencia debe ser $v_i \in \widetilde{U}_i \cap f^{-1}(W) = U_i$, y así $x \in f(U_i)$.
+
+\end{proof}
 
 \begin{exercise}{2} Sean $M$ y $N$ dos variedades compactas, conexas, orientadas y de la misma dimensión $n$ y sea $f : M \to N$ una función diferenciable.
 \begin{itemize}[listparindent = \parindent]
@@ -249,16 +297,79 @@ Muestre que
 \end{align*}
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Observemos en primer lugar una consecuencia del $\tpaing{Teorema $1$}$ que usaremos a continuación: este nos dice que en una variedad orientada conexa y compacta, dos $n$-formas son cohomólogas si y sólo si sus integrales sobre la variedad coinciden.
+\begin{itemize}[listparindent = \parindent] 
+\item[(a)] En vista del $\tpaing{Teorema $1$}$, sabemos que existe una $n$-forma $\omega$ de $N$ tal que $\int_N \omega = 1$. De existir, el grado debe cumplir que $\int_M f^*(\omega) = \deg(f) \cdot \int_N \omega = \deg(f)$, por lo que definimos
+\begin{align*}
+\deg(f) := \int_M f^*(\omega).
+\end{align*}
+
+Además $\deg(f)$ está bien definido pues no depende de la forma que elegimos: si $\eta$ es otra $n$-forma de $N$ que integra $1$, entonces es $[\eta] = [\omega]$ y por tanto $[f^*(\omega)] = [f^*(\eta)]$, de lo que resulta $\int_M f^*(\omega) = \int_M f^*(\eta)$. 
+
+Veamos ahora que este número satisface la propiedad deseada. Consideremos una forma $n$-forma abritraria $\eta$ de $N$. Una vez más por el $\tpaing{Teorema $1$}$, del isomorfismo $H^n(N) \simeq \R$ sabemos que existe $c \in \R$ de forma que $[\eta] = c[\omega] = [c\omega]$. En consecuencia existe $\kappa \in \Omega^{n-1}(N)$ tal que $\eta - c\omega = d\kappa$ y usando el teorema de Stokes\footnote{También podríamos apelar de vuelta al $\tpaing{Teorema $1$}$. De hecho, la cuenta que sigue justifica que la aplicación del teorema está bien definida.} es
+\begin{align*}
+\int_N \eta = \int_N c \cdot \omega + d\kappa = c\cdot\int_N\omega + \int_Nd\kappa = c\cdot\int_N\omega + \int_{\partial N}i^*(\kappa) = c
+\end{align*}  
+ya que $N$ no tiene borde. 
+
+Por otro lado, como
+\begin{align*}
+f^*(\eta) = f^*(c\cdot\omega + d\kappa) = c\cdot f^*(\omega) + f^*(d\kappa) = c\cdot f^*(\omega) + df^*(\kappa)
+\end{align*}
+y $M$ tampoco tiene borde, volvemos a apelar al teorema de Stokes para obtener
+\begin{align*}
+\int_M f^*(\eta) &= c\cdot\int_M f^*(\omega) + \int_M df^*(\kappa) = c \cdot \deg(f) + \int_{\partial M}i^*(f^*(\kappa))\\
+&= c \cdot \deg(f) = \deg(f) \cdot \int_N \eta
+\end{align*}
+como buscábamos.
+\item[(b)] Será de utilidad la siguiente observación: para cualquier abierto $U \subset N$, existe una $n$-forma $\omega$ de $N$ tal que $1 = \int_N \omega = \int_U \omega$. 
+
+Para construirla, consideramos primero  $\eta$ una forma de volumen, una carta $(V,\varphi)$ tal que $V \subset U$ y una función \textit{bump} $h \in C^\infty$ no negativa que satisfaga $\sop h \subset V$. De esta forma, en el abierto $V$ la forma $\eta$ tiene una escritura en coordenadas $\eta = g \cdot d\varphi^1 \wedge \cdots \wedge d\varphi^n$ con $g$ nunca nula. 
+
+Definimos ahora $\widetilde{\omega} = h\eta$. Como $\sop(\widetilde{\omega}) \subset \sop h \subset U$, es $\int_N \widetilde{\omega} = \int_U \widetilde{\omega}$. Además, en $V$ la forma $\widetilde{\omega}$ tiene una expresión de la forma $hg \cdot d\varphi^1 \wedge \cdots \wedge d\varphi^n$ así que
+\begin{align*}
+\int_U \widetilde{\omega} = \int_{V} hg \ d\varphi^i \wedge \cdots \wedge d\varphi^n = \int_{\varphi(V)} (hg) \circ \varphi^{-1} \ dx_1 \dots dx_n = \int_{\sop h} (hg) \circ \varphi^{-1} \ dx_1 \dots dx_n > 0
+\end{align*}
+pues $(hg) \circ \varphi^{-1}$ es continua, nunca nula en $\sop h$ y no cambia de signo en $V \supset \sop h$. Basta tomar entonces $\omega := (\int_N \widetilde{\omega})^{-1} \cdot \widetilde{\omega}$.
+
+Ahora sí, analicemos primero qué ocurre cuando $q \not \in \im f$. Como $M$ es compacta y $N$ es Hausdorff (pues es una variedad), la función $f$ es cerrada. Por lo tanto la imagen de $f$ es un cerrado, y en consecuencia existe un abierto $U \ni q$ contenido en $f(M)^c$. 
+
+Podemos tomar entonces una $n$-forma $\omega$ tal que $\sop \omega \subset U$ y $\int_N \omega = 1$. Como $\sop f^*(\omega) \subset  f^{-1}(\sop \omega) = \emptyset$, es
+\begin{align*}
+\deg(f) = \deg(f) \int_N\omega = \int_Mf^*(\omega) = 0
+\end{align*}
+lo que nos dice que 
+\begin{align*}
+\deg(f) = 0 = \sum_{p \in f^{-1}(q)}sgn_f(p).
+\end{align*}
+
+Ahora sí, supongamos que $f^{-1}(q) = \{p_1, \dots, p_k\} \subset M$ con $n \geq 1$. Usando el $\tpaing{Lema $3$}$, tomemos un abierto $W$ de $N$ y abiertos conexos disjuntos $U_i \ni p_i$ tales que $f^{-1}(W) = \bigsqcup_{i=1}^k U_i$ y cada (co)restricción $f|_{U_i}^W$ es un difeomorfismo. 
+
+En particular, como $sgn_f(p)$ varía suavemente con $p$ y tiene codominio discreto, en cada abierto conexo $U_i$ debe ser constante. Es decir, para cada $i \in \nat{n}$ la función $f$ preserva o invierte la orientación en \textit{todo} el abierto $U_i$.
+
+Una vez más, podemos considerar una $n$-forma $\omega$ tal que $\sop \omega \subset W$ y $1 = \int_W \omega= \int_M \omega$. Por lo tanto, es
+\begin{align*}
+\deg(f) &= \int_Mf^*(\omega) = \int_{f^{-1}(\sop \omega)}f^*(\omega) = \int_{f^{-1}(W)}f^*(\omega)\\
+&= \int_{\bigsqcup_{i=1}^nU_i}f^*(\omega) = \sum_{i=1}^k \int_{U_i}f^*(\omega).
+\end{align*}
+
+Usando el $\tpaing{Teorema $2$}$ para cada difeomorfismo $f|_{U_i}^W : U_i \to W$ y recordando que $sgn_f$ es constante en $U_i$, es
+\begin{align*}
+\int_{U_i}f^*(\omega) = sgn_f(p_i) \cdot \int_W\omega = sgn_f(p_i).
+\end{align*}
+Se obtiene así
+\begin{align*}
+\deg(f) = \sum_{i=1}^k \int_{U_i}f^*(\omega) = \sum_{i=1}^k sgn_f(p_i).
+\end{align*}
+\end{itemize}
 \end{proof}
 
 \paintline
 
-\begin{lemma}{1} Sea $\eta \in \Ss^1$ una $1$-forma y $n \in \N$. Si definimos $\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_n(\eta) \in \Omega^n(\T^n)$ con $\pi_i : \T^n \to \Ss^1$ la proyección a la $i$-ésima coordenada, entonces
-\begin{align}
-\int_{\T^n}\omega = \int_{\Ss^1 \times \cdots \times \Ss^1} \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_1(\eta) = \left(\int_{\Ss^1} \eta\right)^n.
-\end{align}
+\begin{lemma}{4} Sea $\eta \in \Ss^1$ una $1$-forma y $n \in \N$. Si definimos $\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_n(\eta) \in \Omega^n(\T^n)$ con $\pi_i : \T^n \to \Ss^1$ la proyección a la $i$-ésima coordenada, entonces
+\begin{align*}
+\int_{\T^n}\omega = \left(\int_{\Ss^1} \eta\right)^n.
+\end{align*}
 \end{lemma}
 \begin{proof} Dadas proyecciones estereográficas $\{\varphi_i : U_i \to \R \}_{i=1}^n$ de $\Ss^1$, tenemos una carta
 \begin{align*}
@@ -283,7 +394,7 @@ Como $\eta$ es una $1$-forma, para cada $i \in \nat{n}$ existe una función suav
 
 Tanto $\Psi$ como cada carta $\psi_i$ tienen dominio denso cuyo complemento es de medida cero, así que en vista de las anteriores caracterizaciones de $\omega$ y $\eta$ podemos calcular sus integrales como
 \begin{align*}
-\int_{\T^n}\omega = \int_{\R^n}\prod_{i = 1}^{n}g_i \circ \pi_i \cdot dx_1 \cdots dx_n \quad  \text{ y } \quad \int_{\Ss^1} \eta = \int_{\R}g_i(x)dx.
+\int_{\T^n}\omega = \int_{\R^n}\prod_{i = 1}^{n}g_i \circ \pi_i \cdot dx_1 \cdots dx_n \quad  \text{ y } \quad \int_{\Ss^1} \eta = \int_{\R}g_i(x)dx
 \end{align*}
 para cada $i \in \nat{n}$.
 
@@ -316,7 +427,7 @@ Vemos así que $f^*(\omega)$ es exacta y por lo tanto, existe $\zeta \in \Omega^
 \end{align*}
 ya que $\Ss^n$ no tiene borde.
 
-Del $\tpaing{Lema $1$}$ y la definición de grado, obtenemos
+Del $\tpaing{Lema $4$}$ y la definición de grado, obtenemos
 \begin{align*}
 0 = \int_{\Ss^n}f^*(\omega) = \deg(f) \cdot \int_{\T^n}\omega = \deg(f) \cdot \left(\int_{\Ss^1} \eta\right)^n.
 \end{align*}
@@ -325,7 +436,11 @@ Al ser $\eta$ una forma de volumen de $\Ss^1$, su integral es no nula, y consecu
 
 \paintline
 
-\begin{theorem}{2 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H^k(M) \simeq H^{n-k}_c(M)^*$.
+\begin{theorem}{5 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H_c^k(M) \simeq H^{n-k}(M)^*$ y el isomorfismo está dado por
+\begin{align*}
+p : H_c^k(&M) \longrightarrow H^{n-k}(M)^*\\
+&[\omega] \mapsto \left([\eta] \mapsto (-1)^{|\omega|}\int_M \omega \wedge \eta\right)
+\end{align*}
 \end{theorem}
 
 \begin{exercise}{4} Sea $M$ una variedad compacta, orientable, conexa de dimensión $n$. Sabemos que la cohomología de De Rham de $M$ tiene entonces dimensión total finita, y podemos en consecuencia considerar el entero
@@ -338,13 +453,11 @@ al que llamamos la \textit{característica de Euler} de $M$.
 \item[(b)] Si la dimensión $n$ de $M$ es par y la de $H^{n/2}(M)$ es par, entonces $\chi(M)$ es un entero par.
 \end{itemize}
 \end{exercise}
-\begin{proof} Notemos que como la variedad $M$ es compacta, su cohomología a soporte compacto coincide con la cohomología de de Rham «a secas». Además, dado que la cohomología de una variedad compacta es finitamente generada, se tiene que
+\begin{proof} Notemos que como la variedad $M$ es compacta, su cohomología a soporte compacto coincide con la cohomología de de Rham «a secas». Además, dado que la cohomología de una variedad compacta es finitamente generada, por el $\tpaing{Teorema $5$}$ se tiene que
 \begin{align*}
-H^{n-i}(M) \simeq H^{n-i}(M)^* = H^{n-i}_c(M)^* 
+H^i(M) = H^i_c(M) \simeq H^{n-i}(M)^* \simeq H^{n-i}(M) 
 \end{align*}
-para cada $i \in \natzero{n}$.
-
-Por el $\tpaing{Teorema $2$}$, tenemos entonces que $H^i(M) \simeq H^{n-i}(M)$ para todo $i \in \natzero{n}$. En particular, si notamos $\beta_i := \dim H^i(M)$ a la dimensión del $i$-ésimo grupo de cohomología, debe ser $\beta_i = \beta_{n-i}$.
+para cada $i \in \natzero{n}$. En particular, si notamos $\beta_i := \dim H^i(M)$ a la dimensión del $i$-ésimo grupo de cohomología, debe ser $\beta_i = \beta_{n-i}$.
 Ahora,
 \begin{itemize}[listparindent = \parindent]
 \item[(a)] Si $n$ es impar, entonces
@@ -402,11 +515,55 @@ K(p) = \frac{1}{n(n-1)} \sum_{1 \leq i,j \leq n}g(R(z_i,z_j)z_i,z_j)
 para cada $p \in G$, con $\{z_1, \dots, z_n\}$ una base ortonormal de $T_pG$.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Hago cada inciso por separado. 
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Definimos
+\begin{align*}
+g_h(v,w) := g_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(w)) \in \R
+\end{align*}
+para cada $h \in G$ y $v,w \in T_hG$, que es suave pues es composición de funciones suaves.  
+
+Probamos primero que $g$ es una métrica, es decir, que $g_h$ es un producto interno en $T_hG$ para cada punto $h$ de la variedad. Fijamos entonces $h \in G$. Como el diferencial $d_hL_{h^{-1}}$ es una función lineal, así lo es $d_hL_{h^{-1}} \times d_hL_{h^{-1}} : T_hG \times T_hG \to \mathfrak{g} \times \mathfrak{g}$. Al ser $g_e$ un producto interno, se sigue que $g_h = g_e \circ (d_hL_{h^{-1}} \times d_hL_{h^{-1}})$ es bilineal, y más aún es simétrica pues 
+\begin{align*}
+g_h(v,w) = g_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(w)) = g_e(d_hL_{h^{-1}}(w),d_hL_{h^{-1}}(v)) = g_h(w,v).
+\end{align*}
+Por último, $g_h$ es definida positiva: si $v \in T_hG$, entonces
+\begin{align*}
+g_h(v,v) = g_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(v)) > 0
+\end{align*}
+y como $d_hL_{h^{-1}}$ es un isomorfismo lineal,
+\begin{align*}
+g_h(v,v) = 0\iff g_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(v)) = 0 \iff d_hL_{h^{-1}}(v) = 0\iff v = 0.
+\end{align*}
+
+Esto prueba la existencia de una tal métrica. Si $\widetilde{g}$ es otra métrica invariante a izquierda que vale $g_e$ en la identidad, entonces como
+\begin{align*}
+d_eL_h \circ d_hL_{h^{-1}} = d_h(L_h \circ L_{h^{-1}}) = d_h(id_G) = id_{T_hG} 
+\end{align*}
+por invariancia es
+\begin{align*}
+\widetilde{g}_h(v,w) &= \widetilde{g}_{he}(d_eL_h(d_hL_{h^{-1}}(v)),d_eL_h(d_hL_{h^{-1}}(w)))= \widetilde{g}_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(w))\\&= g_e(d_hL_{h^{-1}}(v),d_hL_{h^{-1}}(w)) = g_h(v,w),
+\end{align*}
+lo que prueba la unicidad.
+\item[(b)] Recordemos que por definición es $(X_i)_h = d_eL_h(v_i)$ para cada $i \in \nat{n}$ y $h \in G$. Por lo tanto, usando la invariancia a izquierda de la métrica es
+\begin{align*}
+(g(X_i,X_j))_h = g_h((X_i)_h,(X_j)_h) = g_h(d_eL_h(v_i)),d_eL_h(v_j)) = g_e(v_i,v_j)
+\end{align*}
+para todo $h \in G$. Esto muestra que $g(X_i,X_j)$ vale constantemente $g_{i,j} := g_e(v_i,v_j)$.
+\item[(c)]  
+\end{itemize}
 \end{proof}
 
 \paintline
+
+\begin{lemma}{6} Sea $M$ una variedad de dimensión $n$ y $\omega, \eta \in \Omega^\bullet(M)$. Si $\omega$ y $\eta$ son cerradas y $\omega$ es exacta, entonces $\omega \wedge \eta$ es exacta. Más aún, si $\omega = d\kappa$ entonces es $\omega \wedge \eta = d((-1)^{|\omega|}\omega \wedge \kappa)$.
+\end{lemma}
+\begin{proof} Por un cálculo directo, es
+\begin{align*}
+d((-1)^{|\omega|}\omega \wedge \kappa) &= (-1)^{|\omega|}d\omega \wedge \kappa + (-1)^{|\omega|}(-1)^{|\omega|}\omega \wedge d\kappa\\
+&= 0 \wedge \kappa + (-1)^{2|\omega|}\omega \wedge \eta = \omega \wedge \eta.
+\end{align*}
+\end{proof}
 
 \begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
 \begin{itemize}[listparindent = \parindent]
@@ -418,12 +575,43 @@ tal que si $\omega$ y $\eta$ son elementos cerrados de $\Omega^{2k}(M)$ entonces
 \begin{align*}
 \beta([\omega],[\eta]) = \int_M \omega \wedge \eta.
 \end{align*}
-Llamamos la signatura de la forma bilineal $\sigma$ la signatura de $M$.
+Llamamos la signatura de la forma bilineal $\beta$ la signatura de $M$.
 \item[(b)] Determine la signatura de $\Ss^4$, de $\Ss^2 \times \Ss^2$, del toro $T^4$, del espacio proyectivo $P_{\C}^2$ y el producto $P_{\C}^2 \times P_{\C}^2$.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Resuelvo cada inciso por separado.
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Como la aplicación $(\omega,\eta) \in \Omega(M)^{2k} \times \Omega(M)^{2k} \mapsto \omega \wedge \eta \in \Omega(M)^{4k}$ es bilineal, y la integral (que es existe y es finita para toda forma pues $M$ es compacta y orientable) es lineal, tenemos definida una aplicación
+\begin{align*}
+b : (\omega,\eta) \in \Omega^{2k}(M) \times \Omega^{2k}(M) \mapsto \int_M \omega \wedge \eta.
+\end{align*}
+Si $\omega$ y $\eta$ son dos $2k$-formas cerradas y $\alpha, \beta$ son dos $(2k-1)$-formas cualesquiera, se tiene que
+\begin{align*}
+(\omega+d\alpha) \wedge (\eta + d\beta) = \omega \wedge \eta + \omega \wedge d\beta + d\alpha \wedge \eta + d\alpha \wedge d\beta.
+\end{align*}
+Como todos los términos del lado derecho excepto el primero son el wedge de dos formas cerradas con una de ellas exacta, por el $\tpaing{Lema $6$}$ en definitiva existe $\kappa \in \Omega^{4k-1}(M)$ tal que 
+\begin{align*}
+(\omega+d\alpha) \wedge (\eta + d\beta) = \omega \wedge \eta + d\kappa.
+\end{align*}
+Ahora, aplicando $b$ y usando el teorema de Stokes es
+\begin{align*}
+b(\omega+d\alpha,\eta+d\beta) = \int_M \omega \wedge \eta + \int_M d\kappa = \int_M \omega \wedge \eta + \overbrace{\int_{\partial M}i^*(\kappa)}^{= \ 0} = b(\omega,\eta)
+\end{align*}
+ya que $M$ no tiene borde.
+
+Esto termina de mostrar que la restricción de $b$ a las formas cerradas en ambas coordenadas pasa al cociente por la identificacion de formas cohomólogas, induciendo así una aplicación $\R$-bilineal
+\begin{align*}
+\beta : ([\omega],[\eta]) \in H^{2k}(M) \times H^{2k}(M) \mapsto \int_M \omega \wedge \eta \in \R.
+\end{align*}
+Notemos además que tanto $b$ como $\beta$ son simétricas pues la operación wedge lo es. 
+
+Para terminar, fijemos $[\omega] \in H^{2k}(M)$. Como $(-1)^{|\omega|} = (-1)^{2k} = 1$, el $\tpaing{Teorema $5$}$ nos dice en particular que si $\beta([\omega],-)$ es la función nula, entonces $[\omega] = 0$. En otras palabras, la función bilineal $\beta$ es no degenerada. 
+
+\item[(b)] Calculo cada caso por separado,
+\begin{itemize}
+\item[$\bullet \ \underline{\Ss^4}$:] en este caso sabemos que $H^2(\Ss^4) = 0$, y por lo tanto $\beta$ es nula. En consecuencia, la signatura de $\Ss^4$ es $0$.
+\end{itemize}
+\end{itemize}
 \end{proof}
 
 \paintline
@@ -445,8 +633,24 @@ y esta función no depende de la elección del campo $Z$.
 \item[(e)] Usando los resultados anteriores, muestre que no hay sobre $\Ss^2$ un campo vectorial tangente que no se anula en ningún punto.
 \end{itemize}
 \end{exercise}
-\begin{proof}
-content...
+\begin{proof} Hago cada inciso por separado.
+\begin{itemize}[listparindent = \parindent]
+\item[(a)] Antes que nada, recordemos que para cualquier $\R$-espacio vectorial $\mathbb{V}$ de dimensión $2$ con producto interno y vector unitario $v \in \mathbb{V}$, existe un único vector unitario $w \in \mathbb{V}$ tal que $\{v,w\}$ es una base ortonormal orientada positivamente. 
+
+En efecto, al $\ip{v}^\perp$ tener dimensión $1$, está generado por cierto vector $w_0 \in \mathbb{V}$. Luego, de existir $w$ debe ser de la forma $\lambda \cdot w_0$ para cierto $\lambda \in \R$. Como $\{v,w\}$ será orientada positivamente si y sólo si es $1 = \det(v,\lambda w_0)= \lambda \det(v,w_0)$ y $\{v,w_0\}$ es base, podemos tomar $w := \det(v,w_0)^{-1}w_0$. Más aún, el anterior argumento garantiza que esta es la única elección posible.
+
+Volviendo al ejercicio, como el campo $Z$ es nunca nulo, la función $\frac{1}{\|Z\|}$ está bien definida y es suave, y lo mismo ocurre para el campo $X \in \X(M)$ dado por
+\begin{align*}
+X_p := \frac{Z_p}{\|Z_p\|}
+\end{align*}
+para cada $p \in M$. Notemos además que este es el único campo posible que satisface $Z \equiv \|Z\|X$. 
+
+Por la observación inicial, $X$ induce entonces un único campo $Y : M \to TM$ tal que $\{X_p,Y_p\}$ es una base ortonormal orientada positivamente de $T_pM$ para cada $p \in M$. Veamos que $Y$ es suave: 
+\item[(b)]
+\item[(c)]
+\item[(d)]
+\item[(e)]
+\end{itemize}
 \end{proof}
 
 \end{document}
