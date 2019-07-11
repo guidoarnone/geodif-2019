@@ -884,6 +884,13 @@ para cada $p \in M$. Como $\{X_p,Y_p\}$ es una base ortonormal de $T_pM$, la for
 \begin{center}
 $\tpaing{Me faltó ver que $\eta$ existe y no depende de $Z$.}$
 \end{center}
+\item[(c)] Como para cada punto $p \in M$ las funciones $(d\eta)_p$ y $\sigma_p$ son funciones multilineales alternadas, y $Alt^2(T_pM)$ tiene dimension $1$, sabemos que existe $K_p \in \R$ tal que $-K_p\sigma_p = (d\eta)_p$ para cada $p \in M$. Tenemos bien definida así una función $K : M \to R$. Para terminar, veamos que es suave. 
+
+Fijando un punto $p \in U$ y una carta $(U, \varphi)$ con $U \ni p$, sabemos que en este abierto $\d\eta$ y $\sigma$ se expresan como
+\begin{align*}
+\sigma = S \cdot \d\varphi_1 \wedge \varphi_2 \ \text{y} \ \eta = E \cdot d\varphi_1 \wedge d\varphi_2
+\end{align*}
+para ciertas $S,E \in C^\infty(M)$. Más aún, como $\sigma_p \not \equiv 0$ para todo $p \in M$, sabemos que $S$ es nunca nula. Evaluando en cada punto de $U$, por como definimos $K$ debe ser $K = -E/S$, y esta última es una función suave.
 \item[(d)] Si $M$ es compacta, la forma $\sigma$ tiene soporte compacto. Por lo tanto, tiene integral finita en $M$ y más aún usando el teorema de Stokes es
 \begin{align*}
 \int_M K \cdot \sigma = -\int_M (-K \cdot \sigma) = -\int_M d\eta = -\int_{\partial M}i^*(\eta) = 0
