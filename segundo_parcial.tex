@@ -92,7 +92,7 @@ $\paint{
 \paint{\large{Sobre la Resolución}}
 \end{center}
 
-Con la intención de hacer más legibles a las resoluciones, algunos argumentos están escritos en forma de lemas que preceden a cada ejercicio. También incluyo (sin demostración) los resultados vistos en clase que utilicé.
+Con la intención de hacer más legible el examen, algunos argumentos están escritos en forma de lemas que preceden a cada ejercicio. También incluyo (sin demostración) los resultados vistos en clase que utilicé.
 \begin{center}
 $\paint{
 \rule{400pt}{0.5pt}
@@ -234,14 +234,18 @@ para todo $t \in I$. Vemos así que las curvas integrales de $\grad(f)$ resultan
 
 \paintline
 
+\begin{tcolorbox}
 \begin{theorem}{1} Sea $M$ una variedad orientada, conexa y compacta de dimensión $n$. Entonces es $H^n(M) \simeq \R$ via el isomorfismo
 \begin{align*}
 [\omega] \in H^n&(M) \longmapsto \int_M \omega \in \R.
 \end{align*}
 \end{theorem}
+\end{tcolorbox}
 
+\begin{tcolorbox}
 \begin{theorem}{2} Sean $M$ y $N$ variedades orientadas compactas y conexas de dimensión $n$. Si $f : M \to N$ es un difeomorfismo que preserva (resp. invierte) la orientación y $\omega \in \Omega^n(N)$ es una $n$-forma, entonces $\int_M f^*(\omega) = \int_N \omega$ (resp. $-\int_N \omega$). 
 \end{theorem}
+\end{tcolorbox}
 
 \begin{lemma}{3} Sean $M$ y $N$ dos variedades y $f : M \to N$ una función suave. Si $q \in N$ es un valor regular y $f^{-1}(q) = \{p_1, \dots, p_k\}$, existe un entorno abierto $W \subset N$ de $q$ y abiertos conexos disjuntos $U_1, \dots, U_k$ tales que:
 \begin{itemize}
@@ -365,7 +369,7 @@ Se obtiene así
 \end{proof}
 
 \paintline
-
+\newpage
 \begin{lemma}{4} Sea $\eta \in \Ss^1$ una $1$-forma y $n \in \N$. Si definimos $\omega = \pi^\ast_1(\eta) \wedge \cdots \wedge \pi^\ast_n(\eta) \in \Omega^n(\T^n)$ con $\pi_i : \T^n \to \Ss^1$ la proyección a la $i$-ésima coordenada, entonces
 \begin{align*}
 \int_{\T^n}\omega = \left(\int_{\Ss^1} \eta\right)^n.
@@ -435,14 +439,16 @@ Al ser $\eta$ una forma de volumen de $\Ss^1$, su integral es no nula, y consecu
 \end{proof}
 
 \paintline
-
+\hspace{25pt}
+\begin{tcolorbox}
 \begin{theorem}{5 (dualidad de Poincaré)} Sea $M$ una variedad conexa y orientable de dimensión $n$. Entonces, para cada $k \in \nat{n}$ se tiene que $H_c^k(M) \simeq H^{n-k}(M)^*$ y el isomorfismo está dado por
 \begin{align*}
 p : H_c^k(&M) \longrightarrow H^{n-k}(M)^*\\
 &[\omega] \mapsto \left([\eta] \mapsto (-1)^{|\omega|}\int_M \omega \wedge \eta\right)
 \end{align*}
 \end{theorem}
-
+\end{tcolorbox}
+\newpage
 \begin{exercise}{4} Sea $M$ una variedad compacta, orientable, conexa de dimensión $n$. Sabemos que la cohomología de De Rham de $M$ tiene entonces dimensión total finita, y podemos en consecuencia considerar el entero
 \begin{align*}
 \chi(M) = \sum_{i=0}^{n}(-1)^i \dim H^i(M)
@@ -479,14 +485,14 @@ En consecuencia, la característica de Euler de $M$ es par.
 \end{itemize}
 \end{proof}
 
-
-\paintline
-
+\begin{tcolorbox}
 \begin{theorem}{6 (fórmula de Koszul)} Si $(M,g)$ es una variedad riemanniana y $\nabla$ su conexión de Levi-Civita, entonces para todo $X,Y,Z \in \X(M)$ es
 \begin{align*}
 2\ip{\nabla_XY,Z} = X\ip{Y,Z} + Y\ip{Z,X} - Z\ip{X,Y} - \ip{Y,[X,Z]} - \ip{X,[Y,Z]} + \ip{[X,Y],Z}.
 \end{align*}
 \end{theorem}
+\ \\
+\end{tcolorbox}
 
 \begin{exercise}{5} Sea $G$ un grupo de Lie de dimensión $n$, sea $\mathfrak{g} = T_eG$ su álgebra de Lie y fijemos un producto interno $g_e : \mathfrak{g} \times \mathfrak{g} \to \R$ sobre $\mathfrak{g}$.
 \begin{itemize}[listparindent = \parindent]
@@ -563,7 +569,7 @@ En particular, sabemos que para todo campo $Z \in \X(M)$ es $Z \ip{X_i,X_j} \equ
 &= \sum_l\ip{X_s,c^l_{i,j}X_l} - \sum_l\ip{X_j,c^l_{i,s}X_l} - \sum_l\ip{X_i,c^l_{j,s}X_l}\\
 &= \sum_l c^l_{i,j}g_{s,l} - \sum_lc^l_{i,s}g_{j,l} - \sum_lc^l_{j,s}g_{i,l}.
 \end{align*} 
-
+\newpage
 Más compactamente, notando $(\nu_{i,j})_s := \ip{\nabla_{X_i}X_j,X_s}$ y contrayendo índices es
 
 \begin{align*}
@@ -607,7 +613,8 @@ Para conocer los coeficientes $c_{ij}^k$, calculamos los corchetes de Lie de $X$
 &= \partial_x(x)\partial_y - x[x\partial_y,\partial_x] = \partial_x(x)\partial_y -x\left(\partial_y(x)\partial_x + x[\partial_y,\partial_x]\right)\\
 &= \partial_x(x)\partial_y -x\partial_y(x)\partial_x = \partial_y.
 \end{align*}
-Por lo tanto se tiene\footnote{Notar que $1/x$ es suave pues el abierto $G \subset \R^2$ no contiene ningun punto de primera coordenada nula.} $c_{11}^k = c_{22}^k = 0$ para todo $k$ y
+\newpage
+Por lo tanto se tiene\footnote{Notar que $(x,y) \mapsto 1/x$ es suave pues el abierto $G \subset \R^2$ no contiene ningún punto de primera coordenada nula.} $c_{11}^k = c_{22}^k = 0$ para todo $k$ y
 \begin{align*}
 c_{12} = (0,1/x), \quad c_{21} = (0,-1/x).
 \end{align*} 
@@ -638,20 +645,24 @@ x\cdot y'' = x'\cdot y'
 \end{cases}
 \end{align*}
 
-En particual, las curvas que cumplen $x'' = -a^2x$ y $y' = ax$ satisfacen la ecuación, por lo que las curvas
+En particual, las curvas que cumplen $x'' = -a^2x$ e $y' = ax$ satisfacen la ecuación, por lo que las curvas
 \begin{align*}
 \gamma(t) = (c\sin(at)+d\cos(at),d\sin(at)-c\cos(at) + b)
 \end{align*}
-son soluciones. Además pedimos $(d,b-c) = \gamma(0) = e = (1,0)$ por lo que debe ser $d = 1, c = b$. Por otro lado, es $\gamma'(0) = (ac,a)$. Por lo tanto, la geodésica que pasa por $e$ y tiene velocidad $\lambda_1 \partial_x + \lambda_2 \partial_y$ es
+son soluciones. Además pedimos $(d,b-c) = \gamma(0) = e = (1,0)$ por lo que debe ser $d = 1, c = b$. Por otro lado, es $\gamma'(0) = (ac,a)$. Por unicidad local, tenemos finalmente que la geodésica que pasa por $e$ y tiene velocidad $\lambda_1 \partial_x + \lambda_2 \partial_y$ es
 \begin{align*}
 \gamma_{\lambda_1,\lambda_2}(t) = (\cos(\lambda_2t),\sin(\lambda_2t))+
 \frac{\lambda_1}{\lambda_2}(\sin(\lambda_2t),-\cos(\lambda_2t) + 1)
 \end{align*}
 si $\lambda_2 \neq 0$ y $\gamma_{\lambda_1}(t) = (\lambda_1t+1,0)$ en caso contrario.
+
+\begin{center}
+\tpaing{Me faltó calcular las coordenadas del tensor de curvatura y la curvatura escalar.}
+\end{center}
 \end{proof}
 
 \paintline
-
+\newpage
 \begin{lemma}{7} Sea $M$ una variedad de dimensión $n$ y $\omega, \eta \in \Omega^\bullet(M)$. Si $\omega$ y $\eta$ son cerradas y $\omega$ es exacta, entonces $\omega \wedge \eta$ es exacta. Más aún, si $\omega = d\kappa$ entonces es $\omega \wedge \eta = d((-1)^{|\omega|}\omega \wedge \kappa)$.
 \end{lemma}
 \begin{proof} Por un cálculo directo, es
@@ -661,6 +672,7 @@ d((-1)^{|\omega|}\omega \wedge \kappa) &= (-1)^{|\omega|}d\omega \wedge \kappa +
 \end{align*}
 \end{proof}
 
+\begin{tcolorbox}
 \begin{theorem}{8 (fórmula de Künneth)} Sean $N$ y $M$ dos variedades compactas, conexas y orientables. Entonces, para cada $n \in N$ tenemos un isomorfismo
 \begin{align*}
 H^n(M \times N) \simeq \bigoplus_{r+s = n}H^r(M) \otimes H^s(N)
@@ -671,6 +683,7 @@ inducido por las funciones bilineales
 \end{align*}
 para cada $r,s \in \N_0$ tales que $r+s = n$.
 \end{theorem}
+\end{tcolorbox}
 
 \begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
 \begin{itemize}[listparindent = \parindent]
@@ -821,13 +834,13 @@ Notando $a = \int_{P_\C^2 \times P_\C^2} \pi_1^*(\omega \wedge \omega) \wedge  \
 0 & 0 & 1
 \end{pmatrix},
 \end{align*}
-                                                                                                                                                                                                                                                                                        que tiene a $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)]$ y $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)] + [\pi_1^*(\omega) \wedge \pi_2^*(\omega)]$ como autovectores de autovalor $a$ y a $ [\pi_1^*(\omega \wedge \omega)] - [\pi_2^*(\omega \wedge \omega)]$ como autovector de autovalor $-a$. Por lo tanto, la signatura de $P_\C^2 \times P_\C^2$ es $1$.
+que tiene a $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)]$ y $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)] + [\pi_1^*(\omega) \wedge \pi_2^*(\omega)]$ como autovectores de autovalor $a$ y a $ [\pi_1^*(\omega \wedge \omega)] - [\pi_2^*(\omega \wedge \omega)]$ como autovector de autovalor $-a$. Por lo tanto, la signatura de $P_\C^2 \times P_\C^2$ es $1$.
 \end{itemize}
 \end{itemize}
 \end{proof}
 
 \paintline
-
+\newpage
 \begin{exercise}{7} Sea $M \subseteq \R^3$ una superficie orientada y sin borde dotada de su métrica riemanniana inducida por la de $\R^3$ y supongamos que hay un campo vectorial $Z \in \X(M)$ sobre $M$ que no se anula en ningún punto.
 \begin{itemize}[listparindent = \parindent]
 \item[(a)] Muestre que existe una única forma de elegir campos $X,Y \in \X(M)$ tales que para cada $p \in M$ se tiene que $(X_p,Y_p)$ es una base ortonormal positiva de $T_pM$ y $Z_p = \|Z_p\|X_p$. 
@@ -857,11 +870,25 @@ X_p := \frac{Z_p}{\|Z_p\|}
 \end{align*}
 para cada $p \in M$. Notemos además que este es el único campo posible que satisface $Z \equiv \|Z\|X$. 
 
-Por la observación inicial, $X$ induce entonces un único campo $Y : M \to TM$ tal que $\{X_p,Y_p\}$ es una base ortonormal orientada positivamente de $T_pM$ para cada $p \in M$. Veamos que $Y$ es suave: 
-\item[(b)]
-\item[(c)]
-\item[(d)]
-\item[(e)]
+Por la observación inicial, $X$ induce entonces un único campo $Y : M \to TM$ tal que $\{X_p,Y_p\}$ es una base ortonormal orientada positivamente de $T_pM$ para cada $p \in M$.
+\begin{center}
+$\tpaing{Me faltó ver que $Y$ es un campo suave.}$
+\end{center}
+\item[(b)] Definimos $\alpha := \ip{X,-}$ y $\beta := \ip{Y,-}$. Estas son $1$-formas pues en cada punto $p \in M$ dan una función lineal $v \mapsto \ip{X_p,v}$ ó $v \mapsto \ip{Y_p,v}$ de $T_pM$, y dependen suavemente de los campos y la métrica. Como $\{X,Y\}$ dá una base ortonormal en cada punto, se sigue que $\alpha(X) = \|X\| = 1 = \|Y\| = \beta(Y)$ y $\alpha(Y) = \beta(X) = \ip{X,Y} = 0$. 
+
+Por otro lado, su wedge $\sigma = \alpha \wedge \beta$ satisface
+\begin{align*}
+\sigma_p(X_p,Y_p) = \alpha(X_p)\beta(Y_p) - \alpha(Y_p)\beta(X_p) = 1
+\end{align*}
+para cada $p \in M$. Como $\{X_p,Y_p\}$ es una base ortonormal de $T_pM$, la forma $\sigma$ es necesariamente la forma de volumen riemanniano de $M$. En particular, está determinada por la métrica y no depende del campo $Z$.
+\begin{center}
+$\tpaing{Me faltó ver que $\eta$ existe y no depende de $Z$.}$
+\end{center}
+\item[(d)] Si $M$ es compacta, la forma $\sigma$ tiene soporte compacto. Por lo tanto, tiene integral finita en $M$ y más aún usando el teorema de Stokes es
+\begin{align*}
+\int_M K \cdot \sigma = -\int_M (-K \cdot \sigma) = -\int_M d\eta = -\int_{\partial M}i^*(\eta) = 0
+\end{align*}
+pues $M$ no tiene borde.
 \end{itemize}
 \end{proof}
 
