@@ -105,7 +105,7 @@ $\paint{
 \item[(a)] Muestre que existe un campo vectorial diferenciable $\grad(f) \in \X(M)$ y uno solo con la propiedad de que para cada campo $Y \in \X(M)$ se tiene que
 \begin{align*}
 \ip{\grad(f), Y} = df(Y).
-\end{align*}
+\end{align*}@A
 Encuentre una expresión en coordenadas para el campo $\grad(f)$.
 \item[(b)] La función 
 \begin{align*}
@@ -306,7 +306,7 @@ Muestre que
 
 Además $\deg(f)$ está bien definido pues no depende de la forma que elegimos: si $\eta$ es otra $n$-forma de $N$ que integra $1$, entonces es $[\eta] = [\omega]$ y por tanto $[f^*(\omega)] = [f^*(\eta)]$, de lo que resulta $\int_M f^*(\omega) = \int_M f^*(\eta)$. 
 
-Veamos ahora que este número satisface la propiedad deseada. Consideremos una forma $n$-forma abritraria $\eta$ de $N$. Una vez más por el $\tpaing{Teorema $1$}$, del isomorfismo $H^n(N) \simeq \R$ sabemos que existe $c \in \R$ de forma que $[\eta] = c[\omega] = [c\omega]$. En consecuencia existe $\kappa \in \Omega^{n-1}(N)$ tal que $\eta - c\omega = d\kappa$ y usando el teorema de Stokes\footnote{También podríamos apelar de vuelta al $\tpaing{Teorema $1$}$. De hecho, la cuenta que sigue justifica que la aplicación del teorema está bien definida.} es
+Veamos ahora que este número satisface la propiedad deseada. Consideremos una forma $n$-forma abritraria $\eta$ de $N$. Una vez más por el $\tpaing{Teorema $1$}$, del isomorfismo $H^n(N) \simeq \R$ sabemos que existe $c \in \R$ de forma que $[\eta] = c[\omega] = [c\omega]$. En consecuencia existe $\kappa \in \Omega^{n-1}(N)$ tal que $\eta - c\omega = d\kappa$ y usando el teorema de Stokes\footnote{También podríamos apelar de vuelta al $\tpaing{Teorema $1$}$. De hecho, una pequeña modificación de la cuenta que sigue justifica que la aplicación del teorema está bien definida.} es
 \begin{align*}
 \int_N \eta = \int_N c \cdot \omega + d\kappa = c\cdot\int_N\omega + \int_Nd\kappa = c\cdot\int_N\omega + \int_{\partial N}i^*(\kappa) = c
 \end{align*}  
@@ -482,6 +482,12 @@ En consecuencia, la característica de Euler de $M$ es par.
 
 \paintline
 
+\begin{theorem}{6 (fórmula de Koszul)} Si $(M,g)$ es una variedad riemanniana y $\nabla$ su conexión de Levi-Civita, entonces para todo $X,Y,Z \in \X(M)$ es
+\begin{align*}
+2\ip{\nabla_XY,Z} = X\ip{Y,Z} + Y\ip{Z,X} - Z\ip{X,Y} - \ip{Y,[X,Z]} - \ip{X,[Y,Z]} + \ip{[X,Y],Z}.
+\end{align*}
+\end{theorem}
+
 \begin{exercise}{5} Sea $G$ un grupo de Lie de dimensión $n$, sea $\mathfrak{g} = T_eG$ su álgebra de Lie y fijemos un producto interno $g_e : \mathfrak{g} \times \mathfrak{g} \to \R$ sobre $\mathfrak{g}$.
 \begin{itemize}[listparindent = \parindent]
 \item[(a)] Hay una única métrica riemanniana $g$ sobre $G$ que es invariante a izquierda y cuyo valor en $e \in G$ es $g_e$.
@@ -549,14 +555,104 @@ lo que prueba la unicidad.
 \begin{align*}
 (g(X_i,X_j))_h = g_h((X_i)_h,(X_j)_h) = g_h(d_eL_h(v_i)),d_eL_h(v_j)) = g_e(v_i,v_j)
 \end{align*}
-para todo $h \in G$. Esto muestra que $g(X_i,X_j)$ vale constantemente $g_{i,j} := g_e(v_i,v_j)$.
-\item[(c)]  
+para todo $h \in G$. Esto muestra que $\ip{X_i,X_j} := g(X_i,X_j)$ vale constantemente $g_{i,j} := g_e(v_i,v_j)$. 
+
+En particular, sabemos que para todo campo $Z \in \X(M)$ es $Z \ip{X_i,X_j} \equiv 0$. Usando esto y la fórmula de Koszul, se obtiene que
+\begin{align*}
+2\ip{\nabla_{X_i}X_j,X_s} &= \ip{X_s,[X_i,X_j]} - \ip{X_j,[X_i,X_s]} - \ip{X_i,[X_j,X_s]}\\
+&= \sum_l\ip{X_s,c^l_{i,j}X_l} - \sum_l\ip{X_j,c^l_{i,s}X_l} - \sum_l\ip{X_i,c^l_{j,s}X_l}\\
+&= \sum_l c^l_{i,j}g_{s,l} - \sum_lc^l_{i,s}g_{j,l} - \sum_lc^l_{j,s}g_{i,l}.
+\end{align*} 
+
+Más compactamente, notando $(\nu_{i,j})_s := \ip{\nabla_{X_i}X_j,X_s}$ y contrayendo índices es
+
+\begin{align*}
+(\nu_{i,j})_s = \frac{1}{2}\left(c^l_{i,j}g_{s,l} - c^l_{i,s}g_{j,l} - c^l_{j,s}g_{i,l}\right).
+\end{align*}
+
+Por otro lado si $\{\Gamma_{ij}^k\}_{i,j,k}$ son las funciones\footnote{En principio, estas funciones existen por el solo hecho de que los campos $X_1, \dots, X_n$ en cada punto $h \in G$ dan una base de $T_hG$. Sin embargo, veremos \textit{a posteriori} que son suaves.} que satisfacen $\nabla_{X_i}X_j = \sum_k \Gamma_{ij}^k X_k$ en todo punto, haciendo el producto interno contra $X_s$ en ambos lados debe ser
+\begin{align*}
+(\nu_{ij})_s = \sum_k\Gamma_{ij}^k g_{k,s}
+\end{align*}
+o dicho de otra forma,
+\begin{align*}
+\frac{1}{2}\left(c^l_{i,j}g_{s,l} - c^l_{i,s}g_{j,l} - c^l_{j,s}g_{i,l}\right) = \Gamma_{i,j}^kg_{k,s}.
+\end{align*}
+
+En conclusión, los símbolos de Christoffel se describen en términos las coordenadas de los productos internos y corchetes de Lie de los campos como
+
+\begin{align*}
+\Gamma_{ij}^k = \frac{1}{2}g^{k,s}\left(c^l_{i,j}g_{s,l} - c^l_{i,s}g_{j,l} - c^l_{j,s}g_{i,l}\right).
+\end{align*}
+
+\item[(c)] Como la métrica en $g$ extiende el producto interno en la identidad dado por el usual de $\R^2$, es $g_{i,j} = \delta_{ij}$. Por otro lado, si fijamos la base ortonormal de $T_eG$ que corresponde a los \textit{ganchos} $\mathscr{B} = \{\partial_x|_e,\partial_y|_e\}$, veamos como quedan los campos (que notamos $X$ e $Y$ respectivamente) que extienden a estos vectores de forma $G$-invariante. 
+
+Fijado un punto $(x,y)$, la multiplicación por esta a izquierda es
+\begin{align*}
+L_{(x,y)}(z,w) = \begin{pmatrix}
+x & 0\\
+0 & x
+\end{pmatrix}\cdot \begin{pmatrix}
+z\\
+w
+\end{pmatrix}  + \begin{pmatrix}
+0\\y
+\end{pmatrix}
+\end{align*}
+y por lo tanto su diferencial se identifica con la transformación lineal de $\R^2$ que se corresponde con multiplicación por $x \cdot I_2 \in \M{2}{\R}$. Esto nos dice que $X \equiv x \partial_x$ e $Y \equiv x\partial_y$. 
+
+Para conocer los coeficientes $c_{ij}^k$, calculamos los corchetes de Lie de $X$ e $Y$. Ya sabemos que $[X,X] = [Y,Y] = 0$ y por antisimetría es $-[Y,X] = [X,Y]$, así que calculamos este último,
+\begin{align*}
+[x\partial_x,x\partial_y] &= \partial_x(x)\partial_y + x[\partial_x,x\partial_y]\\
+&= \partial_x(x)\partial_y - x[x\partial_y,\partial_x] = \partial_x(x)\partial_y -x\left(\partial_y(x)\partial_x + x[\partial_y,\partial_x]\right)\\
+&= \partial_x(x)\partial_y -x\partial_y(x)\partial_x = \partial_y.
+\end{align*}
+Por lo tanto se tiene\footnote{Notar que $1/x$ es suave pues el abierto $G \subset \R^2$ no contiene ningun punto de primera coordenada nula.} $c_{11}^k = c_{22}^k = 0$ para todo $k$ y
+\begin{align*}
+c_{12} = (0,1/x), \quad c_{21} = (0,-1/x).
+\end{align*} 
+Volviendo a la expresión de los simbolos de Christoffel, como $g_{i,j} = \delta_{i,j}$ queda
+\begin{align*}
+\Gamma_{ij}^k = \frac{1}{2}(c^k_{ij}-c^j_{ik}-c^i_{jk}).
+\end{align*}
+
+Concretamente,
+\begin{align*}
+\Gamma_{11} &= (0,0), \quad
+\Gamma_{22} = (1/x,0), \text{ y}\\
+\Gamma_{12} &= (0,0), \quad
+\Gamma_{21} = (0,-1/x).
+\end{align*}
+
+Ahora sí, calculo todas las geodésicas posibles alrededor de $e \in G$. Como en este caso la carta global es la identidad, aplicando la ecuación de las geodésicas 
+\begin{align*}
+(x^k)'' + \frac{1}{2}(\Gamma_{ij}^k + \Gamma_{ji}^k)(x^i)'(x^j)' = 0
+\end{align*}
+a una curva $\gamma(t) = (x(t),y(t))$ resulta
+
 \end{itemize}
+\begin{align*}
+\begin{cases}
+x \cdot x'' = -(y')^2\\
+x\cdot y'' = x'\cdot y'
+\end{cases}
+\end{align*}
+
+En particual, las curvas que cumplen $x'' = -a^2x$ y $y' = ax$ satisfacen la ecuación, por lo que las curvas
+\begin{align*}
+\gamma(t) = (c\sin(at)+d\cos(at),d\sin(at)-c\cos(at) + b)
+\end{align*}
+son soluciones. Además pedimos $(d,b-c) = \gamma(0) = e = (1,0)$ por lo que debe ser $d = 1, c = b$. Por otro lado, es $\gamma'(0) = (ac,a)$. Por lo tanto, la geodésica que pasa por $e$ y tiene velocidad $\lambda_1 \partial_x + \lambda_2 \partial_y$ es
+\begin{align*}
+\gamma_{\lambda_1,\lambda_2}(t) = (\cos(\lambda_2t),\sin(\lambda_2t))+
+\frac{\lambda_1}{\lambda_2}(\sin(\lambda_2t),-\cos(\lambda_2t) + 1)
+\end{align*}
+si $\lambda_2 \neq 0$ y $\gamma_{\lambda_1}(t) = (\lambda_1t+1,0)$ en caso contrario.
 \end{proof}
 
 \paintline
 
-\begin{lemma}{6} Sea $M$ una variedad de dimensión $n$ y $\omega, \eta \in \Omega^\bullet(M)$. Si $\omega$ y $\eta$ son cerradas y $\omega$ es exacta, entonces $\omega \wedge \eta$ es exacta. Más aún, si $\omega = d\kappa$ entonces es $\omega \wedge \eta = d((-1)^{|\omega|}\omega \wedge \kappa)$.
+\begin{lemma}{7} Sea $M$ una variedad de dimensión $n$ y $\omega, \eta \in \Omega^\bullet(M)$. Si $\omega$ y $\eta$ son cerradas y $\omega$ es exacta, entonces $\omega \wedge \eta$ es exacta. Más aún, si $\omega = d\kappa$ entonces es $\omega \wedge \eta = d((-1)^{|\omega|}\omega \wedge \kappa)$.
 \end{lemma}
 \begin{proof} Por un cálculo directo, es
 \begin{align*}
@@ -564,6 +660,17 @@ d((-1)^{|\omega|}\omega \wedge \kappa) &= (-1)^{|\omega|}d\omega \wedge \kappa +
 &= 0 \wedge \kappa + (-1)^{2|\omega|}\omega \wedge \eta = \omega \wedge \eta.
 \end{align*}
 \end{proof}
+
+\begin{theorem}{8 (fórmula de Künneth)} Sean $N$ y $M$ dos variedades compactas, conexas y orientables. Entonces, para cada $n \in N$ tenemos un isomorfismo
+\begin{align*}
+H^n(M \times N) \simeq \bigoplus_{r+s = n}H^r(M) \otimes H^s(N)
+\end{align*}
+inducido por las funciones bilineales
+\begin{align*}
+([\omega],[\eta]) \in H^r(M) \times H^s(N) \mapsto [\pi_1^*(\omega) \wedge \pi_2^*(\eta)] \in H^n(M \times N)
+\end{align*}
+para cada $r,s \in \N_0$ tales que $r+s = n$.
+\end{theorem}
 
 \begin{exercise}{6} Sea $M$ una variedad compacta y orientable de dimensión $4k$.
 \begin{itemize}[listparindent = \parindent]
@@ -589,7 +696,7 @@ Si $\omega$ y $\eta$ son dos $2k$-formas cerradas y $\alpha, \beta$ son dos $(2k
 \begin{align*}
 (\omega+d\alpha) \wedge (\eta + d\beta) = \omega \wedge \eta + \omega \wedge d\beta + d\alpha \wedge \eta + d\alpha \wedge d\beta.
 \end{align*}
-Como todos los términos del lado derecho excepto el primero son el wedge de dos formas cerradas con una de ellas exacta, por el $\tpaing{Lema $6$}$ en definitiva existe $\kappa \in \Omega^{4k-1}(M)$ tal que 
+Como todos los términos del lado derecho excepto el primero son el wedge de dos formas cerradas con una de ellas exacta, por el $\tpaing{Lema $7$}$ en definitiva existe $\kappa \in \Omega^{4k-1}(M)$ tal que 
 \begin{align*}
 (\omega+d\alpha) \wedge (\eta + d\beta) = \omega \wedge \eta + d\kappa.
 \end{align*}
@@ -603,13 +710,118 @@ Esto termina de mostrar que la restricción de $b$ a las formas cerradas en amba
 \begin{align*}
 \beta : ([\omega],[\eta]) \in H^{2k}(M) \times H^{2k}(M) \mapsto \int_M \omega \wedge \eta \in \R.
 \end{align*}
-Notemos además que tanto $b$ como $\beta$ son simétricas pues la operación wedge lo es. 
+
+Veamos ahora que tanto $b$ como $\beta$ son simétricas pues la operación wedge lo es en $\Omega^{2k}(M) \times \Omega^{2k}(M)$. Si $\sigma \in \Ss_{4k}$, entonces $\widetilde{\sigma} = \sigma (1 \ 4k)(2 \ (4k-1)) \cdots (2k \ (2k+1))$ tiene el mismo signo que $\sigma$ ya que ambas permutaciones difieren en $2k$ transposiciones. Además la aplicación $\sigma \mapsto \widetilde{\sigma}$ es inversible pues corresponde a multiplicar a derecha por un elemento de $\Ss_{4k}$.
+
+Por el mismo motivo que antes, de la multilinealidad de las formas es $\sigma \cdot \eta \otimes \omega = (-1)^{2k} \cdot \widetilde{\sigma} \cdot \omega \otimes \eta = \widetilde{\sigma} \cdot \omega \otimes \eta$ para toda $\omega, \eta \in \Omega^{2k}(M)$ y $\sigma \in \Ss_{4k}$. En consecuencia resulta
+\begin{align*}
+\eta \wedge \omega &= \frac{1}{2k!2k!}\sum_{\sigma \in \Ss_{4k}}(-1)^\sigma \sigma \cdot \eta \otimes \omega = \frac{1}{2k!2k!}\sum_{\sigma \in \Ss_{4k}}(-1)^{\widetilde{\sigma}} \widetilde{\sigma}\cdot \omega \otimes \eta\\
+&=  \frac{1}{2k!2k!}\sum_{\sigma \in \Ss_{4k}}(-1)^{\sigma} \sigma\cdot \omega \otimes \eta = \omega \wedge \eta.
+\end{align*}
 
 Para terminar, fijemos $[\omega] \in H^{2k}(M)$. Como $(-1)^{|\omega|} = (-1)^{2k} = 1$, el $\tpaing{Teorema $5$}$ nos dice en particular que si $\beta([\omega],-)$ es la función nula, entonces $[\omega] = 0$. En otras palabras, la función bilineal $\beta$ es no degenerada. 
 
 \item[(b)] Calculo cada caso por separado,
-\begin{itemize}
-\item[$\bullet \ \underline{\Ss^4}$:] en este caso sabemos que $H^2(\Ss^4) = 0$, y por lo tanto $\beta$ es nula. En consecuencia, la signatura de $\Ss^4$ es $0$.
+\begin{itemize}[listparindent = \parindent]
+\item[$\bullet$] $\underline{\Ss^4}$: en este caso sabemos que $H^2(\Ss^4) = 0$, y por lo tanto $\beta$ es nula. En consecuencia, la signatura de $\Ss^4$ es $0$.
+\item[$\bullet$] $\underline{\Ss^2 \times \Ss^2}$: en vista de la fórmula de Künneth sabemos que
+\begin{align*}
+H^2(\Ss^2 \times \Ss^2) \simeq H^2(\Ss^2) \otimes H^0(\Ss^2) \oplus H^0(\Ss^2) \otimes H^2(\Ss^2) \simeq H^2(\Ss^2) \oplus H^2(\Ss^2),
+\end{align*}
+y más aún una base de $H^2(\Ss^2 \times \Ss^2)$ es $\mathscr{B} = \{[\pi_1^*(\omega)],[\pi_2^*(\omega)]\}$ con $\omega \in H^2(\Ss^2)$ una forma de volumen. Más aún, el mapa de la fórmula de Künneth para grado $2k$ nos dice que $[\pi_1^*(\omega) \wedge \pi_2^*(\omega)]$ es no nula (y usando el $\tpaing{Teorema $1$}$, su integral es por tanto no nula). 
+
+Ahora como $H^4(\Ss^2) = 0$ es
+\begin{align*}
+[\pi_1^*(\omega)] \wedge [\pi_1^*(\omega)] &= [\pi_1^*(\omega \wedge \omega)] = 0,\\
+[\pi_1^*(\omega)] \wedge [\pi_2^*(\omega)] &= [\pi_1^*(\omega) \wedge \pi_2^*(\omega)],\\
+[\pi_2^*(\omega)] \wedge [\pi_1^*(\omega)] &= [\pi_2^*(\omega) \wedge \pi_1^*(\omega)] = [\pi_1^*(\omega) \wedge \pi_2^*(\omega)], \text{ y}\\
+[\pi_2^*(\omega)] \wedge [\pi_2^*(\omega)] &= [\pi_2^*(\omega \wedge \omega)] = 0,
+\end{align*}
+notando $a := \int_{\Ss^2 \times \Ss^2}\pi_1^*(\omega) \wedge \pi_2^*(\omega)$ la matriz de $\beta$ en la base $\mathscr{B}$ es
+\begin{align*}
+[\beta]_{\mathscr{B}} = \begin{pmatrix}
+0 & a\\
+a & 0\\
+\end{pmatrix} = a \cdot \begin{pmatrix}
+0 & 1\\
+1 & 0\\
+\end{pmatrix}.
+\end{align*}
+
+Por un cálculo directo, sabemos que $[\pi_1^*(\omega)]+[\pi_2^*(\omega)]$ y $[\pi_1^*(\omega)]-[\pi_2^*(\omega)]$ son autovectores de $[\beta]_{\mathscr{B}}$ de autovalores $a$ y $-a$ respectivamente, por lo que la signatura de $\Ss^2 \times \Ss^2$ es $0$.
+\item[$\bullet$] $\underline{\T^4}$: una vez más, usamos la fórmula de Künneth. Vemos de esta forma que 
+\begin{align*}
+H^2(\T^4) &\simeq H^0(\T^2) \otimes H^2(\T^2) \oplus H^2(\T^2) \otimes H^0(\T^2) \otimes H^1(\T^2) \otimes H^1(\T^2)\\
+&\simeq  H^2(\T^2) \oplus H^2(\T^2) \oplus (H^1(\T^2) \otimes H^1(\T^2)).
+\end{align*}
+
+Con un argumento similar se tiene que
+\begin{align*}
+H^2(\T^2) \simeq H^1(\Ss^1) \otimes H^1(\Ss^1) \text{ y }
+H^1(\T^2) \simeq H^1(\Ss^1) \oplus H^1(\Ss^1),
+\end{align*}
+por lo que en definitiva es
+\begin{align*}
+H^2(\T^4) &\simeq  H^2(\T^2) \oplus H^2(\T^2) \oplus (H^1(\T^2) \otimes H^1(\T^2))\\
+&\simeq (H^1(\Ss^1) \otimes H^1(\Ss^1)) \oplus (H^1(\Ss^1) \otimes H^1(\Ss^1)) \oplus [(H^1(\Ss^1) \oplus H^1(\Ss^1)) \otimes (H^1(\Ss^1) \oplus H^1(\Ss^1))].
+\end{align*}
+
+Persiguiendo los isomorfismos del $\tpaing{Teorema 7}$ y usando que proyectar de $\T^4$ a una copia de $\T^2$ y luego a la $1$-esfera es como considerar directamente una proyección $\pi_i : \T^4 \to \Ss^1$, obtenemos una base de $H^2(\T^4)$ dada por
+\begin{align*}
+\mathscr{B} = \{ \ [\pi_i^*(\eta) \wedge \pi_j^*(\eta)] \ \}_{1 \leq i <j \leq 4}
+\end{align*}
+con $\eta$ una forma de volumen de $\Ss^1$, ordenada según el orden lexicográfico de $ij$.
+
+Como en el caso de $\Ss^2 \times \Ss^2$, sabemos que el wedge de dos elementos que «comparten un índice» de $\mathscr{B}$ es nulo pues $H^2(\Ss^1) = 0$. Para los otros casos, reordenando obtenemos $\pm [\pi_1^*(\eta) \wedge \pi_2^*(\eta) \wedge \pi_3^*(\eta) \wedge \pi_4^*(\eta)]$. Usando la fórmula de Künneth otra vez o apelando al $\tpaing{Lema $4$}$, sabemos que $a := \int_{\T^4} \pi_1^*(\eta) \wedge \pi_2^*(\eta) \wedge \pi_3^*(\eta) \wedge \pi_4^*(\eta) \neq 0$ y entonces por un cálculo directo es
+\begin{align*}
+[\beta]_{\mathscr{B}} = a \cdot \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & -1 & 0\\
+0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 0\\
+0 & -1 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}.
+\end{align*}
+
+Notando $\omega_{ij} = [\pi_i^*(\eta) \wedge \pi_j^*(\eta)]$ obtenemos que las clases de cohomología $[\omega_{14} + \omega_{23}]$, $[-\omega_{13}+\omega_{24}]$ y $[\omega_{12} + \omega_{34}]$ son autovectores de de $[\beta]_{\mathscr{B}}$ autovalor $a$; y las clases de cohomología $[-\omega_{14} + \omega_{23}]$, $[\omega_{13}+\omega_{24}]$ y $[-\omega_{12} + \omega_{34}]$ son autovectores de $[\beta]_{\mathscr{B}}$ de autovalor $-a$. Consecuentemente, la signatura de $\T^4$ es cero.
+\item[$\bullet$] $\underline{P_\C^2}$: voy a usar algunos hechos sobre la chomología del espacio proyectivo complejo. En primer lugar, sabemos que es
+\begin{align*}
+H^{k}(P_\C^2) = \begin{cases}\R &\text{ si $2 | k$ y $k \leq 4$}\\0 &\text{en caso contrario}\end{cases}
+\end{align*}
+y más aún, tenemos una $2$-forma $\omega \in H^2(P_\C^2)$ tal que $\omega \wedge \omega$ es una forma de volumen y $a := \int_{P_\C^2}\omega \wedge \omega > 0$. En consecuencia, en la base de $H^2(P_\C^2)$ dada por $\{\omega\}$ la matriz de $\beta$ es simplemente $(a)$. Concluimos entonces que la signatura de $P_\C^2$ es $1$.
+\item[$\bullet$] $\underline{P_\C^2 \times P_\C^2}$: en vista de lo anterior y usando que
+\begin{align*}
+H^4(P_\C^2 \times P_\C^2) \simeq H^4(P_\C^2) \oplus (H^2(P_\C^2) \otimes H^2(P_\C^2)) \oplus H^4(P_\C^2),
+\end{align*}
+por el mismo argumento que antes vemos que una base de $H^4(P_C^2)$ proviene del pullback $4$-formas y $2$-formas de $P_\C^2$ por cada proyección. Concretamente, si $H^2(P_\C^2) = \ip{[\omega]}$ es la forma del inciso anterior, entonces
+\begin{align*}
+\mathscr{B}= \{\ [\pi_1^*(\omega \wedge \omega)], [\pi_2^*(\omega \wedge \omega)], [\pi_1^*(\omega) \wedge \pi_2^*(\omega)] \ \}
+\end{align*}
+es una base de $H^4(P_\C^2 \times P_\C^2)$. Como $[\omega \wedge \omega \wedge \omega] \in H^6(P_\C^2) = 0$, es
+\begin{align*}
+[\pi_1^*(\omega) \wedge \pi_2^*(\omega)] \wedge [\pi_1^*(\omega \wedge \omega)] = 0 \ \text{ y } \ [\pi_1^*(\omega) \wedge \pi_2^*(\omega)] \wedge [\pi_2^*(\omega \wedge \omega)] = 0.
+\end{align*}
+
+Del mismo modo tenemos que 
+\begin{align*}
+[\pi_1^*(\omega \wedge \omega)] \wedge [\pi_1^*(\omega \wedge \omega)] = [\pi_2^*(\omega \wedge \omega)] \wedge [\pi_2^*(\omega \wedge \omega)] = 0
+\end{align*}
+pues $H^8(P_\C^2) = 0$. Por último, usando queda
+\begin{align*}
+ [\pi_1^*(\omega) \wedge \pi_2^*(\omega)] \wedge  [\pi_1^*(\omega) \wedge \pi_2^*(\omega)] &=  [\pi_1^*(\omega) \wedge \pi_1^*(\omega)] \wedge  [\pi_2^*(\omega) \wedge \pi_2^*(\omega)]\\
+ &= [\pi_1^*(\omega \wedge \omega)] \wedge  [\pi_2^*(\omega \wedge \omega)]
+\end{align*}
+
+Notando $a = \int_{P_\C^2 \times P_\C^2} \pi_1^*(\omega \wedge \omega) \wedge  \pi_2^*(\omega \wedge \omega) > 0$ es
+\begin{align*}
+[\beta]_{\mathscr{B}} = a \cdot \begin{pmatrix}
+0 & 1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
+\end{pmatrix},
+\end{align*}
+                                                                                                                                                                                                                                                                                        que tiene a $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)]$ y $ [\pi_1^*(\omega \wedge \omega)] + [\pi_2^*(\omega \wedge \omega)] + [\pi_1^*(\omega) \wedge \pi_2^*(\omega)]$ como autovectores de autovalor $a$ y a $ [\pi_1^*(\omega \wedge \omega)] - [\pi_2^*(\omega \wedge \omega)]$ como autovector de autovalor $-a$. Por lo tanto, la signatura de $P_\C^2 \times P_\C^2$ es $1$.
 \end{itemize}
 \end{itemize}
 \end{proof}
